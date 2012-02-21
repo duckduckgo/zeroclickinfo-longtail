@@ -18,22 +18,59 @@ var TARFILE_NAME = 'archive.tar';
 var NEW_DIR_MODE = '0755';
 
 function runMain() {
-    fs.mkdirSync('./quora-data', NEW_DIR_MODE);
+    util.mkdirSync('./quora-data', NEW_DIR_MODE);
     db.serialize(function() {
-        db.all("SELECT id, url FROM QUESTIONS WHERE state = ? LIMIT ?", SAVED, LIMIT, function(err, rows) {
-            for (var i = 0; i < rows.length; ++i) {
+        db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", SAVED, LIMIT, function(err, rows) {
+            console.log("parse.js::err::", err);
+            console.log("rows:", rows);
+            // rows = rows.slice(0, 1);
+
+            rows.forEach(function(row, i) {
                 // Parse the file and set state to 'PARSED'
-                var fPath = "./quora-data" + rows[i].url;
-                util.loadDOM(fs.readFileSync(fPath), function($, window, errors) {
+                var fPath = "./quora-data" + row.url;
+                console.log("Parsing file:", fPath);
+                var contents = fs.readFileSync(fPath, 'utf-8');
+                contents = contents.substr(contents.indexOf('<body>'));
+                contents = contents.substr(0, contents.indexOf('<script'));
+
+                // console.log("contents:", contents);
+
+                util.loadDOM(contents, function($, window, errors) {
+                    if (errors) {
+                        console.error("Error parsing file:", fPath, errors);
+                        return;
+                    } else {
+                        console.log("Successfully parsed file:", fPath);
+                    }
+
                     // $(".question_link"). // other questions
                     // $(".question_text_edit:first").text() // title
                     // $(".inline_editor_content:first").text() // question text
-
+                    
                     // Add file to tar archive
                     // tar -rf "./TARFILE_NAME" PATH_OF_FILE_TO_ADD
 
+                    // console.log("$:", $);
+                    // console.log("innerHTML:", window.document.innerHTML);
+
+                    var questionURLs = $(".question_link").map(function(q) {
+                        return $(q).attr('href');
+                    });
+
+                    var title = $(".question_text_edit:first").text();
+                    var body = $(".inline_editor_content:first").text();
+
+                    console.log("id:", row.id, "title:", title, "body:", body);
+
+                    window.close();
+
+                    // Add question to DB.
+                    db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
+                           PARSED, title, body, row.id);
                 });
-            }
+
+            });
+
         });
     });
 

@@ -28,11 +28,13 @@ function runMain() {
         db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", TODO, LIMIT, function(err, rows) {
             console.log("ERROR:", err);
 
-            for (var i = 0; i < rows.length; ++i) {
+            rows.forEach(function(row, i) {
                 // Download the file and update the 'state' once the
                 // download is complete.
 
-                var urlPath = rows[i].url;
+                console.log(row);
+
+                var urlPath = row.url;
                 var fDir =  "./quora-data" + path.dirname(urlPath, NEW_DIR_MODE);
                 var fPath = "./quora-data" + urlPath;
 
@@ -41,15 +43,22 @@ function runMain() {
 
                 request('http://www.quora.com' + urlPath, function(error, response, body) {
                     // console.log(body);
+                    console.log("downloaded:", row.url);
+
                     if (!error && response.statusCode === 200) {
+                        // Write file to disk.
                         fs.writeFileSync(fPath, body);
+
+                        // Update DB.
+                        db.run("UPDATE QUESTIONS SET status=? WHERE id=?", 
+                               SAVED, row.id);
                     } else {
                         // TODO: Set this row in the 'ERROR' state.
                     }
                 });
 
+            });
 
-            }
         });
     });
 

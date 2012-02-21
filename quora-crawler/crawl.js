@@ -14,6 +14,7 @@ var PARSED = 3;
 var INSERT_IGNORE_SQL = 'INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)';
 
 function runMain() {
+    return;
     console.log("crawl.js::runMain");
     // Spawn a task that downloads links in the TODO state
 
