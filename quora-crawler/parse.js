@@ -24,6 +24,7 @@ function runMain() {
             console.log("parse.js::err::", err);
             console.log("rows:", rows);
             // rows = rows.slice(0, 1);
+            var rowsProcessed = 0;
 
             rows.forEach(function(row, i) {
                 // Parse the file and set state to 'PARSED'
@@ -36,37 +37,44 @@ function runMain() {
                 // console.log("contents:", contents);
 
                 util.loadDOM(contents, function($, window, errors) {
-                    if (errors) {
+                    if (!errors) {
+                        console.log("Successfully parsed file:", fPath);
+
+                        // $(".question_link"). // other questions
+                        // $(".question_text_edit:first").text() // title
+                        // $(".inline_editor_content:first").text() // question text
+                        
+                        // Add file to tar archive
+                        // tar -rf "./TARFILE_NAME" PATH_OF_FILE(S)_TO_ADD ...
+
+                        // console.log("$:", $);
+                        // console.log("innerHTML:", window.document.innerHTML);
+
+                        var questionURLs = $(".question_link").map(function(q) {
+                            return $(q).attr('href');
+                        });
+
+                        var title = $(".question_text_edit:first").text();
+                        var body = $(".inline_editor_content:first").text();
+
+                        console.log("id:", row.id, "title:", title, "body:", body);
+
+                        window.close();
+
+                        // Add question to DB.
+                        db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
+                               PARSED, title, body, row.id);
+                    } else {
                         console.error("Error parsing file:", fPath, errors);
                         return;
-                    } else {
-                        console.log("Successfully parsed file:", fPath);
                     }
 
-                    // $(".question_link"). // other questions
-                    // $(".question_text_edit:first").text() // title
-                    // $(".inline_editor_content:first").text() // question text
-                    
-                    // Add file to tar archive
-                    // tar -rf "./TARFILE_NAME" PATH_OF_FILE_TO_ADD
+                    if (++rowsProcessed == rows.length) {
+                        // TODO: Add all processed files to the tar archive TARFILE_NAME.
 
-                    // console.log("$:", $);
-                    // console.log("innerHTML:", window.document.innerHTML);
+                        // Let process automatically exit. The caller will restart it.
+                    }
 
-                    var questionURLs = $(".question_link").map(function(q) {
-                        return $(q).attr('href');
-                    });
-
-                    var title = $(".question_text_edit:first").text();
-                    var body = $(".inline_editor_content:first").text();
-
-                    console.log("id:", row.id, "title:", title, "body:", body);
-
-                    window.close();
-
-                    // Add question to DB.
-                    db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
-                           PARSED, title, body, row.id);
                 });
 
             });

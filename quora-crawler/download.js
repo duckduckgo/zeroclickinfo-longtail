@@ -16,17 +16,16 @@ var SAVED  = 2;
 var PARSED = 3;
 var ERROR  = 4;
 
-var LIMIT = 50;
+var LIMIT = 10;
 var NEW_DIR_MODE = '0755';
 
 function runMain() {
-    console.log("[1] Started download.js");
     util.mkdirSync('./quora-data', NEW_DIR_MODE);
-    console.log("[2] Started download.js");
 
     db.serialize(function() {
         db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", TODO, LIMIT, function(err, rows) {
             console.log("ERROR:", err);
+            var rowsProcessed = 0;
 
             rows.forEach(function(row, i) {
                 // Download the file and update the 'state' once the
@@ -53,8 +52,16 @@ function runMain() {
                         db.run("UPDATE QUESTIONS SET status=? WHERE id=?", 
                                SAVED, row.id);
                     } else {
-                        // TODO: Set this row in the 'ERROR' state.
+                        // Set this row in the 'ERROR' state.
+                        db.run("UPDATE QUESTIONS SET status=? WHERE id=?", 
+                               ERROR, row.id);
                     }
+
+                    if (++rowsProcessed == rows.length) {
+                        // Restart downloader after LIMIT sec
+                        setTimeout(runMain, LIMIT * 1000);
+                    }
+
                 });
 
             });
