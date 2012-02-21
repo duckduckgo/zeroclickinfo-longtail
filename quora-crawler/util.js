@@ -17,7 +17,9 @@ function loadDOM(html, cb) {
                 cb(window.$, window, errors);
             }
         });
-    } catch(ex) { }
+    } catch(ex) {
+        cb(null, null, ex);
+    }
 }
 
 function exportVars(vars) {
