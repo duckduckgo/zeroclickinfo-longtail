@@ -14,12 +14,12 @@ var PARSED = 3;
 var INSERT_IGNORE_SQL = 'INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)';
 
 function runMain() {
-
+    console.log("crawl.js::runMain");
     // Spawn a task that downloads links in the TODO state
 
     var download = spawn('./download.js');
 
-    console.log(download, download.pid);
+    // console.log(download, download.pid);
 
     download.stdout.on('data', function(d) {
         console.log("DATA:", d.toString());
@@ -57,6 +57,8 @@ function createTables() {
     db.serialize(function() {
         db.run("CREATE TABLE IF NOT EXISTS QUESTIONS (id INTEGER PRIMARY KEY AUTOINCREMENT, " + 
                "url VARCHAR(1024) UNIQUE, status INTEGER(1), title TEXT, body TEXT) ");
+
+        db.run("CREATE INDEX IF NOT EXISTS status_index ON QUESTIONS (status)");
 
         // Insert Seed Links
         db.run(INSERT_IGNORE_SQL, 

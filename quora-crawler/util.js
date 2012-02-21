@@ -32,4 +32,13 @@ function exportVars(vars) {
     }
 }
 
-exportVars('loadDOM');
+function mkdirSync(path, mode) {
+    try {
+        return fs.mkdirSync(path, mode);
+    } catch(ex) {
+        console.error("util.js::mkdirSync::", ex);
+    }
+    return 0;
+}
+
+exportVars('loadDOM mkdirSync');
