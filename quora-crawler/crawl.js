@@ -11,6 +11,8 @@ var TODO   = 1;
 var SAVED  = 2;
 var PARSED = 3;
 
+var INSERT_IGNORE_SQL = 'INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)';
+
 function runMain() {
 
     // Spawn a task that downloads links in the TODO state
@@ -57,34 +59,34 @@ function createTables() {
                "url VARCHAR(1024) UNIQUE, status INTEGER(1), title TEXT, body TEXT) ");
 
         // Insert Seed Links
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/What-do-you-hate-most-about-RabbitMQ', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/What-are-the-best-JMS-queue-implementations', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/Distributed-Caching/What-are-some-distributed-cache-systems', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/How-do-SSD-drives-change-things-for-main-memory-databases', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/Philanthropy-and-Charities/Should-I-donate-to-a-local-charity-focused-on-helping-local-women-and-girls-or-a-charity-focused-on-helping-women-and-girls-in-the-developing-world', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/How-does-Gearman-compare-with-a-messaging-queue-system-like-Beanstalkd-RabbitMQ-and-Amazon-SQS', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/Imagine-building-Quora-or-Facebook-today-using-Java-Spring-would-you-chose-ActiveMQ-ZeroMQ-RabbitMQ-or-a-XMPP-server', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/Microsoft-History/Why-did-Steve-Ballmer-say-except-in-Nebraska-at-the-end-of-the-Windows-1-0-ad', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/What-are-the-privacy-differences-between-ixquick-and-duckduckgo', TODO, null, null);
 
-        db.run("INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)", 
+        db.run(INSERT_IGNORE_SQL, 
                '/HBase/From-an-overall-cluster-throughput-point-of-view-why-would-replicating-asynchronously-run-faster-than-sync-replication', 
                TODO, null, null, runMain);
 
