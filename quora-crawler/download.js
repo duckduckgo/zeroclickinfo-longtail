@@ -39,7 +39,13 @@ function runMain() {
                 // console.log("Creating directory:", fDir);
                 util.mkdirSync(fDir, NEW_DIR_MODE);
 
-                request('http://www.quora.com' + urlPath, function(error, response, body) {
+                var rOpts = {
+                    url: 'http://www.quora.com' + urlPath, 
+                    headers: {
+                        'User-Agent': 'DuckDuckBot/1.1'
+                    }
+                };
+                request(rOpts, function(error, response, body) {
                     // console.log(body);
                     // console.log("downloaded:", row.url);
 
