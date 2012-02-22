@@ -37,7 +37,7 @@ function runMain() {
                 // Parse the file and set state to 'PARSED'
                 var fPath = "./quora-data" + row.url;
                 // console.log("Parsing file:", fPath);
-                var contents = '<body><script>';
+                var contents = '<body><p></p><script>';
 
                 if (path.existsSync(fPath)) {
                     contents = fs.readFileSync(fPath, 'utf-8');
@@ -75,9 +75,16 @@ function runMain() {
                         answers.pop();
 
                         answers = answers.map(function(answer) {
+                            var a = $(answer);
+                            var content = a.find('.answer_content')
+                            var count = a.find('.voter_count');
+                            if (content.length != 1) {
+                                return { body: '', votes: '0' };
+                            }
+
                             return {
-                                body: $(answer).find('.answer_content').text().trim(), 
-                                votes: ($(answer).find('.voter_count').text() || '0').trim()
+                                body: content.text().trim(), 
+                                votes: ((count.length == 1 ? count.text() : '0') || '0').trim()
                             };
                         });
 
@@ -92,6 +99,18 @@ function runMain() {
                             // Add question to DB.
                             db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
                                    PARSED, title, body, row.id);
+
+                            // Add all answers to the DB.
+                            answers.forEach(function(answer) {
+                                if (answer.body) {
+                                    db.run('INSERT OR IGNORE INTO ANSWERS (questionID, body, votes) VALUES (?, ?, ?)', 
+                                           row.id, answer.body, answer.votes);
+                                }
+                            });
+
+                        } else {
+                            // Mark it as an error.
+                            db.run("UPDATE QUESTIONS SET status=? WHERE id=?", ERROR, row.id);
                         }
 
                         // Add (potentially) new links to the DB.
@@ -99,19 +118,12 @@ function runMain() {
                             db.run(INSERT_IGNORE_SQL, questionURL, TODO, null, null);
                         });
 
-                        // Add all answers to the DB.
-                        answers.forEach(function(answer) {
-                            if (answer.body) {
-                                db.run('INSERT OR IGNORE INTO ANSWERS (questionID, body, votes) VALUES (?, ?, ?)', 
-                                       row.id, answer.body, answer.votes);
-                            }
-                        });
 
                     } else {
                         console.error("Error parsing file:", fPath, errors);
                         // Set this row in the 'ERROR' state.
-                        db.run("UPDATE QUESTIONS SET status=? WHERE id=?", 
-                               ERROR, row.id);
+                        db.run("UPDATE QUESTIONS SET status=? WHERE id=?", ERROR, row.id);
+                        console.error("Contents:", contents);
                         return;
                     }
 

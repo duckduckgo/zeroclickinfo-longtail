@@ -26,12 +26,18 @@ function runMain() {
     console.log("crawl.js::runMain");
     // Spawn a task that downloads links in the TODO state
 
-    var download = spawn('./download.js');
+    function spawnDownloader() {
+        var download = spawn('./download.js');
 
-    // console.log(download, download.pid);
-
-    download.stdout.on('data', labelledLogger('download::stdout::', console.log.bind(console)));
-    download.stderr.on('data', labelledLogger('download::stderr::', console.error.bind(console)));
+        // console.log(download, download.pid);
+        
+        download.stdout.on('data', labelledLogger('download::stdout::', console.log.bind(console)));
+        download.stderr.on('data', labelledLogger('download::stderr::', console.error.bind(console)));
+        
+        download.on('exit', function(code) {
+            spawnDownloader();
+        });
+    }
 
     // 
     // Spawn a task that parses downloaded links in the SAVED state,
@@ -62,6 +68,7 @@ function runMain() {
         });
     }
 
+    spawnDownloader();
     spawnParser();
 
 }
