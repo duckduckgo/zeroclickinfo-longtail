@@ -4,7 +4,7 @@ var fs      = require('fs');
 var qs      = require('querystring');
 var jsdom   = require('jsdom');
 var request = require('request');
-var HTML5   = require('html5');
+// var HTML5   = require('html5');
 
 var jquery  = fs.readFileSync(require.resolve("./jquery.min.js"), 'utf-8');
 
