@@ -9,8 +9,6 @@ var request = require('request');
 
 var db = new sqlite3.Database('quora.sqlite3', runMain);
 
-console.log("FOO");
-
 var TODO   = 1;
 var SAVED  = 2;
 var PARSED = 3;
@@ -24,25 +22,26 @@ function runMain() {
 
     db.serialize(function() {
         db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", TODO, LIMIT, function(err, rows) {
-            console.log("ERROR:", err);
+            // console.log("ERROR:", err);
             var rowsProcessed = 0;
+            console.log("1");
 
             rows.forEach(function(row, i) {
                 // Download the file and update the 'state' once the
                 // download is complete.
 
-                console.log(row);
+                // console.log(row);
 
                 var urlPath = row.url;
                 var fDir =  "./quora-data" + path.dirname(urlPath, NEW_DIR_MODE);
                 var fPath = "./quora-data" + urlPath;
 
-                console.log("Creating directory:", fDir);
+                // console.log("Creating directory:", fDir);
                 util.mkdirSync(fDir, NEW_DIR_MODE);
 
                 request('http://www.quora.com' + urlPath, function(error, response, body) {
                     // console.log(body);
-                    console.log("downloaded:", row.url);
+                    // console.log("downloaded:", row.url);
 
                     if (!error && response.statusCode === 200) {
                         // Write file to disk.
