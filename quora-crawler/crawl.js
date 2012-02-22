@@ -72,7 +72,11 @@ var seedLinks = [
     '/Microsoft-History/Why-did-Steve-Ballmer-say-except-in-Nebraska-at-the-end-of-the-Windows-1-0-ad', 
     '/What-are-the-privacy-differences-between-ixquick-and-duckduckgo', 
     '/HBase/From-an-overall-cluster-throughput-point-of-view-why-would-replicating-asynchronously-run-faster-than-sync-replication', 
-    'http://www.quora.com/Why-is-development-of-btrfs-taking-so-long'
+    '/Why-is-development-of-btrfs-taking-so-long', 
+    '/What-are-the-best-websites-optimized-for-the-tablet-experience-by-newspaper-magazine-or-media-companies', 
+    '/Which-companies-should-one-meet-in-San-Francisco', 
+    '/What-are-the-top-10-internet-business-models-that-are-currently-the-most-profitable-and-easiest-to-copy-in-a-new-market', 
+    '/What-will-Gilts-exit-strategy-be'
 ];
 
 function createTables() {
@@ -81,6 +85,9 @@ function createTables() {
                "url VARCHAR(1024) UNIQUE, status INTEGER(1), title TEXT, body TEXT) ");
 
         db.run("CREATE INDEX IF NOT EXISTS status_index ON QUESTIONS (status)");
+
+        db.run("CREATE TABLE IF NOT EXISTS ANSWERS (id INTEGER PRIMARY KEY AUTOINCREMENT, " + 
+               "questionID INT REFERENCES QUESTIONS(id), body TEXT, votes INT)");
 
         // Insert Seed Links
         seedLinks.forEach(function(seedLink, i) {

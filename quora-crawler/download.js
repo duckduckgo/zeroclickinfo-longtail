@@ -22,11 +22,16 @@ function runMain() {
 
     db.serialize(function() {
         db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", TODO, LIMIT, function(err, rows) {
-            // console.log("ERROR:", err);
+            if (err) {
+                console.log("ERROR:", err);
+                // Restart downloader after LIMIT sec
+                setTimeout(runMain, LIMIT * 1000);
+                return;
+            }
             var rowsProcessed = 0;
-            console.log("1");
 
             rows.forEach(function(row, i) {
+                console.log("1");
                 // Download the file and update the 'state' once the
                 // download is complete.
 

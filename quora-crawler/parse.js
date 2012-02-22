@@ -5,6 +5,7 @@ var sqlite3 = require('sqlite3').verbose();
 var util    = require('./util.js');
 var fs      = require('fs');
 var spawn   = require('child_process').spawn;
+var path    = require('path');
 
 var db = new sqlite3.Database('quora.sqlite3', runMain);
 
@@ -12,6 +13,7 @@ var db = new sqlite3.Database('quora.sqlite3', runMain);
 var TODO   = 1;
 var SAVED  = 2;
 var PARSED = 3;
+var ERROR  = 4;
 
 var LIMIT = 50;
 
@@ -33,12 +35,15 @@ function runMain() {
                 // Parse the file and set state to 'PARSED'
                 var fPath = "./quora-data" + row.url;
                 console.log("Parsing file:", fPath);
-                var contents = fs.readFileSync(fPath, 'utf-8');
-                contents = contents.substr(contents.indexOf('<body>'));
-                contents = contents.substr(0, contents.indexOf('<script'));
+                var contents = '<body><script>';
 
-                filePaths.push(fPath);
+                if (path.existsSync(fPath)) {
+                    contents = fs.readFileSync(fPath, 'utf-8');
+                    filePaths.push(fPath);
 
+                    contents = contents.substr(contents.indexOf('<body>'));
+                    contents = contents.substr(0, contents.indexOf('<script'));
+                }
                 // console.log("contents:", contents);
 
                 util.loadDOM(contents, function($, window, errors) {
@@ -61,6 +66,19 @@ function runMain() {
 
                         console.log("questionURLs:", questionURLs);
 
+                        // Fetch all answers
+                        var answers = $(".answer_border").toArray();
+
+                        // Remove the last entry.
+                        answers.pop();
+
+                        answers = answers.map(function(answer) {
+                            return {
+                                body: $(answer).find('.answer_content').text().trim(), 
+                                votes: ($(answer).find('.voter_count').text() || '0').trim()
+                            };
+                        });
+
                         var title = $(".question_text_edit:first").text();
                         var body = $(".inline_editor_content:first").text();
 
@@ -68,17 +86,30 @@ function runMain() {
 
                         window.close();
 
-                        // Add question to DB.
-                        db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
-                               PARSED, title, body, row.id);
+                        if (title && body) {
+                            // Add question to DB.
+                            db.run("UPDATE QUESTIONS SET status=?, title=?, body=? WHERE id=?", 
+                                   PARSED, title, body, row.id);
+                        }
 
                         // Add (potentially) new links to the DB.
                         questionURLs.forEach(function(questionURL) {
                             db.run(INSERT_IGNORE_SQL, questionURL, TODO, null, null);
                         });
 
+                        // Add all answers to the DB.
+                        answers.forEach(function(answer) {
+                            if (answer.body) {
+                                db.run('INSERT OR IGNORE INTO ANSWERS (questionID, body, votes) VALUES (?, ?, ?)', 
+                                       row.id, answer.body, answer.votes);
+                            }
+                        });
+
                     } else {
                         console.error("Error parsing file:", fPath, errors);
+                        // Set this row in the 'ERROR' state.
+                        db.run("UPDATE QUESTIONS SET status=? WHERE id=?", 
+                               ERROR, row.id);
                         return;
                     }
 
@@ -88,11 +119,11 @@ function runMain() {
                         var tar = spawn('tar', tarArgs);
                         tar.on('exit', function(code) {
                             // Let process automatically exit. The caller will restart it.
-                            // Empty function to delay process exit by 2 sec.
+                            // Empty function to delay process exit by 4 sec.
                             filePaths.forEach(function(filePath) {
                                 fs.unlinkSync(filePath);
                             });
-                            setTimeout(function() { }, 2000);
+                            setTimeout(function() { }, 4000);
                         });
                     }
 
