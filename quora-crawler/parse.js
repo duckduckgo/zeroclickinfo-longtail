@@ -25,7 +25,9 @@ function runMain() {
     util.mkdirSync('./quora-data', NEW_DIR_MODE);
     db.serialize(function() {
         db.all("SELECT id, url FROM QUESTIONS WHERE status = ? LIMIT ?", SAVED, LIMIT, function(err, rows) {
-            console.log("parse.js::err::", err);
+            if (err) {
+                console.error("parse.js::err::", err);
+            }
             console.log("rows:", rows);
             // rows = rows.slice(0, 1);
             var rowsProcessed = 0;
@@ -34,7 +36,7 @@ function runMain() {
             rows.forEach(function(row, i) {
                 // Parse the file and set state to 'PARSED'
                 var fPath = "./quora-data" + row.url;
-                console.log("Parsing file:", fPath);
+                // console.log("Parsing file:", fPath);
                 var contents = '<body><script>';
 
                 if (path.existsSync(fPath)) {
@@ -48,7 +50,7 @@ function runMain() {
 
                 util.loadDOM(contents, function($, window, errors) {
                     if (!errors) {
-                        console.log("Successfully parsed file:", fPath);
+                        // console.log("Successfully parsed file:", fPath);
 
                         // $(".question_link"). // other questions
                         // $(".question_text_edit:first").text() // title
@@ -64,7 +66,7 @@ function runMain() {
                             return $(q).attr('href');
                         }).toArray();
 
-                        console.log("questionURLs:", questionURLs);
+                        // console.log("questionURLs:", questionURLs);
 
                         // Fetch all answers
                         var answers = $(".answer_border").toArray();
@@ -82,7 +84,7 @@ function runMain() {
                         var title = $(".question_text_edit:first").text();
                         var body = $(".inline_editor_content:first").text();
 
-                        console.log("id:", row.id, "title:", title, "body:", body);
+                        // console.log("id:", row.id, "title:", title, "body:", body);
 
                         window.close();
 

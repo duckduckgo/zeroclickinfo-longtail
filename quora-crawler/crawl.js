@@ -13,6 +13,14 @@ var PARSED = 3;
 
 var INSERT_IGNORE_SQL = 'INSERT OR IGNORE INTO QUESTIONS (url, status, title, body) VALUES (?, ?, ?, ?)';
 
+function labelledLogger(label, logger) {
+    return function(d) {
+        d = d.toString();
+        d = (d.length ? d.substr(0, d.length - 1) : d);
+        logger(label, d);
+    };
+}
+
 function runMain() {
     // return;
     console.log("crawl.js::runMain");
@@ -22,9 +30,8 @@ function runMain() {
 
     // console.log(download, download.pid);
 
-    download.stdout.on('data', function(d) {
-        console.log("download::", d.toString());
-    });
+    download.stdout.on('data', labelledLogger('download::stdout::', console.log.bind(console)));
+    download.stderr.on('data', labelledLogger('download::stderr::', console.error.bind(console)));
 
     // 
     // Spawn a task that parses downloaded links in the SAVED state,
@@ -38,18 +45,16 @@ function runMain() {
 
     var MIN_DELAY = 5 /* 5 second */;
     function spawnParser() {
-        console.log("spawnParser() called");
+        console.log("crawl.js::spawnParser() called");
         var parse = spawn('./parse.js');
         var started = new Date();
 
-        parse.stdout.on('data', function(d) {
-            console.log("parse::", d.toString());
-        });
+        parse.stdout.on('data', labelledLogger('parse::stdout::', console.log.bind(console)));
+        parse.stderr.on('data', labelledLogger('parse::stderr::', console.error.bind(console)));
 
         parse.on('exit', function(code) {
             var diff = new Date() - started;
             if (diff > MIN_DELAY*1000) {
-                console.log("restarting parser...");
                 spawnParser();
             } else {
                 setTimeout(spawnParser, (MIN_DELAY * 1000 - diff));
