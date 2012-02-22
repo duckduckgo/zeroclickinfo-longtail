@@ -17,7 +17,7 @@ Add more URLs to crawl.js::seedLinks to ensure that BFS works well
 1. We make 1 req/sec (amortized)
 2. Peak is 20 req/sec
 3. Data is saved in quote.sqlite3
-4. All downloaded and parsed files are stored in archive.tar to reduce the load on the file system.
+4. All downloaded and parsed files are stored in ''archive.tar'' to reduce the load on the file system.
 
 ### TODO
 
