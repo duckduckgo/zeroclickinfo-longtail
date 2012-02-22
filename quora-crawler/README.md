@@ -1,5 +1,20 @@
 # Quora Crawler
 
+### Installation
+
+1. Fetch from git:
+
+```
+$ git clone git@github.com:duckduckgo/zeroclickinfo-longtail.git
+```
+
+2. Download dependencies:
+
+```
+$ cd zeroclickinfo-longtail/quora-crawler
+$ npm install .
+```
+
 ### Simple Usage
 
 Run
