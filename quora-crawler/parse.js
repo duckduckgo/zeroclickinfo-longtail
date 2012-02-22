@@ -119,11 +119,11 @@ function runMain() {
                         var tar = spawn('tar', tarArgs);
                         tar.on('exit', function(code) {
                             // Let process automatically exit. The caller will restart it.
-                            // Empty function to delay process exit by 4 sec.
+                            // Empty function to delay process exit by 5 sec.
                             filePaths.forEach(function(filePath) {
                                 fs.unlinkSync(filePath);
                             });
-                            setTimeout(function() { }, 4000);
+                            setTimeout(function() { }, 5000);
                         });
                     }
 
