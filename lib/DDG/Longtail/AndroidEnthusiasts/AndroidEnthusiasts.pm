@@ -1,4 +1,4 @@
-package DDG::Goodie::AndroidEnthusiasts;
+package DDG::Longtail::AndroidEnthusiasts;
 
 use DDG::Meta::Information;
 use DDG::Longtail;
