@@ -4,7 +4,7 @@ use DDG::Meta::Information;
 use DDG::Longtail;
 
 name 'Arqade';
-description 'Gaming';
+description 'Gaming answers';
 source "Gaming StackExchange";
 icon_url "/i/gaming.stackexchange.com.ico";
 topics => 'gaming';
