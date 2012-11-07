@@ -10,5 +10,5 @@ icon_url "/i/gis.stackexchange.com.ico";
 topics => 'science';
 categories => 'q/a';
 primary_example_queries => 'esri data formats';
-secondary_example_queries => 'layers in mapfile', 'postgis from arcmap';
+secondary_example_queries => 'layers in mapfile', 'postgis from arcmap', 'share geodatabases safely';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-longtail/blob/master/lib/DDG/Longtail/GeographicInformationSystems/';
