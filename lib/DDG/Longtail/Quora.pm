@@ -1,6 +1,5 @@
 package DDG::Longtail::Quora;
 
-use DDG::Meta::Information;
 use DDG::Longtail;
 
 name 'Quora';
@@ -12,3 +11,5 @@ category 'q/a';
 primary_example_queries '';
 secondary_example_queries '', '';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-longtail/blob/master/lib/DDG/Longtail/Quora/';
+
+1;
