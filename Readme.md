@@ -27,5 +27,5 @@ Feel free to [ask questions](http://duckduckhack.com/#faq!)
 
 ### Structure
 
-[Ask us](http://duckduckhack.com/#faq), as it is evolving rapidly and may vary on a case by case basis.
+[Ask us](https://github.com/duckduckgo/duckduckgo/blob/master/FAQ.md#can-you-help-me), as it is evolving rapidly and may vary on a case by case basis.
 
