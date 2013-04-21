@@ -8,7 +8,7 @@ source "LyricsMode";
 icon_url "/i/www.lyricsmode.com.ico";
 topics 'music';
 category 'q/a';
-primary_example_queries 'brass monkey lyrics';
+primary_example_queries 'jesus walks lyrics';
 secondary_example_queries 'panama lyrics', 'lean on me lyrics';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-longtail/blob/master/lib/DDG/Longtail/Lyrics/';
 
