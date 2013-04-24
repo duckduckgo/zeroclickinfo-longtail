@@ -7,6 +7,9 @@ This repository is for contributing longtail plugins. Each longtail plugin produ
 
 Longtail plugins are in alpha and both the interface and testing procedure are not yet well defined. However, you can work away without worrying about what any changes might do to your plugins -- we'll take care of all that.
 
+### Example
+
+![lyrics example](https://s3.amazonaws.com/ddg-assets/docs/longtail_example.png)
 
 Contributing
 ------------
