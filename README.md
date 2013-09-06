@@ -4,6 +4,6 @@ This repository contains all the Longtail instant answers. If you are developing
 
 If you would like to contribute to DuckDuckHack, please start by reading the [DuckDuckHack Documentation](#).
 
-# Longtail Instan Answer Example
+# Longtail Instant Answer Example
 
 ![lyrics example](https://s3.amazonaws.com/ddg-assets/docs/longtail_example.png)
