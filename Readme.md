@@ -30,7 +30,7 @@ Please feel free to [ask us questions](http://duckduckhack.com/#faq)!
 
 ### Structure
 
-Longtails consist of two primary files. The first is a metadata file that describes the plugin you are building. It's structure is identical to the Fathead metadata file, described [here](https://github.com/duckduckgo/zeroclickinfo-fathead#meta-file). The second, which can be generated using a language of your choosing, contains the data set in a format ready for us to deploy:
+Longtails consist of two primary files. The first is a metadata file that describes the plugin you are building. Its structure is identical to the Fathead metadata file, described [here](https://github.com/duckduckgo/zeroclickinfo-fathead#meta-file). The second, which can be generated using a language of your choosing, contains the data set in a format ready for us to deploy:
 
 ```
 <!-- This XML declaration can be simply copied and is necessary for all longtail. -->
