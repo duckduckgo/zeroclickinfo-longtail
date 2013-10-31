@@ -2,8 +2,10 @@
 
 This repository contains all the Longtail instant answers. If you are developing a Longtail instant answer you will need to fork this repository.
 
-If you would like to contribute to DuckDuckHack, please start by reading the [DuckDuckHack Documentation](#).
+**If you would like to contribute to DuckDuckHack, please start by reading the [DuckDuckHack Documentation](https://dukgo.com/duckduckhack/ddh-intro).**
 
-# Longtail Instant Answer Example
+------
+
+### Longtail Instant Answer Example
 
 ![lyrics example](https://s3.amazonaws.com/ddg-assets/docs/longtail_example.png)
