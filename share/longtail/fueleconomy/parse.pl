@@ -99,7 +99,6 @@ while(my $r = $csv->getline($dfh)){
 open my $output, ">$output_file" or die "Failed to open $output_file: $!";
 
 print $output <<ENDOFXMLHDR;
-<!-- This XML declaration can be simply copied and is necessary for all longtail. -->
 <?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">
 ENDOFXMLHDR
@@ -181,10 +180,11 @@ while(my ($v, $data) = each %arts){
     print $output "\n", join("\n", 
 		qq{<doc>}, 
 		qq{<field name="title"><![CDATA[$v]]></field>},
-		qq{<field name="paragraph"><![CDATA[$rec]]></field>},
-		qq{<field name="paragraph"><![CDATA[$arts{$v}{src}]]></field>},
+		qq{<field name="source"><![CDATA[mpg]]></field>}, 
+		qq{<field name="meta"><![CDATA[{"url":"$arts{$v}{src}"}]]></field>},
 		qq{</doc>});
 }
+print $output "\n</add>";
 
 # command-line options
 sub parse_argv {
