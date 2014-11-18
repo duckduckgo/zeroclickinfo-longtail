@@ -177,15 +177,60 @@ while(my ($v, $data) = each %arts){
 	if($add_vol_note){
 		$rec .= '<br /><br />* Different passenger and/or luggage volumes';
 	}
+
+	my $title = qq{<field name="title"><![CDATA[$v]]></field>};
+	if($v =~ m{/}o){
+		my $keywords = generate_keywords($v);
+		$title .= qq{\n<field name="l2_sec_match2"><![CDATA[$keywords]]></field>};
+	}
+		
     print $output "\n", join("\n", 
 		qq{<doc>}, 
-		qq{<field name="title"><![CDATA[$v]]></field>},
+		$title,
 		qq{<field name="paragraph"><![CDATA[$rec]]></field>},
 		qq{<field name="source"><![CDATA[mpg]]></field>}, 
 		qq{<field name="meta"><![CDATA[{"url":"$arts{$v}{src}"}]]></field>},
 		qq{</doc>});
 }
 print $output "\n</add>";
+
+# Generate keywords for secondary search for vehicles with
+# submodels indicated by a "/" 
+sub generate_keywords{
+    my $m = shift;
+	
+	$m =~ s/"/ /og;
+
+    my (%seen, @keywords);
+
+    my @parts = split /\s+/o, $m;
+    for my $p (@parts){
+		my @vars;
+        if( (my @v = split '/', $p) > 1){
+            if( (my ($l) = $v[0] =~ /^([a-z]-?)+\d+$/oi) && ($v[1] =~ /^\d+/o)){ # e.g. G15/25 Rally 2WD
+                @vars = (shift @v);
+                for my $n (@v){
+                    if($n =~ /^\d+/o){ # cover G15/25/30
+                        push @vars, $n, "$l$n"; # add both, just in case it shouldn't be G25, G30
+                    }
+                    else{ # cover things like G15/20/25/G30
+                        push @vars, $n;
+                    }    
+                }
+            }
+            else{ # e.g. TVR 280i/350i Convertible
+                @vars = @v;
+            }
+        }
+        else{
+			push @vars, $p;
+        }
+		for (@vars){
+			push(@keywords, $_) unless $seen{$_}++;
+		}
+    }
+    return "@keywords";
+}
 
 # command-line options
 sub parse_argv {
