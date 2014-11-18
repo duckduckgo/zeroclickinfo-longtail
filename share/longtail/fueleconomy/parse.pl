@@ -180,6 +180,7 @@ while(my ($v, $data) = each %arts){
     print $output "\n", join("\n", 
 		qq{<doc>}, 
 		qq{<field name="title"><![CDATA[$v]]></field>},
+		qq{<field name="paragraph"><![CDATA[$rec]]></field>},
 		qq{<field name="source"><![CDATA[mpg]]></field>}, 
 		qq{<field name="meta"><![CDATA[{"url":"$arts{$v}{src}"}]]></field>},
 		qq{</doc>});
