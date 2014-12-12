@@ -120,9 +120,7 @@ while(my ($v, $data) = each %arts){
         }
     }
     else{ $summary = $city->[0] . ' city, ' . $hwy->[0] . ' hwy.' }
-	$summary = "MPG: $summary";
-
-    my $rec = "$v<br />";
+    my $rec = "MPG: $summary<br />";
 
     # add details for configurations
 	my $add_vol_note;
@@ -180,12 +178,15 @@ while(my ($v, $data) = each %arts){
 		$rec .= '<br /><br />* Different passenger and/or luggage volumes';
 	}
 
-	my $keywords = $v =~ m{/}o ? generate_keywords($v) : $v;
+	my $title = qq{<field name="title"><![CDATA[$v]]></field>};
+	if($v =~ m{/}o){
+		my $keywords = generate_keywords($v);
+		$title .= qq{\n<field name="l2_sec_match2"><![CDATA[$keywords]]></field>};
+	}
 		
     print $output "\n", join("\n", 
 		qq{<doc>}, 
-	    qq{<field name="title"><![CDATA[$summary]]></field>},
-		qq{<field name="l2_sec_match2"><![CDATA[$keywords]]></field>},
+		$title,
 		qq{<field name="paragraph"><![CDATA[$rec]]></field>},
 		qq{<field name="source"><![CDATA[mpg]]></field>}, 
 		qq{<field name="meta"><![CDATA[{"url":"$arts{$v}{src}"}]]></field>},
