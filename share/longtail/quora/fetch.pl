@@ -19,9 +19,22 @@ my $dom = Mojo::DOM->new($html);
 my @links = get_sitemap_page_links($dom);
 
 foreach my $link (@links){
-	my $html = get($link);
 
+	my $html = get($link);
 	next if $link =~ m/questions\?page_id=/;
+
+	my ($title, $q_text, $abstract) = '';
+
+	my $page = Mojo::DOM->new($html);
+	print "Getting page: $link\n";
+
+	$page->find('h1')->each( sub{
+		$title = $_->text if $_->text;
+	});
+
+	 warn Dumper $page->find('div div.expanded_q_text')->each;
+#	warn $title;
+#	warn $q_text;
 
 }
 
