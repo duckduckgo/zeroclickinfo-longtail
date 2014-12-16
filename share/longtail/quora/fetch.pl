@@ -33,14 +33,16 @@ foreach my $link (@site_map_links){
 	my $page = Mojo::DOM->new($html);
 	
 	$page->find('span.count')->each( sub{
-			$want_ans = $_->text if $_->text;
+		next unless $_->parent->text eq "Want Answers";
+		$want_ans = $_->text if $_->text;
 	});
 	
 	next if $want_ans < $WANT_ANS_CUTOFF;
 
 	$page->find('div.answer_count')->each( sub{
-			
-			$ans_count = ($_->text =~ /(\d+)\sAnswers/) if $_->text;
+		if($_->text && $_->text =~ /(\d+)\sAnswers/){
+			$ans_count = $1;	
+		}
 	});
 
 	next if $ans_count < $ANS_COUNT_CUTOFF;
