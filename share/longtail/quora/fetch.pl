@@ -39,7 +39,8 @@ foreach my $link (@site_map_links){
 	next if $want_ans < $WANT_ANS_CUTOFF;
 
 	$page->find('div.answer_count')->each( sub{
-			$ans_count = $_->text if $_->text;
+			
+			$ans_count = ($_->text =~ /(\d+)\sAnswers/) if $_->text;
 	});
 
 	next if $ans_count < $ANS_COUNT_CUTOFF;
@@ -66,10 +67,12 @@ sub get_sitemap_page_links {
 	
 	$page->find('a[href]')->each ( sub{
 			
-		next if $_ =~ m/questions\?page_id=/;
-		next if $_ !~ /wwww\.quora\.com/;
+		if(my $remainder = $_->{href} =~ m/http:\/\/www\.quora\.com\/(.*?)/){
+			next unless $remainder;
+			next if $remainder  =~ m/(?:questions\?page_id=)|(?:#)/;
+			push(@links, $_->{href});
+		}
 		
-		push(@links, $_->{href});
 	});
 	
 	return @links;
