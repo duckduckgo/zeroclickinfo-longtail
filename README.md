@@ -8,4 +8,4 @@ This repository contains all the Longtail instant answers. If you are developing
 
 ### Longtail Instant Answer Example
 
-![lyrics example](https://s3.amazonaws.com/ddg-assets/docs/longtail_example.png)
+![Lyrics Search Example](https://raw.githubusercontent.com/duckduckgo/duckduckgo-documentation/master/duckduckhack/assets/longtail_readme_example.png)
