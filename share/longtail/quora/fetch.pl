@@ -15,18 +15,34 @@ my $base_url = "http://www.quora.com/sitemap/questions?page_id=1";
 my $html = get($base_url);
 my $dom = Mojo::DOM->new($html);
 
-# get the links from the sitemap
-my @links = get_sitemap_page_links($dom);
+my $WANT_ANS_CUTOFF = 0;
+my $ANS_COUNT_CUTOFF = 0;
 
-foreach my $link (@links){
+# get the links from the sitemap
+my @site_map_links = get_sitemap_page_links($dom);
+
+warn Dumper @site_map_links;
+
+foreach my $link (@site_map_links){
 
 	my $html = get($link);
-	next if $link =~ m/questions\?page_id=/;
+	print "Getting page: $link\n";
 
 	my ($title, $q_text, $abstract, $want_ans, $ans_count) = '';
 
 	my $page = Mojo::DOM->new($html);
-#	print "Getting page: $link\n";
+	
+	$page->find('span.count')->each( sub{
+			$want_ans = $_->text if $_->text;
+	});
+	
+	next if $want_ans < $WANT_ANS_CUTOFF;
+
+	$page->find('div.answer_count')->each( sub{
+			$ans_count = $_->text if $_->text;
+	});
+
+	next if $ans_count < $ANS_COUNT_CUTOFF;
 
 	$page->find('h1')->each( sub{
 		$title = $_->text if $_->text;
@@ -36,16 +52,8 @@ foreach my $link (@links){
 			$q_text = $_->text if $_->text;
 	});
 
-	$page->find('span.count')->each( sub{
-			$want_ans = $_->text if $_->text;
-	});
 
-	$page->find('div.answer_count')->each( sub{
-			$ans_count = $_->text if $_->text;
-	});
-
-warn $ans_count;
-
+	warn "title: $title Want: $want_ans Count: $ans_count\n";
 }
 
 
@@ -57,6 +65,10 @@ sub get_sitemap_page_links {
 	my @links = ();
 	
 	$page->find('a[href]')->each ( sub{
+			
+		next if $_ =~ m/questions\?page_id=/;
+		next if $_ !~ /wwww\.quora\.com/;
+		
 		push(@links, $_->{href});
 	});
 	
