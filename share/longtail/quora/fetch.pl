@@ -9,12 +9,13 @@ use IO::All;
 use LWP::Simple;
 
 #my $dbh = DBI->connect("dbi:SQLite:dbname=quora","","");
-my $base_url = "http://www.quora.com/sitemap/questions?page_id=1";
+my $base_url = "http://www.quora.com/sitemap/questions?page_id=2";
 my $html = get($base_url);
 my $dom = Mojo::DOM->new($html);
 
-my $WANT_ANS_CUTOFF = 15;
+my $WANT_ANS_CUTOFF = 9;
 my $ANS_COUNT_CUTOFF = 1;
+my $UPVOTE_CUTOFF = 4;
 
 # get the links from the sitemap
 my @site_map_links = get_sitemap_page_links($dom);
@@ -42,16 +43,20 @@ foreach my $link (@site_map_links){
 
 	next if $ans_count < $ANS_COUNT_CUTOFF;
 
+	# title for the page (short question text)
 	$page->find('h1')->each( sub{
 		$title = $_->text if $_->text;
 	});
 
+	# get the content of the question
 	$page->find('div.question_details_text')->each( sub{
 			$q_text = $_->text if $_->text;
 	});
 
 
+	# search inside top Answer
 	$page->find('div.Answer')->each( sub{
+		#get the abstract text	
 		$_->find('div[id$=_container]')->each( sub{
 			$abstract = $_->text if $_->text;
 			last;
@@ -65,6 +70,8 @@ foreach my $link (@site_map_links){
 		});
 
 	});
+
+	next if $ans_upvotes < $UPVOTE_CUTOFF;
 
 	print "title: $title Want: $want_ans Count: $ans_count UpVotes: $ans_upvotes\n Abstract: $abstract\n\n";
 }
