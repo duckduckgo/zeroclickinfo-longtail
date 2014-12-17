@@ -13,18 +13,15 @@ my $base_url = "http://www.quora.com/sitemap/questions?page_id=1";
 my $html = get($base_url);
 my $dom = Mojo::DOM->new($html);
 
-my $WANT_ANS_CUTOFF = 5;
+my $WANT_ANS_CUTOFF = 15;
 my $ANS_COUNT_CUTOFF = 1;
 
 # get the links from the sitemap
 my @site_map_links = get_sitemap_page_links($dom);
 
-warn Dumper @site_map_links;
-
 foreach my $link (@site_map_links){
 
 	my $html = get($link);
-	print "Getting page: $link\n";
 
 	my ($title, $q_text, $abstract, $want_ans, $ans_count) = '';
 
@@ -62,7 +59,7 @@ foreach my $link (@site_map_links){
 
 	});
 
-	warn "title: $title Want: $want_ans Count: $ans_count\n Abstract: $abstract\n\n";
+	print "title: $title Want: $want_ans Count: $ans_count\n Abstract: $abstract\n\n";
 }
 
 
