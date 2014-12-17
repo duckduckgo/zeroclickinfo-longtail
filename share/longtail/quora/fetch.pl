@@ -23,7 +23,7 @@ foreach my $link (@site_map_links){
 
 	my $html = get($link);
 
-	my ($title, $q_text, $abstract, $want_ans, $ans_count) = '';
+	my ($title, $q_text, $abstract, $want_ans, $ans_count, $ans_upvotes) = '';
 
 	my $page = Mojo::DOM->new($html);
 	
@@ -57,9 +57,16 @@ foreach my $link (@site_map_links){
 			last;
 		});
 
+		# get upvotes for this post
+		$_->find('div.primary_item')->each( sub{
+			$_->find('span.count')->each( sub{
+				$ans_upvotes = $_->text if $_->text;
+			});
+		});
+
 	});
 
-	print "title: $title Want: $want_ans Count: $ans_count\n Abstract: $abstract\n\n";
+	print "title: $title Want: $want_ans Count: $ans_count UpVotes: $ans_upvotes\n Abstract: $abstract\n\n";
 }
 
 
