@@ -13,8 +13,8 @@ my $base_url = "http://www.quora.com/sitemap/questions?page_id=1";
 my $html = get($base_url);
 my $dom = Mojo::DOM->new($html);
 
-my $WANT_ANS_CUTOFF = 0;
-my $ANS_COUNT_CUTOFF = 0;
+my $WANT_ANS_CUTOFF = 5;
+my $ANS_COUNT_CUTOFF = 1;
 
 # get the links from the sitemap
 my @site_map_links = get_sitemap_page_links($dom);
@@ -55,10 +55,14 @@ foreach my $link (@site_map_links){
 
 
 	$page->find('div.ExpandedAnswer')->each( sub{
-			$q_text = $_->text if $_->text;
+		$_->find('div[id$=_container]')->each( sub{
+			$abstract = $_->text if $_->text;
+			last;
+		});
+
 	});
 
-	warn "title: $title Want: $want_ans Count: $ans_count\n";
+	warn "title: $title Want: $want_ans Count: $ans_count\n Abstract: $abstract\n\n";
 }
 
 
