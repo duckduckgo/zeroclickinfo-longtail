@@ -9,6 +9,7 @@ use IO::All;
 use LWP::Simple;
 
 #my $dbh = DBI->connect("dbi:SQLite:dbname=quora","","");
+my $out = IO::All->new("output.txt");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=2";
 my $html = get($base_url);
 my $dom = Mojo::DOM->new($html);
@@ -29,8 +30,9 @@ foreach my $link (@site_map_links){
 	my $page = Mojo::DOM->new($html);
 	
 	$page->find('span.count')->each( sub{
-		next unless $_->parent->text eq "Want Answers";
-		$want_ans = $_->text if $_->text;
+		if($_->parent->text  && $_->parent->text eq "Want Answers"){
+			$want_ans = $_->text if $_->text;
+		}
 	});
 	
 	next if $want_ans < $WANT_ANS_CUTOFF;
@@ -73,7 +75,7 @@ foreach my $link (@site_map_links){
 
 	next if $ans_upvotes < $UPVOTE_CUTOFF;
 
-	print "title: $title Want: $want_ans Count: $ans_count UpVotes: $ans_upvotes\n Abstract: $abstract\n\n";
+	print_to_file($title, $q_text, $abstract);
 }
 
 
@@ -95,4 +97,17 @@ sub get_sitemap_page_links {
 	});
 	
 	return @links;
+}
+
+# print doc to output file
+sub print_to_file {
+	my ($title, $q_text, $abstract) = @_;
+
+	qq(<doc>
+<field name="title"><![CDATA[$title]]></field>
+<field name="title_match"><![CDATA[$title]]></field>
+<field name="paragraph">$abstract</field>
+<field name="source">quora"</field>
+</doc>
+) >> io($out);
 }
