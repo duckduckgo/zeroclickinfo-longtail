@@ -51,7 +51,7 @@ foreach my $link (@site_map_links){
 	});
 
 
-	$page->find('div.ExpandedAnswer')->each( sub{
+	$page->find('div.Answer')->each( sub{
 		$_->find('div[id$=_container]')->each( sub{
 			$abstract = $_->text if $_->text;
 			last;
