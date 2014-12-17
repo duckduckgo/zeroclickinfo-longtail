@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 # fetch quora data and put in sqlite DB
-#
-
 use strict;
 use warnings;
 use DBI;
@@ -55,6 +53,10 @@ foreach my $link (@site_map_links){
 			$q_text = $_->text if $_->text;
 	});
 
+
+	$page->find('div.ExpandedAnswer')->each( sub{
+			$q_text = $_->text if $_->text;
+	});
 
 	warn "title: $title Want: $want_ans Count: $ans_count\n";
 }
