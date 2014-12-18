@@ -6,7 +6,11 @@ use Mojo::DOM;
 use Data::Dumper;
 use IO::All;
 use LWP::Simple;
+use LWP::UserAgent;
 use Parallel::ForkManager;
+
+my $ua = LWP::UserAgent->new;
+$ua->agent("DuckDuckBot (+http://duckduckgo.com/duckduckbot)");
 
 #my $dbh = DBI->connect("dbi:SQLite:dbname=quora","","");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=";
@@ -18,7 +22,7 @@ my $page = 1;
 my $last_page = 0; # first child to find the last page sets this flag
 # get the links from the sitemap
 
-my $pool = Parallel::ForkManager->new(2);
+my $pool = Parallel::ForkManager->new(1);
 
 while(!$SIG{INT}){
 
@@ -27,12 +31,17 @@ while(!$SIG{INT}){
 		my $url = $base_url.$page;
 		print "getting page $url\n";
 
-		my $html = get($url);
+		my $req = HTTP::Request->new( GET => $url );
+        my $res = $ua->request($req);
+        warn Dumper $res;
+
+        my $html = '';
+
 		my $dom = Mojo::DOM->new($html);
 		my @site_map_links = get_sitemap_page_links($dom);
 		#print Dumper @site_map_links;
 		process_links(@site_map_links);
-		kill 2, $parent_pid if $page > 4;
+		kill 2, $parent_pid if $page > 0;
 	$pool->finish;
 
 }
