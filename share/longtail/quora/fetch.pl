@@ -2,7 +2,6 @@
 # fetch quora data and put in sqlite DB
 use strict;
 use warnings;
-use DBI;
 use Mojo::DOM;
 use Data::Dumper;
 use IO::All;
@@ -10,7 +9,6 @@ use LWP::Simple;
 use Parallel::ForkManager;
 
 #my $dbh = DBI->connect("dbi:SQLite:dbname=quora","","");
-my $out = IO::All->new("output.txt");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=";
 my $parent_pid = $$;
 my $WANT_ANS_CUTOFF = 5;
@@ -20,7 +18,7 @@ my $page = 1;
 my $last_page = 0; # first child to find the last page sets this flag
 # get the links from the sitemap
 
-my $pool = Parallel::ForkManager->new(4);
+my $pool = Parallel::ForkManager->new(2);
 
 while(!$SIG{INT}){
 
@@ -34,7 +32,7 @@ while(!$SIG{INT}){
 		my @site_map_links = get_sitemap_page_links($dom);
 		#print Dumper @site_map_links;
 		process_links(@site_map_links);
-		kill 2, $parent_pid if $page > 10;
+		kill 2, $parent_pid if $page > 4;
 	$pool->finish;
 
 }
@@ -105,7 +103,7 @@ sub process_links {
 		});
 
 		next if $ans_upvotes < $UPVOTE_CUTOFF;
-	print "Title: $title URL: $link\n";
+	print "Title: $title Want: $want_ans Score: $ans_count \nURL: $link\n\n";
 
 		print_to_file($title, $q_text, $abstract);
 	}
@@ -133,11 +131,8 @@ sub get_sitemap_page_links {
 sub print_to_file {
 	my ($title, $q_text, $abstract) = @_;
 
-	qq(<doc>
-<field name="title"><![CDATA[$title]]></field>
-<field name="title_match"><![CDATA[$title]]></field>
-<field name="paragraph">$abstract</field>
-<field name="source">quora"</field>
-</doc>
+    my $out = IO::All->new("output.txt");
+	qq(<field name="title">$title</title>
 ) >> io($out);
+    $out->close;
 }
