@@ -21,7 +21,10 @@ my $page = 1;
 my $last_page = 0; # first child to find the last page sets this flag
 # get the links from the sitemap
 
-my $pool = Parallel::ForkManager->new(1);
+my $pool = Parallel::ForkManager->new(5);
+
+$out->print(qq(<?xml version="1.0" encoding="UTF-8"?>
+<add allowDups="true">));
 
 while(!$SIG{INT}){
 
@@ -30,24 +33,24 @@ while(!$SIG{INT}){
 		my $url = $base_url.$page;
 		print "getting page $url\n";
 		my $html = get_url_content($url, 10, $ua_agent);
-		warn Dumper $html;
-
 		my $dom = Mojo::DOM->new($html);
 		my @site_map_links = get_sitemap_page_links($dom);
 		#print Dumper @site_map_links;
 		process_links(@site_map_links);
-		kill 2, $parent_pid if $page > 1;
+		kill 2, $parent_pid if $page > 10;
 	$pool->finish;
 
 }
 $pool->wait_all_children;
+
+$out->print(qq(</add>));
 
 sub process_links {
 	my @links = @_;
 
 	foreach my $link (@links){
 
-		my $html = get($link);
+		my $html = get_url_content($link, 10, $ua_agent);
 
 		my ($title, $q_text, $abstract, $want_ans, $ans_count, $ans_upvotes) = '';
 
@@ -107,9 +110,9 @@ sub process_links {
 		});
 
 		next if $ans_upvotes < $UPVOTE_CUTOFF;
-	print "Title: $title URL: $link\n";
+	print "Title: $title Want: $want_ans Score: $ans_count \nURL: $link\n\n";
 
-		print_to_file($title, $q_text, $abstract);
+		print_to_file($title, $q_text, $abstract, $link);
 	}
 }
 
@@ -133,13 +136,16 @@ sub get_sitemap_page_links {
 
 # print doc to output file
 sub print_to_file {
-	my ($title, $q_text, $abstract) = @_;
+	my ($title, $q_text, $abstract, $url) = @_;
 
+    my $out = IO::All->new("output.txt");
 	qq(<doc>
-<field name="title"><![CDATA[$title]]></field>
-<field name="title_match"><![CDATA[$title]]></field>
+<field name="title">$title</field>
+<field name="title_match">$title</field>
 <field name="paragraph">$abstract</field>
-<field name="source">quora"</field>
+<field name="id">quora</field>
+<field name="meta">[{"url":"$url"}]</field>
 </doc>
 ) >> io($out);
+	$out->close;
 }
