@@ -1,20 +1,16 @@
 #!/usr/bin/env perl
-# fetch quora data and put in sqlite DB
 use strict;
 use warnings;
 use DBI;
+use FindBin;
+use lib $FindBin::Dir. "/../../../../../../usr/local/ddg/lib/";
+use DDG::Util::Crawl qw( get_url_content );
 use Mojo::DOM;
 use Data::Dumper;
 use IO::All;
-use LWP::Simple;
-use LWP::UserAgent;
 use Parallel::ForkManager;
 
-my $ua_agent = 'DuckDuckBot (+http://duckduckgo.com/duckduckbot.html)';
-my %args = (agent => $ua_agent);
-my $ua = LWP::UserAgent->new(%args);
-
-#my $dbh = DBI->connect("dbi:SQLite:dbname=quora","","");
+my $ua_agent = 'DuckDuckBot/1.1; (+http://duckduckgo.com/duckduckbot.html)';
 my $out = IO::All->new("output.txt");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=";
 my $parent_pid = $$;
@@ -33,11 +29,7 @@ while(!$SIG{INT}){
 		# child process here
 		my $url = $base_url.$page;
 		print "getting page $url\n";
-
-		my $req = HTTP::Request->new(GET => $url);
-		$req->header('Accept' => 'text/html');
-
-		my $html = $ua->request($req);
+		my $html = get_url_content($url, 10, $ua_agent);
 		warn Dumper $html;
 
 		my $dom = Mojo::DOM->new($html);
