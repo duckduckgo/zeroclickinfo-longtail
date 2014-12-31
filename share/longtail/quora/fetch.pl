@@ -14,14 +14,14 @@ my $ua_agent = 'DuckDuckBot/1.1; (+http://duckduckgo.com/duckduckbot.html)';
 my $out = IO::All->new("output.txt");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=";
 my $parent_pid = $$;
-my $WANT_ANS_CUTOFF = 5;
+my $WANT_ANS_CUTOFF = 7;
 my $ANS_COUNT_CUTOFF = 1;
-my $UPVOTE_CUTOFF = 2;
+my $UPVOTE_CUTOFF = 3;
 my $page = 1;
 my $last_page = 0; # first child to find the last page sets this flag
 # get the links from the sitemap
 
-my $pool = Parallel::ForkManager->new(5);
+my $pool = Parallel::ForkManager->new(1);
 
 $out->print(qq(<?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">));
@@ -37,7 +37,7 @@ while(!$SIG{INT}){
 		my @site_map_links = get_sitemap_page_links($dom);
 		#print Dumper @site_map_links;
 		process_links(@site_map_links);
-		kill 2, $parent_pid if $page > 10;
+		kill 2, $parent_pid if $page > 3;
 	$pool->finish;
 
 }
@@ -78,7 +78,7 @@ sub process_links {
 			}
 		});
 
-		next if $ans_count < $ANS_COUNT_CUTOFF;
+		next unless $ans_count && $ans_count > $ANS_COUNT_CUTOFF;
 
 		# title for the page (short question text)
 		$page->find('h1')->each( sub{
@@ -110,7 +110,8 @@ sub process_links {
 		});
 
 		next if $ans_upvotes < $UPVOTE_CUTOFF;
-	print "Title: $title Want: $want_ans Score: $ans_count \nURL: $link\n\n";
+
+		print "Title: $title Want: $want_ans Score: $ans_count \nAbstract: $abstract\nURL: $link\n\n";
 
 		print_to_file($title, $q_text, $abstract, $link);
 	}
@@ -142,9 +143,10 @@ sub print_to_file {
 	qq(<doc>
 <field name="title">$title</field>
 <field name="title_match">$title</field>
+<field name="title_punctuation_removed">$title</field>
 <field name="paragraph">$abstract</field>
-<field name="id">quora</field>
-<field name="meta">[{"url":"$url"}]</field>
+<field name="source">quora</field>
+<field name="meta">{"url":"$url"}</field>
 </doc>
 ) >> io($out);
 	$out->close;
