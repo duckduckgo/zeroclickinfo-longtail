@@ -175,7 +175,7 @@ while(my ($v, $data) = each %arts){
         }
     }
 	if($add_vol_note){
-		$rec .= '<br /><br />* Different passenger and/or luggage volumes';
+		$rec .= '<br />* Different passenger and/or luggage volumes';
 	}
 
 	my $title = qq{<field name="title"><![CDATA[$v]]></field>};
