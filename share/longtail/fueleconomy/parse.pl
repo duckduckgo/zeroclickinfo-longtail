@@ -120,7 +120,7 @@ while(my ($v, $data) = each %arts){
         }
     }
     else{ $summary = $city->[0] . ' city, ' . $hwy->[0] . ' hwy.' }
-    my $rec = "MPG: $summary<br />";
+    my $rec = "MPG: $summary";
 
     # add details for configurations
 	my $add_vol_note;
