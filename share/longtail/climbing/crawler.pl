@@ -139,6 +139,7 @@ EOH
 		foreach my $i (0..$#areas){
 				my @links= $areas[$i]->findnodes('div/a[@href]');
 				my $link  = $links[1]->attr('href');
+				crawl($site . $link, $type);
 		}
 	}
 	
