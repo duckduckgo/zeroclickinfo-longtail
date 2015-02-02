@@ -16,6 +16,11 @@ $ua->timeout(10);
 $ua->agent('DuckDuckBot/1.1');
 
 open( OUT , ">:encoding(UTF-8)" , "processed-climb.txt") ;
+print OUT <<EOH
+<?xml version="1.0" encoding="UTF-8"?>
+<add allowDups="true">
+EOH
+;
 
 crawl($test, "none" );
 
@@ -112,18 +117,12 @@ sub crawl{
 		
 		print OUT <<EOH
 <doc>
-     <field name="title"><![CDATA[$place]]></field>
-     <field name="paragraph"><![CDATA[
-$paragraph
-           ]]>
-      </field>
-     <field name="source"><![CDATA[climb]]></field>
-     <field name="meta"><![CDATA[
-        {
-           "url":"$url",
-          "location":  { lat: $lat ,  lon: $lon}
-          }
-        ]]></field>
+<field name="title"><![CDATA[$place Climbing]]></field>
+<field name="12_sec_match2">climb climbing</field>
+<field name="paragraph"><![CDATA[$paragraph]]></field>
+<field name="source"><![CDATA[climb]]></field>
+<field name="meta"><![CDATA[{"url":"$url",}]]></field>
+<field name="geo">$lat, $lon</field>
 </doc>
 EOH
 ;
