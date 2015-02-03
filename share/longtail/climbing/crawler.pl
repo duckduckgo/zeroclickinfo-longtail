@@ -40,10 +40,12 @@ sub crawl{
 		die $response->status_line;
 	}
 	
-	my $place = $tree->findvalue('//span[@class= "inner" ]');
 	my $type = $tree->findvalue('//a[@href="/article/AreaTypes"]');
 	
 	unless($type eq "region"){
+		my $title = $tree->findvalue('//title');
+		$title =~ s/ \| theCrag//;
+		my ($place, $styleinfo) = split(', ', $title);
 		$data->{$place}->{"url"}=$url;
 		print "$place: $url \n";
 		$data->{$place}->{"type"}=$type;
@@ -117,7 +119,7 @@ sub crawl{
 		
 		print OUT <<EOH
 <doc>
-<field name="title"><![CDATA[$place Climbing]]></field>
+<field name="title"><![CDATA[$place $styleinfo]]></field>
 <field name="12_sec_match2">climb climbing</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
