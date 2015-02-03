@@ -121,7 +121,7 @@ sub crawl{
 <field name="12_sec_match2">climb climbing</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
-<field name="meta"><![CDATA[{"url":"$url",}]]></field>
+<field name="meta"><![CDATA[{"url":"$url"}]]></field>
 <field name="geo">$lat, $lon</field>
 </doc>
 EOH
