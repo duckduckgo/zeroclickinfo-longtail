@@ -100,15 +100,7 @@ sub crawl{
 		}
 		if($#descriptioninfo == 0){
 			my @description = $descriptioninfo[0]->findvalues('div/div/p');
-			my $paragraphs = $#description;
-			if( $paragraphs > 1){
-				$paragraphs = 1;
-			}
-			for my $i (0 .. $paragraphs){
-				my  $end = "";
-				unless($i == $paragraphs) {$end = "\n\n"}
-				$paragraph .= ($description[$i] . $end);
-			}
+			$paragraph = $paragraph . $description[0];
 		}
 		if(($paragraph eq "") == 1)
 		{
