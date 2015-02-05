@@ -90,17 +90,21 @@ sub crawl{
 		}
 		
 		my $paragraph = "";
+		my $generalstyle = $tree->findvalue('//h1[@class="inline"]/small');
+		$generalstyle =~ s/^\s+//g;
+		$paragraph .= "$generalstyle<br>Number of Routes: $numroutes<br><br>";
 		my @summaryinfo= $tree->findnodes('//div[@class="node-info summary"]');
 		my @descriptioninfo= $tree->findnodes('//div[@class="node-info description"]');
 		if($#summaryinfo == 0){
 			my @summary= $summaryinfo[0]->findvalues('div/div/p');
 			for my $i (0 .. $#summary){
-				$paragraph = ($summary[$i] . "\n\n");
+				$paragraph .= ($summary[$i] . "<br>");
 			}
 		}
 		if($#descriptioninfo == 0){
 			my @description = $descriptioninfo[0]->findvalues('div/div/p');
-			$paragraph = $paragraph . $description[0];
+			$paragraph .= ($description[0] . "<br>");
+			if($#description>0) {$paragraph .= "...";}
 		}
 		if(($paragraph eq "") == 1)
 		{
