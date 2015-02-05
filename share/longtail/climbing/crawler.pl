@@ -15,6 +15,8 @@ my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
 $ua->agent('DuckDuckBot/1.1');
 
+open (MAP, ">:encoding(UTF-8)", "maps.js");
+
 open( OUT , ">:encoding(UTF-8)" , "processed-climb.txt") ;
 print OUT <<EOH
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,10 +60,12 @@ sub crawl{
 		$data->{$place}->{"latitude"} = $lat;
 		
 		my @breadcrumbs = $tree->findvalues('//div[@id="breadCrumbs"]/ul/li');
+		my $crumbs = "";
 		foreach my $i(1..$#breadcrumbs){
 			$data->{$place}->{"breadcrumbs"}->[$i-1] = $breadcrumbs[$i];
+			$crumbs = $breadcrumbs[$i] . "," . $crumbs;
 			}
-
+		$crumbs =~ s/,$//;
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
 		$data->{$place}->{"number of routes"}=$numroutes;
@@ -114,7 +118,16 @@ sub crawl{
 			$paragraph = $definition;
 		}
 		
-		
+		my $mapjs = $response->decoded_content;
+		$mapjs =~ s/[ \n]//g;
+		my $boundary = "";
+		if ($mapjs =~ m/varboundary(.*?);/) {$boundary = $1;}
+		if ($boundary =~ m/geometry:(.*?),cen/) {$boundary=$1;}
+		print MAP <<EOH
+//$place
+DDG.duckbar.add_map([{"licence":"Data \\u00a9 OpenStreetMap contributors, ODbL 1.0. http:\\\/\\\/www.openstreetmap.org\\\/copyright","osm_type":"relation", "polygonpoints":$boundary, "display_name":"$crumbs", "lat":$lat, "lon":$lon, "class":"boundary", "type":"administrative","importance":0.73982781390695, "icon":"http:\\\/\\\/open.mapquestapi.com\\\/nominatim\\\/v1\\\/images\\\/mapicons\\\/poi_boundary_administrative.p.20.png"}])
+EOH
+;
 		
 		
 		print OUT <<EOH
@@ -128,6 +141,7 @@ sub crawl{
 </doc>
 EOH
 ;
+
 		if(($type eq 'crag')==1 and ($supertype eq 'crag')!=1) {
 			foreach my $i (0..$#areas){
 				my $link = $data->{$place}->{'areas'}->[$i]->{'link'};
