@@ -3,13 +3,12 @@
 use strict;
 use warnings;
 
-use JSON qw/ encode_json /;
 use HTML::TreeBuilder::XPath;
 use LWP::UserAgent;
 
 my $site = "http://www.thecrag.com";
-my $start = "http://www.thecrag.com/climbing/world";
-my $test = "http://www.thecrag.com/climbing/australia/grampians";
+my $start = "$site/climbing/world";
+my $test = "$site/climbing/australia/grampians";
 my $data;
 my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
@@ -24,15 +23,12 @@ print OUT <<EOH
 EOH
 ;
 
-crawl($test, "none" );
+crawl($test, "none", "North West", "$site/climbing/australia/victoria/north-west" );
 
 close OUT;
-open my $fh, ">", "climbing.json";
-print $fh encode_json($data);
-close $fh;
 
 sub crawl{
-	my ($url, $supertype) = @_;
+	my ($url, $supertype, $parent, $parenturl) = @_;
 	my $tree = HTML::TreeBuilder::XPath->new;
 	my $response = $ua->get($url);
 	if ($response->is_success){
@@ -43,11 +39,12 @@ sub crawl{
 	}
 	
 	my $type = $tree->findvalue('//a[@href="/article/AreaTypes"]');
+	my $title = $tree->findvalue('//title');
+	$title =~ s/ \| theCrag//;
+	my ($place, $styleinfo) = split(', ', $title);
 	
 	unless($type eq "region"){
-		my $title = $tree->findvalue('//title');
-		$title =~ s/ \| theCrag//;
-		my ($place, $styleinfo) = split(', ', $title);
+		
 		$data->{$place}->{"url"}=$url;
 		print "$place: $url \n";
 		$data->{$place}->{"type"}=$type;
@@ -61,6 +58,7 @@ sub crawl{
 		
 		my @breadcrumbs = $tree->findvalues('//div[@id="breadCrumbs"]/ul/li');
 		my $crumbs = "";
+		
 		foreach my $i(1..$#breadcrumbs){
 			$data->{$place}->{"breadcrumbs"}->[$i-1] = $breadcrumbs[$i];
 			$crumbs = $breadcrumbs[$i] . "," . $crumbs;
@@ -69,7 +67,14 @@ sub crawl{
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
 		$data->{$place}->{"number of routes"}=$numroutes;
-
+		
+		my $ascentref = substr($url, index($url,'/climbing')) . "/ascents";
+		my $ascents = $tree->findvalue("//li/a[\@href=\"$ascentref\"]");
+		$ascents =~ s/Logbook//;
+		$ascents =~ s/^\s+//;
+		$ascents =~ s/\s+$//;
+		if(($ascents eq "") ==1) {$ascents = "0"};
+		
 		my @styles = $tree->findvalues('//span[@class= "style-breakdown" ]/a');
 		foreach my $i(0..$#styles){
 			my $style = $styles[$i];
@@ -92,7 +97,6 @@ sub crawl{
 		my $paragraph = "";
 		my $generalstyle = $tree->findvalue('//h1[@class="inline"]/small');
 		$generalstyle =~ s/^\s+//g;
-		$paragraph .= "$generalstyle<br>Number of Routes: $numroutes<br><br>";
 		my @summaryinfo= $tree->findnodes('//div[@class="node-info summary"]');
 		my @descriptioninfo= $tree->findnodes('//div[@class="node-info description"]');
 		if($#summaryinfo == 0){
@@ -103,22 +107,31 @@ sub crawl{
 		}
 		if($#descriptioninfo == 0){
 			my @description = $descriptioninfo[0]->findvalues('div/div/p');
-			$paragraph .= ($description[0] . "<br>");
-			if($#description>0) {$paragraph .= "...";}
+			$paragraph .= ($description[0]);
+			if($#description>0) {
+				$paragraph =~ s/.$//;
+				$paragraph .= "...";
+			}
 		}
+		$paragraph =~ s/<br>$//;
 		if(($paragraph eq "") == 1)
 		{
 			my @defmeta = $tree->findnodes('//meta[@property="og:description"]');
 			my $definition = $defmeta[0]->attr('content');
 			$definition = substr($definition, index($definition, $place)+length($place)+2);
-			$paragraph = $definition;
+			$paragraph = ucfirst($definition);
 		}
+		$paragraph = "$generalstyle<br>Number of Routes: $numroutes<br>Region: $parent [$parenturl]<br><br>$paragraph";
+		
+		my $typelabel = $type;
+		if(($supertype eq 'crag') == 1) {$typelabel = "subarea";}
 		
 		my $mapjs = $response->decoded_content;
 		$mapjs =~ s/[ \n]//g;
 		my $boundary = "";
 		if ($mapjs =~ m/varboundary(.*?);/) {$boundary = $1;}
 		if ($boundary =~ m/geometry:(.*?),cen/) {$boundary=$1;}
+		
 		print MAP <<EOH
 //$place
 DDG.duckbar.add_map([{"licence":"Data \\u00a9 OpenStreetMap contributors, ODbL 1.0. http:\\\/\\\/www.openstreetmap.org\\\/copyright","osm_type":"relation", "polygonpoints":$boundary, "display_name":"$crumbs", "lat":$lat, "lon":$lon, "class":"boundary", "type":"administrative","importance":0.73982781390695, "icon":"http:\\\/\\\/open.mapquestapi.com\\\/nominatim\\\/v1\\\/images\\\/mapicons\\\/poi_boundary_administrative.p.20.png"}])
@@ -132,8 +145,7 @@ EOH
 <field name="12_sec_match2">climb climbing</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
-<field name="meta"><![CDATA[{"url":"$url"}]]></field>
-<field name="geo">$lat, $lon</field>
+<field name="meta"><![CDATA[{"url":"$url", "lat":"$lat", "lon":"$lon", "ascents" ="$ascents", "type"="$typelabel" }]]></field>
 </doc>
 EOH
 ;
@@ -141,7 +153,7 @@ EOH
 		if(($type eq 'crag')==1 and ($supertype eq 'crag')!=1) {
 			foreach my $i (0..$#areas){
 				my $link = $data->{$place}->{'areas'}->[$i]->{'link'};
-				crawl($site . $link, $type);
+				crawl($site . $link, $type,$place, $url);
 			}
 		}
 	}
@@ -150,7 +162,7 @@ EOH
 		foreach my $i (0..$#areas){
 				my @links= $areas[$i]->findnodes('div/a[@href]');
 				my $link  = $links[1]->attr('href');
-				crawl($site . $link, $type);
+				crawl($site . $link, $type,$place, $url);
 		}
 	}
 	
