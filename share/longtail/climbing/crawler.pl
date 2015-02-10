@@ -142,11 +142,12 @@ EOH
 		print OUT <<EOH
 <doc>
 <field name="title"><![CDATA[$place $styleinfo]]></field>
-<field name="12_sec_match2">climb climbing</field>
+<field name="l2_sec_match2">climb climbing</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
 <field name="meta"><![CDATA[{"url":"$url", "lat":"$lat", "lon":"$lon", "ascents" ="$ascents", "type"="$typelabel" }]]></field>
 </doc>
+</add>
 EOH
 ;
 
