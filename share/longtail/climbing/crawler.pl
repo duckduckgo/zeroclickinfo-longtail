@@ -56,43 +56,15 @@ sub crawl{
 		$data->{$place}->{"longitude"} = $lon;
 		$data->{$place}->{"latitude"} = $lat;
 		
-		my @breadcrumbs = $tree->findvalues('//div[@id="breadCrumbs"]/ul/li');
-		my $crumbs = "";
-		
-		foreach my $i(1..$#breadcrumbs){
-			$data->{$place}->{"breadcrumbs"}->[$i-1] = $breadcrumbs[$i];
-			$crumbs = $breadcrumbs[$i] . "," . $crumbs;
-			}
-		$crumbs =~ s/,$//;
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
-		$data->{$place}->{"number of routes"}=$numroutes;
 		
 		my $ascentref = substr($url, index($url,'/climbing')) . "/ascents";
 		my $ascents = $tree->findvalue("//li/a[\@href=\"$ascentref\"]");
 		$ascents =~ s/Logbook//;
 		$ascents =~ s/^\s+//;
 		$ascents =~ s/\s+$//;
-		if(($ascents eq "") ==1) {$ascents = "0"};
-		
-		my @styles = $tree->findvalues('//span[@class= "style-breakdown" ]/a');
-		foreach my $i(0..$#styles){
-			my $style = $styles[$i];
-			my $percent = substr($style,1,index($style,"%"));
-			my $type = substr ($style,index($style,"%")+1);
-			$type =~ s/^\s+//g;
-			$data->{$place}->{'styles'}->{$type} = $percent; 
-			}
-
-		my @areas = $tree->findnodes('//div[@class = "area"]' );
-		foreach my $i (0..$#areas){
-			$data->{$place}->{'areas'}->[$i]->{'name'} = substr($areas[$i]->findvalue('div[@class="name"]'),0,-5);
-			$data->{$place}->{'areas'}->[$i]->{'routes'} = $areas[$i]->findvalue('div/div[@class="routes"]');
-			$data->{$place}->{'areas'}->[$i]->{'ticks'} = $areas[$i]->findvalue('div/div[@class="ticks"]');
-			$data->{$place}->{'areas'}->[$i]->{'height'} = $areas[$i]->findvalue('div/div[@class="height"]');
-			my @links= $areas[$i]->findnodes('div/a[@href]');
-			$data->{$place}->{'areas'}->[$i]->{'link'} = $links[1]->attr('href');
-		}
+		if($ascents eq "")  {$ascents = "0"};
 		
 		my $paragraph = "";
 		my $generalstyle = $tree->findvalue('//h1[@class="inline"]/small');
@@ -114,17 +86,17 @@ sub crawl{
 			}
 		}
 		$paragraph =~ s/<br>$//;
-		if(($paragraph eq "") == 1)
+		if($paragraph eq "") 
 		{
 			my @defmeta = $tree->findnodes('//meta[@property="og:description"]');
 			my $definition = $defmeta[0]->attr('content');
 			$definition = substr($definition, index($definition, $place)+length($place)+2);
 			$paragraph = ucfirst($definition);
 		}
-		$paragraph = "$generalstyle<br>Number of Routes: $numroutes<br>Region: $parent [$parenturl]<br><br>$paragraph";
+		$paragraph = "$generalstyle<br>Number of Routes: $numroutes<br>Region: <a href=\"$parenturl\">$parent</a><br><br>$paragraph";
 		
 		my $typelabel = $type;
-		if(($supertype eq 'crag') == 1) {$typelabel = "subarea";}
+		if($supertype eq 'crag')  {$typelabel = "subarea";}
 		
 		my $mapjs = $response->decoded_content;
 		$mapjs =~ s/[ \n]//g;
@@ -134,7 +106,7 @@ sub crawl{
 		
 		print MAP <<EOH
 //$place
-DDG.duckbar.add_map([{"licence":"Data \\u00a9 OpenStreetMap contributors, ODbL 1.0. http:\\\/\\\/www.openstreetmap.org\\\/copyright","osm_type":"relation", "polygonpoints":$boundary, "display_name":"$crumbs", "lat":$lat, "lon":$lon, "class":"boundary", "type":"administrative","importance":0.73982781390695, "icon":"http:\\\/\\\/open.mapquestapi.com\\\/nominatim\\\/v1\\\/images\\\/mapicons\\\/poi_boundary_administrative.p.20.png"}])
+DDG.duckbar.add_map([{"licence":"Data \\u00a9 OpenStreetMap contributors, ODbL 1.0. http:\\\/\\\/www.openstreetmap.org\\\/copyright","osm_type":"relation", "polygonpoints":$boundary, "lat":$lat, "lon":$lon, "class":"boundary", "type":"administrative","importance":0.73982781390695, "icon":"http:\\\/\\\/open.mapquestapi.com\\\/nominatim\\\/v1\\\/images\\\/mapicons\\\/poi_boundary_administrative.p.20.png"}])
 EOH
 ;
 		
@@ -150,10 +122,12 @@ EOH
 </add>
 EOH
 ;
-
-		if(($type eq 'crag')==1 and ($supertype eq 'crag')!=1) {
+		
+		my @areas = $tree->findnodes('//div[@class = "area"]' );
+		if(($type eq 'crag') and !($supertype eq 'crag')) {
 			foreach my $i (0..$#areas){
-				my $link = $data->{$place}->{'areas'}->[$i]->{'link'};
+				my @links= $areas[$i]->findnodes('div/a[@href]');
+				my $link  = $links[1]->attr('href');
 				crawl($site . $link, $type,$place, $url);
 			}
 		}
@@ -163,7 +137,9 @@ EOH
 		foreach my $i (0..$#areas){
 				my @links= $areas[$i]->findnodes('div/a[@href]');
 				my $link  = $links[1]->attr('href');
-				crawl($site . $link, $type,$place, $url);
+				unless($link eq "/climbing/world/area/11737939"){
+					crawl($site . $link, $type,$place, $url);
+				}
 		}
 	}
 	
