@@ -9,7 +9,6 @@ use LWP::UserAgent;
 my $site = "http://www.thecrag.com";
 my $start = "$site/climbing/world";
 my $test = "$site/climbing/australia/grampians";
-my $data;
 my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
 $ua->agent('DuckDuckBot/1.1');
@@ -45,16 +44,13 @@ sub crawl{
 	
 	unless($type eq "region"){
 		
-		$data->{$place}->{"url"}=$url;
+		$styleinfo = lc($styleinfo);
 		print "$place: $url \n";
-		$data->{$place}->{"type"}=$type;
 		
 		my @latmeta = $tree->findnodes('//meta[@property="place:location:latitude"]');
 		my @lonmeta = $tree->findnodes('//meta[@property="place:location:longitude"]');
 		my $lat = $latmeta[0]->attr('content');
 		my $lon = $lonmeta[0]->attr('content');
-		$data->{$place}->{"longitude"} = $lon;
-		$data->{$place}->{"latitude"} = $lat;
 		
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
@@ -113,8 +109,8 @@ EOH
 		
 		print OUT <<EOH
 <doc>
-<field name="title"><![CDATA[$place $styleinfo]]></field>
-<field name="l2_sec_match2">climb climbing</field>
+<field name="title"><![CDATA[$place]]></field>
+<field name="l2_sec_match2">climb $styleinfo</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
 <field name="meta"><![CDATA[{"url":"$url", "lat":"$lat", "lon":"$lon", "ascents" ="$ascents", "type"="$typelabel" }]]></field>
