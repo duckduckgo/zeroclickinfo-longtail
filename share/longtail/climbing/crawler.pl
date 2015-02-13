@@ -38,8 +38,7 @@ sub crawl{
 	}
 	
 	my $type = $tree->findvalue('//a[@href="/article/AreaTypes"]');
-	my $title = $tree->findvalue('//title');
-	$title =~ s/ \| theCrag//;
+	my $title = ($tree->findnodes('//meta[@property="og:title"]'))[0]->attr('content');
 	my ($place, $styleinfo) = split(', ', $title);
 	
 	unless($type eq "region"){
@@ -47,10 +46,8 @@ sub crawl{
 		$styleinfo = lc($styleinfo);
 		print "$place: $url \n";
 		
-		my @latmeta = $tree->findnodes('//meta[@property="place:location:latitude"]');
-		my @lonmeta = $tree->findnodes('//meta[@property="place:location:longitude"]');
-		my $lat = $latmeta[0]->attr('content');
-		my $lon = $lonmeta[0]->attr('content');
+		my $lat = ($tree->findnodes('//meta[@property="place:location:latitude"]'))[0]->attr('content');
+		my $lon = ($tree->findnodes('//meta[@property="place:location:longitude"]'))[0]->attr('content');
 		
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
@@ -84,8 +81,7 @@ sub crawl{
 		$paragraph =~ s/<br>$//;
 		if($paragraph eq "") 
 		{
-			my @defmeta = $tree->findnodes('//meta[@property="og:description"]');
-			my $definition = $defmeta[0]->attr('content');
+			my $definition = ($tree->findnodes('//meta[@property="og:description"]'))[0]->attr('content');
 			$definition = substr($definition, index($definition, $place)+length($place)+2);
 			$paragraph = ucfirst($definition);
 		}
@@ -122,8 +118,7 @@ EOH
 		my @areas = $tree->findnodes('//div[@class = "area"]' );
 		if(($type eq 'crag') and !($supertype eq 'crag')) {
 			foreach my $i (0..$#areas){
-				my @links= $areas[$i]->findnodes('div/a[@href]');
-				my $link  = $links[1]->attr('href');
+				my $link  = ($areas[$i]->findnodes('div/a[@href]'))[1]->attr('href');
 				crawl($site . $link, $type,$place, $url);
 			}
 		}
@@ -131,8 +126,7 @@ EOH
 	else{
 		my @areas = $tree->findnodes('//div[@class = "area"]' );
 		foreach my $i (0..$#areas){
-				my @links= $areas[$i]->findnodes('div/a[@href]');
-				my $link  = $links[1]->attr('href');
+				my $link  = ($areas[$i]->findnodes('div/a[@href]'))[1]->attr('href');
 				unless($link eq "/climbing/world/area/11737939"){
 					crawl($site . $link, $type,$place, $url);
 				}
