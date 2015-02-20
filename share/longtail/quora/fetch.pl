@@ -10,18 +10,22 @@ use Data::Dumper;
 use IO::All;
 use Parallel::ForkManager;
 
-my $ua_agent = 'DuckDuckBot/1.1; (+http://duckduckgo.com/duckduckbot.html)';
+my $dbh = DBI->connect_cached('dbi:Pg:dbname=waki;host=127.0.0.1;port=5432','waki','waki',{PrintError => 1, RaiseError => 1, pg_enable_utf8 => 1}) or die "Unable to connect: $DBI::errstr\n"; 
+$dbh->do("DROP TABLE IF EXISTS quora");
+$dbh->do("CREATE TABLE quora (title text NOT NULL, abstract text NOT NULL, url text NOT NULL, want int NOT NULL, upvote int NOT NULL, date timestamp NOT NULL)");
+
+my $ua_agent = 'DuckDuckBot/1.1; (+http://duckduckgo.com/duckduckbot.html';
 my $out = IO::All->new("output.txt");
 my $base_url = "http://www.quora.com/sitemap/questions?page_id=";
 my $parent_pid = $$;
-my $WANT_ANS_CUTOFF = 7;
+my $WANT_ANS_CUTOFF = 3;
 my $ANS_COUNT_CUTOFF = 1;
 my $UPVOTE_CUTOFF = 3;
 my $page = 1;
 my $last_page = 0; # first child to find the last page sets this flag
 # get the links from the sitemap
 
-my $pool = Parallel::ForkManager->new(1);
+my $pool = Parallel::ForkManager->new(3);
 
 $out->print(qq(<?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">));
@@ -32,12 +36,12 @@ while(!$SIG{INT}){
 		# child process here
 		my $url = $base_url.$page;
 		print "getting page $url\n";
-		my $html = get_url_content($url, 10, $ua_agent);
+		my $html = get_url_content($url, 20, $ua_agent);
 		my $dom = Mojo::DOM->new($html);
 		my @site_map_links = get_sitemap_page_links($dom);
 		#print Dumper @site_map_links;
 		process_links(@site_map_links);
-		kill 2, $parent_pid if $page > 3;
+		kill 2, $parent_pid if $page > 20;
 	$pool->finish;
 
 }
@@ -113,7 +117,7 @@ sub process_links {
 
 		print "Title: $title Want: $want_ans Score: $ans_count \nAbstract: $abstract\nURL: $link\n\n";
 
-		print_to_file($title, $q_text, $abstract, $link);
+		update_DB($title, $q_text, $abstract, $link, $want_ans, $ans_upvotes);
 	}
 }
 
@@ -136,18 +140,14 @@ sub get_sitemap_page_links {
 }
 
 # print doc to output file
-sub print_to_file {
-	my ($title, $q_text, $abstract, $url) = @_;
+sub update_DB {
+	my ($title, $q_text, $abstract, $url, $want, $upvote) = @_;
+    $title =~ s/\?//g;
 
-    my $out = IO::All->new("output.txt");
-	qq(<doc>
-<field name="title">$title</field>
-<field name="title_match">$title</field>
-<field name="title_punctuation_removed">$title</field>
-<field name="paragraph">$abstract</field>
-<field name="source">quora</field>
-<field name="meta">{"url":"$url"}</field>
-</doc>
-) >> io($out);
-	$out->close;
+    $dbh->do("INSERT INTO quora (title, abstract, url, want, upvote,  date) VALUES(?,?,?,?,?,?)", undef, $title, $abstract, $url, $want, $upvote, '20120302');
+
+    if($dbh->errstr){
+        warn $dbh->errstr;
+        warn "$title\t$url";
+    }
 }
