@@ -10,7 +10,6 @@ use Data::Dumper;
 use IO::All;
 use Parallel::ForkManager;
 
-my $dbh = DBI->connect_cached('dbi:Pg:dbname=waki;host=127.0.0.1;port=5432','waki','waki',{PrintError => 1, RaiseError => 1, pg_enable_utf8 => 1}) or die "Unable to connect: $DBI::errstr\n"; 
 $dbh->do("DROP TABLE IF EXISTS quora");
 $dbh->do("CREATE TABLE quora (title text NOT NULL, abstract text NOT NULL, url text NOT NULL, want int NOT NULL, upvote int NOT NULL, date timestamp NOT NULL)");
 
