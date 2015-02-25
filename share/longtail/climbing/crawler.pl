@@ -49,6 +49,8 @@ sub crawl{
 		my $lat = ($tree->findnodes('//meta[@property="place:location:latitude"]'))[0]->attr('content');
 		my $lon = ($tree->findnodes('//meta[@property="place:location:longitude"]'))[0]->attr('content');
 		
+		my $kudos = ($tree->findnodes('//body[@data-kudos]'))[0]->attr('data-kudos');
+		
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
 		
@@ -109,7 +111,7 @@ EOH
 <field name="l2_sec_match2">climb $styleinfo</field>
 <field name="paragraph"><![CDATA[$paragraph]]></field>
 <field name="source"><![CDATA[climb]]></field>
-<field name="meta"><![CDATA[{"url":"$url", "lat":"$lat", "lon":"$lon", "ascents" ="$ascents", "type"="$typelabel" }]]></field>
+<field name="meta"><![CDATA[{"url":"$url", "lat":"$lat", "lon":"$lon", "kudos" ="$kudos", "type"="$typelabel" }]]></field>
 </doc>
 </add>
 EOH
