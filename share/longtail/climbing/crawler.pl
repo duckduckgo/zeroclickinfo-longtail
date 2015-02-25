@@ -54,13 +54,6 @@ sub crawl{
 		my $numroutes=$tree->findvalue('//a[@title="Search and filter these routes"]');
 		$numroutes = substr($numroutes,1,(index($numroutes,'routes')-2));
 		
-		my $ascentref = substr($url, index($url,'/climbing')) . "/ascents";
-		my $ascents = $tree->findvalue("//li/a[\@href=\"$ascentref\"]");
-		$ascents =~ s/Logbook//;
-		$ascents =~ s/^\s+//;
-		$ascents =~ s/\s+$//;
-		if($ascents eq "")  {$ascents = "0"};
-		
 		my $paragraph = "";
 		my $generalstyle = $tree->findvalue('//h1[@class="inline"]/small');
 		$generalstyle =~ s/^\s+//g;
