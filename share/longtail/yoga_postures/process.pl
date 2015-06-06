@@ -351,7 +351,7 @@ sub create_xml {
 		my ($title, $l2sm, $pp, $img, $meta, $pcount) = @$d{qw(title l2sm pp img meta pcount)};
 		$l2sm =~ s{[-/]}{ }og;
 	
-		my $source = '<field name="source"><![CDATA[YogaPostures]]></field>';
+		my $source = '<field name="source"><![CDATA[yoga_postures]]></field>';
 		$source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
 	
 	    print $output "\n", join("\n", 
