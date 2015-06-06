@@ -3,10 +3,9 @@
 use WWW::Mechanize; 
 use File::Path 'make_path';
 use File::Slurp qw'read_file write_file';
-use YAML::XS qw(Load DumpFile);
+use YAML::XS 'Load';
 use HTML::TableExtract;
 use Text::Autoformat;
-use Data::Printer;
 
 use strict;
 
@@ -84,10 +83,10 @@ sub process_ayi {
             my $file = "$archive/${order}_$1.html";
 
             unless(-e $file){
-                warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
+                $verbose && warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
                 my $res = $m->get($l);
                 if($res->is_success){
-                    warn "\tSaving $file\n";
+                    $verbose && warn "\tSaving $file\n";
                     write_file($file, {binmode => ':utf8'}, "<!-- source: $url -->\n", $res->decoded_content);
                 }
                 else{
@@ -138,7 +137,7 @@ sub process_yc {
             ++$src_verified;
         }
         if(exists $out{$a->{sanskrit_name}}){ # should be unique; if not, let's check it out
-            warn $a->{sanskrit_name}, " already exists\n";
+            $verbose && warn $a->{sanskrit_name}, " already exists\n";
             next;
         }
         my $title = $a->{title};
@@ -196,14 +195,15 @@ sub parse_argv {
     my $usage = <<ENDOFUSAGE;
 
     *******************************************************************
-        USAGE: fetch.pl [-data path/to/data] [-no_*] [-v]
+        USAGE: process.pl [-data path/to/data] [-no_*] [-v]
 
         -data: (optional) path to the download directory
         -no_*: (optional) turn off download of a site:
           ayi: ashtanga.info 
            yc: yoga.com
-           yp: theyogaposts.com 
+           yp: theyogaposes.com 
         -v: (optional) Turn on some parse warnings
+        -h: (optional) print this usage
 
     *******************************************************************
 
@@ -213,6 +213,7 @@ ENDOFUSAGE
         if($ARGV[$i] =~ /^-data$/o) { $data_dir = $ARGV[++$i] }
         elsif($ARGV[$i] =~ /^-v$/o) { $verbose = 1; }
         elsif($ARGV[$i] =~ /^-no_(\w+)$/o) { ++$skip{$1} }
+        elsif($ARGV[$i] =~ /^-h$/o) { print $usage; exit; }
     }
 }
 
@@ -287,13 +288,13 @@ sub parse_ayi {
             $trans_re = join('\s+', @aps);
         }
         unless($htm =~ m{<p>.+<b>$trans_re</b>.+\)\s+(?:=\s+)?(.+?)</p>}){
-            warn "Failed to extract translation from $src: '<p>.+<b>$trans_re</b>.+\)\s+(?:=\s+)?(.+?)</p>'\n";
+            die "Failed to extract translation from $src";
         }
         $trans = $1;
         $trans =~ s{<b>([^<]+)</b>\s*\([^,]+,\s*([^)]+)\)}{$1/$2};
     }
     else{
-        warn "Failed to extract values from $src";
+        die "Failed to extract values from $src";
     }
 
     my $pcount = $order;
