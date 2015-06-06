@@ -53,11 +53,8 @@ sub process_ayi {
     my %seen;
 
     for my $pl (@$practice_links){
-        my $practice = $pl->text;
-
         my $url = $pl->url;
         next if $seen{$url}++ || ($url =~ /mp3|pdf/i);
-        $url .= 'opt/info/' if $url =~ /surya-namaskara/;
 
         my $r = $m->get($url);
         unless($r->is_success){
@@ -67,9 +64,6 @@ sub process_ayi {
             die "Failed to extract practice from $url";
         }
         my $p = $1;
-        if($p =~ /^(surya-namaskara-(?:a|b))/o){
-            parse_ayi($p, $url, $r->decoded_content);
-        }
         my $links = $m->find_all_links(url_regex => qr{practice/$p/item/[^/]+/$}, text_regex => qr{^[^\[]+$});
 
         my $order = 0;
@@ -222,26 +216,28 @@ sub parse_ayi {
     my ($practice, $src, $htm, $order) = @_;
 
     my ($asana, $sasana, $img, $trans);
-    if($practice =~ /^surya-namaskara/o){
-        if(($asana, $sasana, $trans, $img) =
-            $htm =~ m{
-            <h1>(?'asana'[^<]+)</h1>.+?
-            class="uniHeader">([^<]+)</h3>.+?
-            <h2>([^<]+)</h2>(?s:.+)
-            <img\s+src="([^"]+)".+<em>\g{asana}
-        }ox){
-            if($asana =~ /(\s[AB])$/o){
-                $trans .= $1;
-            }
-            else{
-                die "Failed to extract variation from $asana";
-            }
-        }
-        else{
-            die "Failed to extract information from $src";
-        }
-    }
-    elsif(($asana, $sasana, $img) =
+    # This is for processing the sun salutations as a single entity, e.g
+    # http://www.ashtangayoga.info/practice/surya-namaskara-a-sun-salutation/opt/info/
+#    if($src =~ m{surya-namaskara.+/opt/info}o){
+#        if(($asana, $sasana, $trans, $img) =
+#            $htm =~ m{
+#            <h1>(?'asana'[^<]+)</h1>.+?
+#            class="uniHeader">([^<]+)</h3>.+?
+#            <h2>([^<]+)</h2>(?s:.+)
+#            <img\s+src="([^"]+)".+<em>\g{asana}
+#        }ox){
+#            if($asana =~ /(\s[AB])$/o){
+#                $trans .= $1;
+#            }
+#            else{
+#                die "Failed to extract variation from $asana";
+#            }
+#        }
+#        else{
+#            die "Failed to extract information from $src";
+#        }
+#    }
+    if(($asana, $sasana, $img) =
         $htm =~ m{
         <h1>(?'asana'[^<]+)</h1>(?s:.+)
         class="uniHeader">([^<]+)<(?s:.+)
