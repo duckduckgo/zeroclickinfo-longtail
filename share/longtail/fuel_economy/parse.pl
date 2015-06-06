@@ -188,7 +188,7 @@ while(my ($v, $data) = each %arts){
 		qq{<doc>}, 
 		$title,
 		qq{<field name="paragraph"><![CDATA[$rec]]></field>},
-		qq{<field name="source"><![CDATA[mpg]]></field>}, 
+		qq{<field name="source"><![CDATA[fuel_economy]]></field>}, 
 		qq{<field name="meta"><![CDATA[{"url":"$arts{$v}{src}"}]]></field>},
 		qq{</doc>});
 }
