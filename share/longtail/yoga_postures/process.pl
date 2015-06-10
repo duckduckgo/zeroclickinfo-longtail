@@ -140,7 +140,8 @@ sub process_yc {
             l2sm => $title,
             pp => $title,
             img => $imgurl,
-            meta => $srcurl
+            src => $srcurl,
+            favicon => 'https://yoga.com/favicon.ico'
         };
     }
 }
@@ -179,7 +180,7 @@ sub process_yp {
             l2sm => $trans,
             pp => $trans,
             img => $img,
-            meta => $src
+            src => $src
         };
     }
 }
@@ -322,7 +323,8 @@ sub parse_ayi {
         l2sm => "ashtanga vinyasa $asana $trans $sasana $practice",
         pp => $desc,
         img => $img,
-        meta => $src,
+        src => $src,
+        favicon => 'http://www.ashtangayoga.info/favicon.ico',
         pcount => $pcount
     };
 }
@@ -336,11 +338,14 @@ sub create_xml {
 
     for my $d (@docs){
 
-        my ($title, $l2sm, $pp, $img, $meta, $pcount) = @$d{qw(title l2sm pp img meta pcount)};
+        my ($title, $l2sm, $pp, $img, $src, $favicon, $pcount) = @$d{qw(title l2sm pp img src favicon pcount)};
         $l2sm =~ s{[-/]}{ }og;
 
         my $source = '<field name="source"><![CDATA[yoga_postures]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
+
+        my $meta = qq|"src":"$src","img":"$img"|;
+        $meta .= qq|,"favicon":"$favicon"| if $favicon;
 
         print $output "\n", join("\n",
             qq{<doc>},
@@ -348,7 +353,7 @@ sub create_xml {
             qq{<field name="l2_sec_match2"><![CDATA[$l2sm]]></field>},
             qq{<field name="paragraph"><![CDATA[$pp]]></field>},
             $source,
-            qq{<field name="meta"><![CDATA[{"url":"$meta","img":"$img"}]]></field>},
+            qq{<field name="meta"><![CDATA[{$meta}]]></field>},
             qq{</doc>});
     }
     print $output "\n</add>";
