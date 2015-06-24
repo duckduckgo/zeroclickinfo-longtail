@@ -1,4 +1,4 @@
-# Yoga Postures Processor
+# Yoga Asanas Processor
 
 ## Synopsis
 
