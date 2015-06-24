@@ -1,4 +1,4 @@
-package DDG::Longtail::YogaPostures;
+package DDG::Longtail::YogaAsanasAPI;
 
 use DDG::Longtail;
 
