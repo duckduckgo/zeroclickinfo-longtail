@@ -141,6 +141,7 @@ sub process_yc {
             pp => $title,
             img => $imgurl,
             src => $srcurl,
+            srcname => 'Yoga.com',
             favicon => 'https://yoga.com/favicon.ico'
         };
     }
@@ -180,7 +181,8 @@ sub process_yp {
             l2sm => $trans,
             pp => $trans,
             img => $img,
-            src => $src
+            src => $src,
+            srcname => 'The Yoga Poses'
         };
     }
 }
@@ -324,6 +326,7 @@ sub parse_ayi {
         pp => $desc,
         img => $img,
         src => $src,
+        srcname => 'AYI',
         favicon => 'http://www.ashtangayoga.info/favicon.ico',
         pcount => $pcount
     };
@@ -338,13 +341,14 @@ sub create_xml {
 
     for my $d (@docs){
 
-        my ($title, $l2sm, $pp, $img, $src, $favicon, $pcount) = @$d{qw(title l2sm pp img src favicon pcount)};
+        my ($title, $l2sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
+            @$d{qw(title l2sm pp img src srcname favicon pcount)};
         $l2sm =~ s{[-/]}{ }og;
 
         my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
 
-        my $meta = qq|"src":"$src","img":"$img"|;
+        my $meta = qq|"src":"$src","srcName":"$srcname","img":"$img"|;
         $meta .= qq|,"favicon":"$favicon"| if $favicon;
 
         print $output "\n", join("\n",
