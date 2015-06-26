@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/local/env perl
    
 use WWW::Mechanize; 
 use File::Path 'make_path';
