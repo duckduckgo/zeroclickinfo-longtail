@@ -22,7 +22,8 @@ my $yc_file = 'yoga.com.yaml';
 my $yp_url = 'http://www.theyogaposes.com/';
 
 # Our output file
-my $output_file = 'output.xml';
+#my $output_file = 'output.xml';
+my $output_file = 'output.json';
 
 # Common variation alternatives
 my %variations = (A => 'I', B => 'II', C => 'III', D => 'IV');
