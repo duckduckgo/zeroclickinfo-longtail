@@ -6,6 +6,7 @@ use File::Slurp qw'read_file write_file';
 use YAML::XS 'Load';
 use HTML::TableExtract;
 use Text::Autoformat;
+use JSON 'to_json';
 
 use strict;
 
@@ -36,7 +37,8 @@ MAIN:{
     process_ayi() unless $skip{ayi};
     process_yc() unless $skip{yc};
     process_yp() unless $skip{yp};
-    create_xml();
+    #create_xml();
+	create_json();
 }
 
 
@@ -361,4 +363,33 @@ sub create_xml {
             qq{</doc>});
     }
     print $output "\n</add>";
+}
+
+sub create_json {
+
+
+	my @jdocs;# = (add => {allowDups => 'true'});
+
+    for my $d (@docs){
+
+        my ($title, $l2sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
+            @$d{qw(title l2sm pp img src srcname favicon pcount)};
+        $l2sm =~ s{[-/]}{ }og;
+		my %doc = (
+			title => $title,
+			l2_sec_match2 => $l2sm,
+			paragraph => $pp,
+			source => 'yoga_asanas_api',
+		);
+
+        $doc{p_count} = $pcount if $pcount;
+
+        $doc{meta} = {src => $src, srcName => $srcname, img => $img};
+        $doc{meta}{favicon} = $favicon if $favicon;
+		push @jdocs, \%doc;
+    }
+
+    # Output the articles
+    open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
+	print $output to_json(\@jdocs);
 }
