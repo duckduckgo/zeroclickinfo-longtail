@@ -39,7 +39,7 @@ MAIN:{
     process_yc() unless $skip{yc};
     process_yp() unless $skip{yp};
     #create_xml();
-	create_json();
+    create_json();
 }
 
 
@@ -145,7 +145,7 @@ sub process_yc {
             img => $imgurl,
             src => $srcurl,
             srcname => 'Yoga.com',
-            favicon => 'https://yoga.com/favicon.ico'
+            favicon => 1 
         };
     }
 }
@@ -185,7 +185,8 @@ sub process_yp {
             pp => $trans,
             img => $img,
             src => $src,
-            srcname => 'The Yoga Poses'
+            srcname => 'The Yoga Poses',
+            favicon => 0
         };
     }
 }
@@ -330,7 +331,7 @@ sub parse_ayi {
         img => $img,
         src => $src,
         srcname => 'AYI',
-        favicon => 'http://www.ashtangayoga.info/favicon.ico',
+        favicon => 1,
         pcount => $pcount
     };
 }
@@ -351,16 +352,13 @@ sub create_xml {
         my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
 
-        my $meta = qq|"src":"$src","srcName":"$srcname","img":"$img"|;
-        $meta .= qq|,"favicon":"$favicon"| if $favicon;
-
         print $output "\n", join("\n",
             qq{<doc>},
             qq{<field name="title"><![CDATA[$title]]></field>},
             qq{<field name="l2_sec_match2"><![CDATA[$l2sm]]></field>},
             qq{<field name="paragraph"><![CDATA[$pp]]></field>},
             $source,
-            qq{<field name="meta"><![CDATA[{$meta}]]></field>},
+            qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon"}]]></field>},
             qq{</doc>});
     }
     print $output "\n</add>";
@@ -369,28 +367,27 @@ sub create_xml {
 sub create_json {
 
 
-	my @jdocs;# = (add => {allowDups => 'true'});
+    my @jdocs;# = (add => {allowDups => 'true'});
 
     for my $d (@docs){
 
         my ($title, $l2sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
             @$d{qw(title l2sm pp img src srcname favicon pcount)};
         $l2sm =~ s{[-/]}{ }og;
-		my %doc = (
-			title => $title,
-			l2_sec_match2 => $l2sm,
-			paragraph => $pp,
-			source => 'yoga_asanas_api',
-		);
+        my %doc = (
+            title => $title,
+            l2_sec_match2 => $l2sm,
+            paragraph => $pp,
+            source => 'yoga_asanas_api',
+        );
 
         $doc{p_count} = $pcount if $pcount;
 
-        $doc{meta} = {src => $src, srcName => $srcname, img => $img};
-        $doc{meta}{favicon} = $favicon if $favicon;
-		push @jdocs, \%doc;
+        $doc{meta} = {srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon};
+        push @jdocs, \%doc;
     }
 
     # Output the articles
     open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
-	print $output to_json(\@jdocs);
+    print $output to_json(\@jdocs);
 }
