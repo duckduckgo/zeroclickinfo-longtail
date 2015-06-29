@@ -6,7 +6,7 @@ use File::Slurp qw'read_file write_file';
 use YAML::XS 'Load';
 use HTML::TableExtract;
 use Text::Autoformat;
-use JSON 'to_json';
+use JSON qw'to_json';
 
 use strict;
 
@@ -38,8 +38,8 @@ MAIN:{
     process_ayi() unless $skip{ayi};
     process_yc() unless $skip{yc};
     process_yp() unless $skip{yp};
-    create_xml();
-    #create_json();
+    #create_xml();
+    create_json();
 }
 
 
@@ -383,7 +383,7 @@ sub create_json {
 
         $doc{p_count} = $pcount if $pcount;
 
-        $doc{meta} = encode_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon});
+        $doc{meta} = to_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon});
         push @jdocs, \%doc;
     }
 
