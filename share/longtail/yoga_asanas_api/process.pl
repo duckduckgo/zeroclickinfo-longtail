@@ -38,8 +38,8 @@ MAIN:{
     process_ayi() unless $skip{ayi};
     process_yc() unless $skip{yc};
     process_yp() unless $skip{yp};
-    #create_xml();
-    create_json();
+    create_xml();
+    #create_json();
 }
 
 
@@ -383,7 +383,7 @@ sub create_json {
 
         $doc{p_count} = $pcount if $pcount;
 
-        $doc{meta} = {srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon};
+        $doc{meta} = encode_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon});
         push @jdocs, \%doc;
     }
 
