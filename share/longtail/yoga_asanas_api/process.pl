@@ -169,7 +169,7 @@ sub process_yp {
         }
         my ($src, $title) = ($1, $2);
 
-        unless($r->[1] =~ m{>[^<]+<}){
+        unless($r->[1] =~ m{>([^<]+)<}){
             die "Failed to extract translation from $r->[1]";
         }
         my $trans = $1;
@@ -336,6 +336,21 @@ sub parse_ayi {
     };
 }
 
+# Add standard keywords, if necessary, while maintaining original keyword order
+sub normalize_l2sm {
+    my $l = shift;
+
+    $l .= ' yoga pose posture';
+
+    my (%seen, @l2sm);
+    for my $x (split /\s+/, $l){
+        next if $seen{lc $x}++;
+        push @l2sm, $x;
+    }
+
+    return "@l2sm";
+}
+
 sub create_xml {
 
     # Output the articles
@@ -355,7 +370,7 @@ sub create_xml {
         print $output "\n", join("\n",
             qq{<doc>},
             qq{<field name="title"><![CDATA[$title]]></field>},
-            qq{<field name="l2_sec_match2"><![CDATA[$l2sm]]></field>},
+            q{<field name="l2_sec_match2"><![CDATA[} . normalize_l2sm($l2sm) . q{]]></field>},
             qq{<field name="paragraph"><![CDATA[$pp]]></field>},
             $source,
             qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon"}]]></field>},
@@ -376,7 +391,7 @@ sub create_json {
         $l2sm =~ s{[-/]}{ }og;
         my %doc = (
             title => $title,
-            l2_sec_match2 => $l2sm,
+            l2_sec_match2 => normalize_l2sm($l2sm),
             paragraph => $pp,
             source => 'yoga_asanas_api',
         );
