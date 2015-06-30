@@ -49,7 +49,6 @@ sub process_ayi {
     make_path($archive);
 
     my $r = $m->get($ayi_url);
-    die "Failed to get AYI practices: " . $r->status_line unless $r->is_success;
 
     my $practice_links = $m->find_all_links(url_regex => qr{practice/[^/]+/$});
 
@@ -60,9 +59,7 @@ sub process_ayi {
         next if $seen{$url}++ || ($url =~ /mp3|pdf/i);
 
         my $r = $m->get($url);
-        unless($r->is_success){
-            die "Failed to retrieve $url: " . $r->status_line;
-        }
+
         unless($url =~ m{/([^/]+)/$}){
             die "Failed to extract practice from $url";
         }
@@ -82,13 +79,8 @@ sub process_ayi {
             unless(-e $file){
                 $verbose && warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
                 my $res = $m->get($l);
-                if($res->is_success){
-                    $verbose && warn "\tSaving $file\n";
-                    write_file($file, {binmode => ':utf8'}, "<!-- source: $url -->\n", $res->decoded_content);
-                }
-                else{
-                    die "Failed to retrieve $url: " . $res->status_line;
-                }
+                $verbose && warn "\tSaving $file\n";
+                write_file($file, {binmode => ':utf8'}, "<!-- source: $url -->\n", $res->decoded_content);
             }
 
             if(my $htm = read_file( $file, binmode => ':utf8' )){
@@ -100,14 +92,8 @@ sub process_ayi {
 
 sub process_yc {
     my $r = $m->get($yc_url);
-    unless($r->is_success){
-        die "Failed to retrieve $yc_url: " . $r->status_line;
-    }
     my $yc_data = Load($r->decoded_content);
     $m->get('https://yoga.com/pose/downward-facing-dog-pose');
-    unless($r->is_success){
-        die "Failed to retrieve $yc_url: " . $r->status_line;
-    }
     my $l = $m->find_link(url_regex => qr{\.cloudfront\.net/static});
     my $iurl = $l->url;
     unless($iurl =~ m{^https?://([^/]+)}i){ # images appear to work both with and without SSL
@@ -120,17 +106,11 @@ sub process_yc {
         my $imgurl = 'http://' . $imgsrv . $a->{photo};
         unless($img_verified){ # basic check that our link composition still works
             my $r = $m->get($imgurl);
-            unless($r->is_success){
-                die "Failed to retrieve $imgurl: " . $r->status_line. '. Check that images are still begin served from cloudfront.net.';
-            }
             ++$img_verified;
         }
         my $srcurl = join('/', 'https://yoga.com/pose', $a->{slug});
         unless($src_verified){ # basic check that our source link format still works
             my $r = $m->get($srcurl);
-            unless($r->is_success){
-                die "Failed to retrieve $srcurl: " . $r->status_line. '. Check that source format for photos is still https://yoga.com/post/[slug]/photo';
-            }
             ++$src_verified;
         }
         if(exists $out{$a->{sanskrit_name}}){ # should be unique; if not, let's check it out
@@ -151,11 +131,8 @@ sub process_yc {
 }
 
 sub process_yp {
-    my $r = $m->get($yp_url);
-    unless($r->is_success){
-        die "Failed to retrieve $yp_url: " . $r->status_line;
-    }
-    my $h = $r->decoded_content;
+    my $res = $m->get($yp_url);
+    my $h = $res->decoded_content;
     my $te = HTML::TableExtract->new(keep_html => 1,
         headers => [
             'Sanskrit Name for Yoga Poses, Postures and Asanas',
@@ -164,7 +141,7 @@ sub process_yp {
     ])->parse($h);
 
     for my $r ($te->rows){
-        unless($r->[0] =~ m{href="(http[^"]+)">([^<]+)<}){
+        unless($r->[1] =~ m{href="(http[^"]+)">([^<]+)<}){
             die "Failed to extract source/name from $r->[0]";
         }
         my ($src, $title) = ($1, $2);
@@ -178,6 +155,9 @@ sub process_yp {
             die "Failed to extract image link from $r->[2]";
         }
         my $img = $1;
+
+        $img =~ s/p\K100p//;
+        $img =~ s/(?:-100)?\.png$/.jpg/;
 
         push @docs, {
             title => $title,
