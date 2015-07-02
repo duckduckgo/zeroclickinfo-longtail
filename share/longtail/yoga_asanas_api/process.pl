@@ -25,6 +25,8 @@ my $yp_url = 'http://www.theyogaposes.com/';
 #my $output_file = 'output.xml';
 my $output_file = 'output.json';
 
+my $pretty_json = 0;
+
 # Common variation alternatives
 my %variations = (A => 'I', B => 'II', C => 'III', D => 'IV');
 
@@ -185,6 +187,7 @@ sub parse_argv {
            yp: theyogaposes.com 
         -v: (optional) Turn on some parse warnings
         -h: (optional) print this usage
+        -p: (optional) output json prettified (default = 0)
 
     *******************************************************************
 
@@ -195,6 +198,7 @@ ENDOFUSAGE
         elsif($ARGV[$i] =~ /^-v$/o) { $verbose = 1; }
         elsif($ARGV[$i] =~ /^-no_(\w+)$/o) { ++$skip{$1} }
         elsif($ARGV[$i] =~ /^-h$/o) { print $usage; exit; }
+        elsif($ARGV[$i] =~ /^-p$/o) { $pretty_json = $ARGV[++$i] }
     }
 }
 
@@ -384,5 +388,5 @@ sub create_json {
 
     # Output the articles
     open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
-    print $output to_json(\@jdocs);
+    print $output to_json(\@jdocs, {pretty => $pretty_json});
 }
