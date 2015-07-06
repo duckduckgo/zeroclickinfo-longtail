@@ -202,7 +202,6 @@ ENDOFUSAGE
     }
 }
 
-my %ayi_seen;
 # Process ashtangayoga.info
 sub parse_ayi {
     my ($practice, $src, $htm, $order) = @_;
@@ -297,14 +296,6 @@ sub parse_ayi {
         my $var = $1;
         $sasana .= " $var $variations{$var}" unless $sasana =~ /$var$/;
     }
-
-    # prevent duplicates from different practices from getting in, e.g surya namaskara a/b
-    if(exists $ayi_seen{$asana} && ($pcount == $docs[$ayi_seen{$asana}]->{pcount})){
-        my $doc = $docs[$ayi_seen{$asana}];
-        $doc->{l2sm} .= " $practice";
-        next;
-    }
-    else{ $ayi_seen{$asana} = @docs }
 
     my $desc = $trans;
     # many will know these as Warrior, not Hero
