@@ -143,12 +143,12 @@ sub process_yp {
     ])->parse($h);
 
     for my $r ($te->rows){
-        unless($r->[1] =~ m{href="(http[^"]+)">([^<]+)<}){
+        unless($r->[0] =~ m{href="(http[^"]+)">([^<]+)<}){
             die "Failed to extract source/name from $r->[0]";
         }
         my ($src, $title) = ($1, $2);
 
-        unless($r->[0] =~ m{>([^<]+)<}){
+        unless($r->[1] =~ m{>([^<]+)<}){
             die "Failed to extract translation from $r->[1]";
         }
         my $trans = $1;
