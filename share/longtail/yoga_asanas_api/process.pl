@@ -319,7 +319,8 @@ sub parse_ayi {
     # We add "ashtanga vinyasa yoga" since it's a specific style
     push @docs, {
         title => $asana,
-        l2sm => "ashtanga vinyasa $asana $trans $sasana $practice",
+        l2sm => "ashtanga vinyasa $asana $trans $sasana",
+		l3sm => "ashtanga vinyasa $practice",
         pp => $desc,
         img => $img,
         src => $src,
@@ -353,12 +354,13 @@ sub create_xml {
 
     for my $d (@docs){
 
-        my ($title, $l2sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
-            @$d{qw(title l2sm pp img src srcname favicon pcount)};
+        my ($title, $l2sm, $l3sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
+            @$d{qw(title l2sm l3sm pp img src srcname favicon pcount)};
         $l2sm =~ s{[-/]}{ }og;
 
         my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
+		$source .= qq{<field name="l3_sec_match2"><![CDATA[$l3sm]]></field>} if $l3sm;
 
         print $output "\n", join("\n",
             qq{<doc>},
@@ -379,9 +381,9 @@ sub create_json {
 
     for my $d (@docs){
 
-        my ($title, $l2sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
-            @$d{qw(title l2sm pp img src srcname favicon pcount)};
-        $l2sm =~ s{[-/]}{ }og;
+        my ($title, $l2sm, $l3sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
+            @$d{qw(title l2sm l3sm pp img src srcname favicon pcount)};
+        s{[-/]}{ }og for ($l2sm, $l3sm);;
         my %doc = (
             title => $title,
             l2_sec_match2 => normalize_l2sm($l2sm),
@@ -389,6 +391,7 @@ sub create_json {
             source => 'yoga_asanas_api',
         );
 
+		$doc{l3_sec_match2} = $l3sm if $l3sm;
         $doc{p_count} = $pcount if $pcount;
 
         $doc{meta} = to_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon});
