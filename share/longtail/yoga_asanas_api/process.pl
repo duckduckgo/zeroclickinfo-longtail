@@ -148,7 +148,7 @@ sub process_yp {
         }
         my ($src, $title) = ($1, $2);
 
-        unless($r->[1] =~ m{>([^<]+)<}){
+        unless($r->[0] =~ m{>([^<]+)<}){
             die "Failed to extract translation from $r->[1]";
         }
         my $trans = $1;
