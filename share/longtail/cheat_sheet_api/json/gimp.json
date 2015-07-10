@@ -2,7 +2,7 @@
     "id": "gimp_cheat_sheet", 
     "name": "Gimp",
     "description": "Graphics Editor", 
-	"keywords": "gimp",
+    "keywords": "gimp",
     "metadata": { 
         "sourceName": "GimpCheatSheet"
     },

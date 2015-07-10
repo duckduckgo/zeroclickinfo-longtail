@@ -2,7 +2,7 @@
     "id": "gnu_screen_cheat_sheet",
     "name": "gnu screen",
     "description": "Terminal multiplexer",
-	"keywords": "gnu screen terminal multiplexer",
+    "keywords": "gnu screen terminal multiplexer",
     "metadata": {
         "sourceName": "GNU Screen Manual",
         "sourceUrl": "https://www.gnu.org/software/screen/manual/screen.html"
