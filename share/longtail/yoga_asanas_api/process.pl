@@ -372,7 +372,7 @@ sub normalize_l2sm {
     my $l = shift;
     
     $l =~ s|/| |;
-    $l .= ' yoga pose posture';
+    $l .= ' yoga poses postures';
 
     my (%seen, @l2sm);
     for my $x (split /\s+/, $l){
