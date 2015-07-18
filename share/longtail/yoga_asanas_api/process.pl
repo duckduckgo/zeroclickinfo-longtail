@@ -7,6 +7,7 @@ use YAML::XS 'Load';
 use HTML::TableExtract;
 use Text::Autoformat;
 use JSON qw'to_json';
+use Data::Printer;
 
 use strict;
 
@@ -52,9 +53,11 @@ sub process_ayi {
 
     my $r = $m->get($ayi_url);
 
-    my $practice_links = $m->find_all_links(url_regex => qr{practice/[^/]+/$});
+    my $practice_links = $m->find_all_links(url_regex => qr{http://www\..+/practice/\w[^/]+/$});
 
     my %seen;
+
+    my $order = 0;
 
     for my $pl (@$practice_links){
         my $url = $pl->url;
@@ -66,27 +69,35 @@ sub process_ayi {
             die "Failed to extract practice from $url";
         }
         my $p = $1;
-        my $links = $m->find_all_links(url_regex => qr{practice/$p/item/[^/]+/$}, text_regex => qr{^[^\[]+$});
 
-        my $order = 0;
+        unless($r->decoded_content =~ m{<h3 class="uniHeader">([^<]+)</h3>}){
+            $verbose && warn "Failed to extract Sanskrit practice from $url";
+        }
+        my $sp = $1;
+        $sp = join(' ', $sp, split('-', $sp)) if $sp =~ /-/;
+        my $practice = join(' ', split('-', $p), $sp);
+
+        my $links = $m->find_all_links(url_regex => qr{http://www\..+/practice/$p/item/[^/]+/$}, text_regex => qr{^[^\[]*$});
+
         for my $l (@$links){
             my $url = $l->url;
-            next if $url =~ m{-\d+/$}o; # unnamed transition postures
+            #next if $url =~ m{-\d+/$}o; # unnamed transition postures
             unless($url =~ m{/([^/]+)/$}o){
                 die "Failed to extract asana from $url";
             }
+            my $asana = $1;
             ++$order;
-            my $file = "$archive/${order}_$1.html";
+            my $file = "$archive/" . sprintf('%03d', $order) . "-${p}_$asana.html";
 
             unless(-e $file){
                 $verbose && warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
-                my $res = $m->get($l);
+                my $res = eval { $m->get($l); } or do { warn "Failed to find $l: $@"; next };;
                 $verbose && warn "\tSaving $file\n";
-                write_file($file, {binmode => ':utf8'}, "<!-- source: $url -->\n", $res->decoded_content);
+                write_file($file, {binmode => ':utf8'}, $res->decoded_content);
             }
 
             if(my $htm = read_file( $file, binmode => ':utf8' )){
-                parse_ayi($p, $url, $htm, $order);
+                parse_ayi($practice, $url, $htm, $order);
             }
         }
     }
@@ -126,6 +137,7 @@ sub process_yc {
             pp => $title,
             img => $imgurl,
             src => $srcurl,
+            pcount => 100,
             srcname => 'Yoga.com',
             favicon => 1 
         };
@@ -138,28 +150,43 @@ sub process_yp {
     my $te = HTML::TableExtract->new(keep_html => 1,
         headers => [
             'Sanskrit Name for Yoga Poses, Postures and Asanas',
-            'English Name for Yoga Poses, Postures and Asanas',
-            'Visual'
+            'English Name for Yoga Poses, Postures and Asanas'
     ])->parse($h);
 
+    my ($url_re, $img_re, $cs_re) = (qr{href="(http[^"]+)">([^<]+)<}, qr{/images/p/}, qr{cs\.php$});
     for my $r ($te->rows){
-        unless($r->[0] =~ m{href="(http[^"]+)">([^<]+)<}){
+        unless($r->[0] =~ $url_re){
             die "Failed to extract source/name from $r->[0]";
         }
         my ($src, $title) = ($1, $2);
 
-        unless($r->[1] =~ m{>([^<]+)<}){
+        unless($r->[1] =~ $url_re){
             die "Failed to extract translation from $r->[1]";
         }
-        my $trans = $1;
+        my ($alt_src, $trans) = ($1, $2);
 
-        unless($r->[2] =~ m{src="(http[^"]+)"}){
-            die "Failed to extract image link from $r->[2]";
+        if( ($title eq 'Natarajasana') && ($trans =~ /II$/) ){
+            $title = 'Natarajasana II';
         }
-        my $img = $1;
 
-        $img =~ s/p\K100p//;
-        $img =~ s/(?:-100)?\.png$/.jpg/;
+        if($src =~ $cs_re){
+            unless($alt_src !~ $cs_re){
+                warn "Failed to verify src link for $title";
+                next;
+            }
+            $src = $alt_src
+        }
+
+        eval { $m->get($src) } or do {
+            $src = $alt_src;
+            $m->get($src);
+        };
+
+        my $img = $m->find_image(url_regex => $img_re);
+        unless($img){
+            die "Failed to extract image linke from $src with regex $img_re";
+        }
+        $img = $img->url;
 
         push @docs, {
             title => $title,
@@ -167,6 +194,7 @@ sub process_yp {
             pp => $trans,
             img => $img,
             src => $src,
+            pcount => 100,
             srcname => 'The Yoga Poses',
             favicon => 0
         };
@@ -280,13 +308,31 @@ sub parse_ayi {
         $trans = $1;
         $trans =~ s{<b>([^<]+)</b>\s*\([^,]+,\s*([^)]+)\)}{$1/$2};
     }
+    elsif((($asana, $img) =
+        $htm =~ m{
+        <h1>(?'asana'[^<]+)</h1>(?s:.+)
+        <img\s+src="([^"]+)"\s+width="\d+"\s+height="\d+"\s+alt="\g{asana}"\s+>
+    }ox) || (($img) = $htm =~ m{<img\s+src="([^"]+)"\s+width="\d+"\s+height="\d+"\s+alt=""\s+>})){
+        #transitional, unnamed postures that only show up in sequences
+        push @docs, {
+            title => ' ',
+            l2sm => "ashtanga vinyasa $practice",
+            pp => '(transitional)',
+            img => $img,
+            src => $src,
+            srcname => 'AYI',
+            favicon => 1,
+            pcount => $order
+        };
+        return;
+    }
     else{
         die "Failed to extract values from $src";
     }
 
     my $pcount = $order;
 
-    for ($asana, $sasana, $trans, $practice){
+    for ($asana, $trans){
         s/-/ /og;
         tr/ //s;
     }
@@ -311,7 +357,7 @@ sub parse_ayi {
     push @docs, {
         title => $asana,
         l2sm => "ashtanga vinyasa $asana $trans $sasana",
-		l3sm => "ashtanga vinyasa $practice",
+        l3sm => "ashtanga vinyasa $practice",
         pp => $desc,
         img => $img,
         src => $src,
@@ -324,7 +370,8 @@ sub parse_ayi {
 # Add standard keywords, if necessary, while maintaining original keyword order
 sub normalize_l2sm {
     my $l = shift;
-
+    
+    $l =~ s|/| |;
     $l .= ' yoga pose posture';
 
     my (%seen, @l2sm);
@@ -351,7 +398,7 @@ sub create_xml {
 
         my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
-		$source .= qq{<field name="l3_sec_match2"><![CDATA[$l3sm]]></field>} if $l3sm;
+        $source .= qq{<field name="l3_sec_match2"><![CDATA[$l3sm]]></field>} if $l3sm;
 
         print $output "\n", join("\n",
             qq{<doc>},
@@ -367,25 +414,24 @@ sub create_xml {
 
 sub create_json {
 
-
     my @jdocs;# = (add => {allowDups => 'true'});
 
     for my $d (@docs){
 
         my ($title, $l2sm, $l3sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
             @$d{qw(title l2sm l3sm pp img src srcname favicon pcount)};
-        s{[-/]}{ }og for ($l2sm, $l3sm);;
+
         my %doc = (
             title => $title,
-            l2_sec_match2 => normalize_l2sm($l2sm),
             paragraph => $pp,
             source => 'yoga_asanas_api',
+            p_count => $pcount
         );
 
-		$doc{l3_sec_match2} = $l3sm if $l3sm;
-        $doc{p_count} = $pcount if $pcount;
+        $doc{l2_sec_match2} = normalize_l2sm($l2sm) if $l2sm;
+        $doc{l3_sec_match2} = $l3sm if $l3sm;
 
-        $doc{meta} = to_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon});
+        $doc{meta} = to_json({srcUrl => $src, srcName => $srcname, img => $img, favicon => $favicon, order => $pcount});
         push @jdocs, \%doc;
     }
 

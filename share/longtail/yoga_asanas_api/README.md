@@ -17,6 +17,7 @@ Run
            yp: theyogaposts.com 
         -v: (optional) Turn on some parse warnings
         -h: (optional) print this usage
+        -p: (optional) pretty print json
 
     *******************************************************************
 
@@ -30,7 +31,7 @@ Processes yoga asana information from multiple websites:
 
 Sites can be toggled on/off and additional sites can easily be added.
 
-Generates an XML file containing items with the following data:
+Generates a JSON or XML file containing items with the following data:
 
 1. Name of asana
 2. English translation of asana
