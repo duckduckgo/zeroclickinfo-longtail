@@ -22,7 +22,7 @@ print OUT <<EOH
 EOH
 ;
 
-crawl($test, "none", "North West", "$site/climbing/australia/victoria/north-west" );
+crawl($start, "none", "none", "none" );
 
 close OUT;
 
@@ -41,7 +41,7 @@ sub crawl{
 	my $title = ($tree->findnodes('//meta[@property="og:title"]'))[0]->attr('content');
 	my ($place, $styleinfo) = split(', ', $title);
 	
-	unless($type eq "region"){
+	unless($type eq "region" || $type eq ""){
 		
 		$styleinfo = lc($styleinfo);
 		print "$place: $url \n";
