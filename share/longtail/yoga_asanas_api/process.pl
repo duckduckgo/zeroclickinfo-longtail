@@ -21,6 +21,7 @@ my $yc_url = 'https://yoga.com/api/content/feed/?format=json&type=pose&offset=0&
 my $yc_file = 'yoga.com.yaml';
 
 my $yp_url = 'http://www.theyogaposes.com/';
+my $yp_dir = 'theyogaposes';
 
 # Our output file
 #my $output_file = 'output.xml';
@@ -91,7 +92,7 @@ sub process_ayi {
 
             unless(-e $file){
                 $verbose && warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
-                my $res = eval { $m->get($l); } or do { warn "Failed to find $l: $@"; next };;
+                my $res = $m->get($l);#eval{  } or do { warn "Failed to find $l: $@"; next };;
                 $verbose && warn "\tSaving $file\n";
                 write_file($file, {binmode => ':utf8'}, $res->decoded_content);
             }
@@ -132,12 +133,12 @@ sub process_yc {
         }
         my $title = $a->{title};
         push @docs, {
-            title => $a->{sanskrit_name},,
+            title => $a->{sanskrit_name},
             l2sm => $title,
             pp => $title,
             img => $imgurl,
             src => $srcurl,
-            pcount => 100,
+            pcount => 1000,
             srcname => 'Yoga.com',
             favicon => 1 
         };
@@ -145,6 +146,9 @@ sub process_yc {
 }
 
 sub process_yp {
+    my $archive = "$data_dir/$yp_dir";
+    make_path($archive);
+
     my $res = $m->get($yp_url);
     my $h = $res->decoded_content;
     my $te = HTML::TableExtract->new(keep_html => 1,
@@ -153,7 +157,11 @@ sub process_yp {
             'English Name for Yoga Poses, Postures and Asanas'
     ])->parse($h);
 
-    my ($url_re, $img_re, $cs_re) = (qr{href="(http[^"]+)">([^<]+)<}, qr{/images/p/}, qr{cs\.php$});
+    my ($url_re, $img_re, $cs_re) = (
+        qr{href="(http[^"]+)">([^<]+)<},
+        qr{<img\s+src='([^']+.jpg)'},
+        qr{cs\.php$}
+    );
     for my $r ($te->rows){
         unless($r->[0] =~ $url_re){
             die "Failed to extract source/name from $r->[0]";
@@ -176,17 +184,29 @@ sub process_yp {
             }
             $src = $alt_src
         }
-
-        eval { $m->get($src) } or do {
-            $src = $alt_src;
-            $m->get($src);
-        };
-
-        my $img = $m->find_image(url_regex => $img_re);
-        unless($img){
-            die "Failed to extract image linke from $src with regex $img_re";
+        unless($src =~ m{.+/([^\.]+)\.php$}){
+            die "Failed to extract asana file name from $src";
         }
-        $img = $img->url;
+        my $file = "$archive/$1.html";
+
+        unless(-e $file){
+            $verbose && warn "\tGetting $src\n";
+            my $res;
+            eval { $res = $m->get($src) } or do {
+                $src = $alt_src;
+                $res = $m->get($src);
+            };
+            $verbose && warn "\tSaving $file\n";
+            write_file($file, {binmode => ':utf8'}, $res->decoded_content);
+        }
+
+        die "Failed to read $file: $!" unless my $htm = read_file( $file, binmode => ':utf8' );
+
+        unless($htm =~ $img_re){
+            die "Failed to extract image from $src";
+        }
+
+        my $img = $1;
 
         push @docs, {
             title => $title,
@@ -194,7 +214,7 @@ sub process_yp {
             pp => $trans,
             img => $img,
             src => $src,
-            pcount => 100,
+            pcount => 1000,
             srcname => 'The Yoga Poses',
             favicon => 0
         };
