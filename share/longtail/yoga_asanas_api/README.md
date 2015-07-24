@@ -18,6 +18,7 @@ Run
         -v: (optional) Turn on some parse warnings
         -h: (optional) print this usage
         -p: (optional) pretty print json
+        -xml: (optional) output format of XML (default is JSON)
 
     *******************************************************************
 

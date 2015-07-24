@@ -23,11 +23,11 @@ my $yc_file = 'yoga.com.yaml';
 my $yp_url = 'http://www.theyogaposes.com/';
 my $yp_dir = 'theyogaposes';
 
-# Our output file
-#my $output_file = 'output.xml';
-my $output_file = 'output.json';
+# Our output file, gets .json or .xml added to it
+my $output_file = 'output';
 
 my $pretty_json = 0;
+my $xml_output = 0;
 
 # Common variation alternatives
 my %variations = (A => 'I', B => 'II', C => 'III', D => 'IV');
@@ -43,7 +43,7 @@ MAIN:{
     process_yc() unless $skip{yc};
     process_yp() unless $skip{yp};
     #create_xml();
-    create_json();
+    $xml_output ? create_xml() : create_json();
 }
 
 
@@ -236,6 +236,7 @@ sub parse_argv {
         -v: (optional) Turn on some parse warnings
         -h: (optional) print this usage
         -p: (optional) output json prettified (default = 0)
+        -xml: (optional) output in XML (default is json)
 
     *******************************************************************
 
@@ -247,6 +248,7 @@ ENDOFUSAGE
         elsif($ARGV[$i] =~ /^-no_(\w+)$/o) { ++$skip{$1} }
         elsif($ARGV[$i] =~ /^-h$/o) { print $usage; exit; }
         elsif($ARGV[$i] =~ /^-p$/o) { $pretty_json = $ARGV[++$i] }
+        elsif($ARGV[$i] =~ /^-xml$/o) { ++$xml_output }
     }
 }
 
@@ -406,7 +408,7 @@ sub normalize_l2sm {
 sub create_xml {
 
     # Output the articles
-    open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
+    open my $output, '>:utf8', "$output_file.xml" or die "Failed to open $output_file: $!";
 
     print $output qq|<?xml version="1.0" encoding="UTF-8"?>\n<add allowDups="true">|;
 
@@ -414,19 +416,18 @@ sub create_xml {
 
         my ($title, $l2sm, $l3sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
             @$d{qw(title l2sm l3sm pp img src srcname favicon pcount)};
-        $l2sm =~ s{[-/]}{ }og;
 
         my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
         $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
+        $source .= q{<field name="l2_sec_match2"><![CDATA[} . normalize_l2sm($l2sm) . q{]]></field>} if $l2sm;
         $source .= qq{<field name="l3_sec_match2"><![CDATA[$l3sm]]></field>} if $l3sm;
 
         print $output "\n", join("\n",
             qq{<doc>},
             qq{<field name="title"><![CDATA[$title]]></field>},
-            q{<field name="l2_sec_match2"><![CDATA[} . normalize_l2sm($l2sm) . q{]]></field>},
             qq{<field name="paragraph"><![CDATA[$pp]]></field>},
             $source,
-            qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon"}]]></field>},
+            qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon","order":$pcount}]]></field>},
             qq{</doc>});
     }
     print $output "\n</add>";
@@ -456,6 +457,6 @@ sub create_json {
     }
 
     # Output the articles
-    open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
+    open my $output, '>:utf8', "$output_file.json" or die "Failed to open $output_file: $!";
     print $output to_json(\@jdocs, {pretty => $pretty_json});
 }
