@@ -428,7 +428,7 @@ sub create_xml {
             qq{<field name="paragraph"><![CDATA[$pp]]></field>},
             $source,
             qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon","order":$pcount}]]></field>},
-            qq{</doc>});
+            '</doc>');
     }
     print $output "\n</add>";
 }
