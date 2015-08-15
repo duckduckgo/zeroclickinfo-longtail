@@ -2,7 +2,7 @@
     "id": "gimp_cheat_sheet", 
     "name": "Gimp",
     "description": "Graphics Editor", 
-    "keywords": "gimp",
+    "keywords": "gimp GNU Image Manipulation Program graphic design software",
     "metadata": { 
         "sourceName": "GimpCheatSheet"
     },

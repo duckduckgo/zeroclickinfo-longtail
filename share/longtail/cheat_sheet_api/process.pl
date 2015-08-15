@@ -3,15 +3,15 @@
 use JSON qw(from_json to_json);
 use File::Slurp 'read_file';
 
-my $output_file = 'output.xml';
+my $output_file = 'output.json';
+my $pretty_json = 1;
 
 # provide default keywords for each cheat sheet
 my $additional_keywords = join(' ', ' char', 'character', 'cheat sheet', 'cheatsheet', 'command', 'example', 'guide', 'help', 'quick reference', 'shortcut', 'symbol');
 
 MAIN:{
-    open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
 
-    print $output qq|<?xml version="1.0" encoding="UTF-8"?>\n<add allowDups="true">|;
+	my @jdocs;
     while(my $f = <json/*.json>){
         my $j = read_file($f, binmode => ':utf8');
         my $cs = from_json($j);
@@ -24,13 +24,13 @@ MAIN:{
         }
         $keywords = join(' ', keys %k);
 
-        print$output "\n", join("\n",
-            qq{<doc>},
-            qq|<field name="title"><![CDATA[$cs->{name}]]></field>|,
-            qq{<field name="l2_sec_match2"><![CDATA[$keywords]]></field>},
-            q|<field name="paragraph"><![CDATA[| . to_json($cs) . q|$pp]]></field>|,
-            '<field name="source"><![CDATA[cheat_sheet_api]]></field>');
-            
+		push @jdocs, {
+			title => $cs->{name},
+			l2_sec_match2 => $keywords,
+			paragraph => to_json($cs),
+			source => 'cheat_sheet_api'
+		};
     }
-    print $output "\n</add>";
+    open my $output, '>:utf8', $output_file or die "Failed to open $output_file: $!";
+	print $output to_json(\@jdocs, {pretty => $pretty_json});
 }
