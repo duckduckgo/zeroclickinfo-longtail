@@ -6,6 +6,7 @@
         "sourceName": "Mozilla Support",
         "sourceUrl": "https://support.mozilla.org/kb/awesome-bar-keyboard-shortcuts"
     },
+    "template_type": "keyboard",
     "section_order": ["Power-ups"],
     "sections": {
         "Power-ups": [{
