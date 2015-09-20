@@ -157,10 +157,11 @@ sub process_yp {
             'English Name for Yoga Poses, Postures and Asanas'
     ])->parse($h);
 
-    my ($url_re, $img_re, $cs_re) = (
+    my ($url_re, $img_re, $cs_re, $fname_re) = (
         qr{href="(http[^"]+)">([^<]+)<},
         qr{<img\s+src='([^']+.jpg)'},
-        qr{cs\.php$}
+        qr{cs\.php$},
+        qr{input_page=(.+)$}
     );
     for my $r ($te->rows){
         unless($r->[0] =~ $url_re){
@@ -184,7 +185,7 @@ sub process_yp {
             }
             $src = $alt_src
         }
-        unless($src =~ m{.+/([^\.]+)\.php$}){
+        unless($src =~ $fname_re){
             die "Failed to extract asana file name from $src";
         }
         my $file = "$archive/$1.html";
@@ -196,6 +197,7 @@ sub process_yp {
                 $src = $alt_src;
                 $res = $m->get($src);
             };
+
             $verbose && warn "\tSaving $file\n";
             write_file($file, {binmode => ':utf8'}, $res->decoded_content);
         }
