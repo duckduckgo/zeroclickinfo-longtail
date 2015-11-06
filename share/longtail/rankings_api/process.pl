@@ -24,7 +24,7 @@ my $json_output = 1;
 
 # Alphabetical order please!
 my %ranking_sites = (
-    imdb_top_250 => \&imdb_top_250 # weekly
+    imdb_250_movies => \&imdb # weekly
 );
 
 my $mech = WWW::Mechanize->new;
@@ -47,7 +47,7 @@ sub process_rankings{
 	}
 }
 
-sub imdb_top_250 {
+sub imdb {
 	my $name = shift;
 	my $url = 'http://www.imdb.com/chart/top?sort=rk,asc&mode=simple';
 	my $htm = mirror_site($name => $url);
@@ -79,8 +79,9 @@ sub imdb_top_250 {
 			src => $src
 		};
 	}
+	my $title = join(' ', split /_/, $name);
 	return {
-		title => 'imdb movies 250',
+		title => $title,
 		rankings => \@rankings
 	}
 }
