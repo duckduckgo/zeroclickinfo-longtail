@@ -3,6 +3,7 @@
 use Data::Printer;
 use WWW::Mechanize; 
 use Mojo::DOM;
+use Mojo::URL;
 use HTML::TableExtract;
 use File::Copy::Recursive 'pathmk';
 use PerlIO::gzip;
@@ -35,9 +36,9 @@ MAIN:{
 
 sub process_rankings{
 	my @results;	
-	while(my ($rank, $ranker) = each %ranking_sites){
-		$verbose && warn "Processing $rank\n";
-		if(my $results = $ranker->()){
+	while(my ($rank_name, $ranker) = each %ranking_sites){
+		$verbose && warn "Processing $rank_name\n";
+		if(my $results = $ranker->($rank_name)){
 			push @results, $results;
 		}
 	}
@@ -47,17 +48,27 @@ sub process_rankings{
 }
 
 sub imdb_top_250 {
+	my $name = shift;
 	my $url = 'http://www.imdb.com/chart/top?sort=rk,asc&mode=simple';
-	my $htm = mirror_site(imdb_top_250 => $url);
+	my $htm = mirror_site($name => $url);
 	my $t = extract_table($htm, keep_html => 1, headers => ['', 'Rank & Title']);
 	my @rankings;
 	for my $rank (@$t){
 		my $d = Mojo::DOM->new($rank->[0]);
 		my $img = $d->at('img')->attr('src');
+		unless($img){
+			warn "Failed to extract $name img";
+			return;
+		}
 		my $src = $d->at('a')->attr('href');
+		my $abs_src = Mojo::URL->new($src)->to_abs(Mojo::URL->new($url))->to_string;
+		unless($abs_src){
+			warn "Failed to extract $name src url";
+			return;
+		}
 		my $text = $d->parse($rank->[1])->all_text;
 		unless($text =~ /^(\d+)\.\s+(\S.+)$/){
-			warn "Failed to extract rank and title from imdb listing:\n\n\t$text";
+			warn "Failed to extract rank and title from $name:\n\n\t$text";
 			return;;
 		}
 		my ($r, $title) = ($1, $2);
@@ -141,20 +152,13 @@ sub create_xml {
 
     for my $d (@$docs){
 
-        my ($title, $l2sm, $l3sm, $pp, $img, $src, $srcname, $favicon, $pcount) =
-            @$d{qw(title l2sm l3sm pp img src srcname favicon pcount)};
-
-        my $source = '<field name="source"><![CDATA[yoga_asanas_api]]></field>';
-        $source .= qq{\n<field name="p_count">$pcount</field>} if $pcount;
-        $source .= q{<field name="l2_sec_match2"><![CDATA[} . normalize_l2sm($l2sm) . q{]]></field>} if $l2sm;
-        $source .= qq{<field name="l3_sec_match2"><![CDATA[$l3sm]]></field>} if $l3sm;
+        my ($title, $rankings) = @$d{qw(title rankings)};
 
         print $output "\n", join("\n",
             qq{<doc>},
             qq{<field name="title"><![CDATA[$title]]></field>},
-            qq{<field name="paragraph"><![CDATA[$pp]]></field>},
-            $source,
-            qq{<field name="meta"><![CDATA[{"srcUrl":"$src","srcName":"$srcname","img":"$img","favicon":"$favicon","order":$pcount}]]></field>},
+            q{<field name="source"><![CDATA[rankings_api]]></field>},
+            q{<field name="meta"><![CDATA[} . to_json($rankings) . q{]]></field>},
             '</doc>');
     }
     print $output "\n</add>";
