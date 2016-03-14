@@ -56,8 +56,10 @@ while(my $r = $csv->getline($dfh)){
         # basic model configuration info...unique *most* of the time
 		my $vconfig = $ftype1 eq 'Electricity' ? $evm : "$displ L, $cyl cyl";
 		if($trany){ $vconfig .= ", $trany"; } # some don't have transmissions listed, e.g. 2001 Hyper-Mini
+
+        # Can be both T & S, e.g. 2016 Volvo XC90 AWD S8
         if($tc eq 'T'){ $vconfig .= ', Turbo'; }
-        elsif($sc eq 'S'){ $vconfig .= ', Supercharger'; }
+        if($sc eq 'S'){ $vconfig .= ', Supercharger'; }
 
         # The site itself has duplicate descriptions, e.g. see the 1993 Chevy C1500.  Only drilling down
         # into the data further will you find that there is some distinguishing feature; for example,
