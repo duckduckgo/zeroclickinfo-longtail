@@ -10,6 +10,6 @@ topics 'security';
 category 'q/a';
 primary_example_queries 'CVE-1999-0002';
 #secondary_example_queries 'panama lyrics', 'lean on me lyrics';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-longtail/blob/master/lib/DDG/Longtail/Lyrics/';
+code_url 'https://github.com/MoriTanosuke/zeroclickinfo-longtail/blob/master/lib/DDG/Longtail/CveSummary.pm';
 
 1;
