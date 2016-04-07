@@ -78,9 +78,10 @@ sub process_ayi {
         $sp = join(' ', $sp, split('-', $sp)) if $sp =~ /-/;
         my $practice = join(' ', split('-', $p), $sp);
 
-        my $links = $m->find_all_links(url_regex => qr{http://www\..+/practice/$p/item/[^/]+/$}, text_regex => qr{^[^\[]*$});
+        my $links = $m->find_all_links(url_regex => qr{http://www\..+/practice/$p/item/[^/]+/$});
 
         for my $l (@$links){
+            next if $l->text =~ /\[thumb\]/;
             my $url = $l->url;
             #next if $url =~ m{-\d+/$}o; # unnamed transition postures
             unless($url =~ m{/([^/]+)/$}o){
@@ -92,7 +93,7 @@ sub process_ayi {
 
             unless(-e $file){
                 $verbose && warn "\tGetting ", $l->url, ' (text: ', $l->text, ")\n";
-                my $res = $m->get($l);#eval{  } or do { warn "Failed to find $l: $@"; next };;
+                my $res = eval { $m->get($l) } or do { warn $@; next };
                 $verbose && warn "\tSaving $file\n";
                 write_file($file, {binmode => ':utf8'}, $res->decoded_content);
             }
@@ -282,9 +283,9 @@ sub parse_ayi {
 #    }
     if(($asana, $sasana, $img) =
         $htm =~ m{
-        <h1>(?'asana'[^<]+)</h1>(?s:.+)
-        class="uniHeader">([^<]+)<(?s:.+)
-        <img\s+src="([^"]+)"\s+width="\d+"\s+height="\d+"\s+alt="\g{asana}"\s+>
+        <h1>(?'asana'[^<]+)</h1>.+?
+        class="uniHeader">.+?class="tx-sgtransliterator-cakravat-font">([^<]+)<(?s:.+)
+        <img\s+src="([^"]+)"\s+width="540"   # \g{asana}"\s+>
     }ox){
         $asana =~ s/\bMukah\b/Mukha/o; # sic
         my @aps = split /\s+/, $asana;
@@ -293,8 +294,8 @@ sub parse_ayi {
         if($asana =~ /^Baddha\s+Hasta\s+Shirshasana/o){
             $aps[0] = 'Mukta'; # wrong
         }
-        elsif($asana =~ /^Dvi\s+Pada\s+Shirshasana/o){
-            $aps[0] = 'Eka'; # wrong
+        elsif($asana =~ /^Dvi\W+Pada\s+Shirshasana/o){
+            $aps[0] = 'Eka-Pada'; # wrong
         }
         elsif($asana eq 'Kaundinyasana A'){
             $aps[0] = 'Koundinyasana'; # sic
@@ -314,22 +315,29 @@ sub parse_ayi {
         elsif($asana =~ /^Viranchyasana/o){
             $aps[0] = 'Viranchhyasana'; # sic
         }
+        elsif($asana =~ /^Kaundinyasana\s+\[A\]/){
+            $aps[0] = 'Koundinyasana'; # sic
+        }
 
         # Really don't like having to search the document twice but there
         # are inconsistencies in the spacing of the asana, whether it has
         # A/B/C/D for variants, etc.
         my $trans_re;
-        if($aps[-1] =~ /^[A-D]$/o){
+        if($aps[-1] =~ /^\[?[A-D]\]?$/o){
             my $var = pop @aps;
-            $trans_re = join('\s+', @aps) . "(?:\\s+$var)?";
+            $trans_re = join('\W+', @aps) . "(?:\\s+\Q$var\E)?";
         }
-        else{
-            $trans_re = join('\s+', @aps);
+        elsif($aps[-1] eq '["]'){
+            pop @aps;
         }
-        unless($htm =~ m{<p>.+<b>$trans_re</b>.+\)\s+(?:=\s+)?(.+?)</p>}){
+
+        $trans_re //= join('\W+', @aps);
+
+        unless($htm =~ m{<p>.+<b>$trans_re</b>.+\)</span>\s+(?:=\s+)?(.+?)</p>}){
             die "Failed to extract translation from $src";
         }
         $trans = $1;
+
         $trans =~ s{<b>([^<]+)</b>\s*\([^,]+,\s*([^)]+)\)}{$1/$2};
     }
     elsif((($asana, $img) =
