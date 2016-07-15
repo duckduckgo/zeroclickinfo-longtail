@@ -11,7 +11,6 @@ JSON = """[
 
 DOC = """
 {{\"title\":\"{title} (JavaScript)\",
-\"l2_sec\":\"{abstract}\",
 \"paragraph\":\"{abstract} <a href=\'{source_url}\'>{source_url}</a>\",
 \"p_count\":1,
 \"source\":\"instant_answer_id\"
@@ -23,7 +22,8 @@ def run(infname, outfname):
     with open(outfname, 'w') as outfile:
         rows = []
         for line in reader:
-            rows.append(DOC.format(**line))
+            if line['type'] == "A":
+                rows.append(DOC.format(**line))
         results = '\n'.join(rows)
         results = results[:-1]
         outfile.write(JSON.format(results=results).replace('\\n', '\n'))

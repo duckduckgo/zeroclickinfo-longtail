@@ -13,10 +13,9 @@ XML = """<?xml version="1.0" encoding="UTF-8"?>
 
 DOC = """<doc>
 	<field name="title"><![CDATA[{title}]]></field>
-	<field name="l2_sec"><![CDATA[{abstract}]]></field>
 	<field name="paragraph"><![CDATA[{abstract} <a href="{source_url}">{source_url}</a>]]></field>
 	<field name="p_count">1</field>
-	<field name="source"><![CDATA[id{title}]]></field>
+	<field name="source"><![CDATA[mdn_js]]></field>
 </doc>"""
 
 def run(infname, outfname):
@@ -25,7 +24,8 @@ def run(infname, outfname):
     with open(outfname, 'w') as outfile:
         rows = []
         for line in reader:
-            rows.append(DOC.format(**line))
+            if line['type'] == "A":
+                rows.append(DOC.format(**line))
         results = '\n'.join(rows)
         outfile.write(XML.format(results=results).replace('\\n', '\n'))
 
