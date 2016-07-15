@@ -2,6 +2,7 @@
  Generate a longtail XML dump of the Fathead output.txt
 """
 import csv
+import re
 
 from parse import FatWriter
 
@@ -13,6 +14,7 @@ XML = """<?xml version="1.0" encoding="UTF-8"?>
 
 DOC = """<doc>
 	<field name="title"><![CDATA[{title}]]></field>
+    <field name="l2_sec"><![CDATA[{title_strip}]]></field>
 	<field name="paragraph"><![CDATA[{abstract} <a href="{source_url}">{source_url}</a>]]></field>
 	<field name="p_count">1</field>
 	<field name="source"><![CDATA[mdn_js]]></field>
@@ -25,6 +27,7 @@ def run(infname, outfname):
         rows = []
         for line in reader:
             if line['type'] == "A":
+                line['title_strip'] = re.sub(r'[^\w\s]',' ',line['title'])
                 rows.append(DOC.format(**line))
         results = '\n'.join(rows)
         outfile.write(XML.format(results=results).replace('\\n', '\n'))

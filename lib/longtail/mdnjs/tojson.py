@@ -2,6 +2,7 @@
  Generate a longtail JSON dump of the Fathead output.txt
 """
 import csv
+import re
 
 from parse import FatWriter
 
@@ -11,6 +12,7 @@ JSON = """[
 
 DOC = """
 {{\"title\":\"{title} (JavaScript)\",
+\"l2_sec\":\"{title_strip}\",
 \"paragraph\":\"{abstract} <a href=\'{source_url}\'>{source_url}</a>\",
 \"p_count\":1,
 \"source\":\"instant_answer_id\"
@@ -23,6 +25,7 @@ def run(infname, outfname):
         rows = []
         for line in reader:
             if line['type'] == "A":
+                line['title_strip'] = re.sub(r'[^\w\s]',' ',line['title'])
                 rows.append(DOC.format(**line))
         results = '\n'.join(rows)
         results = results[:-1]

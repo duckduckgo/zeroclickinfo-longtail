@@ -1,84 +1,98 @@
 [
 
 {"title":"Array.prototype.sort (JavaScript)",
+"l2_sec":"Array prototype sort",
 "paragraph":"<pre><code>Array.prototype.sort (comparefn)</code></pre>Sorts the elements of an array in place and returns the array. The sort is not necessarily stable. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.reverse (JavaScript)",
+"l2_sec":"Array prototype reverse",
 "paragraph":"<pre><code>Array.prototype.reverse ( )</code></pre>Reverses an array in place.  The first array element becomes the last and the last becomes the first. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.isArray (JavaScript)",
+"l2_sec":"Array isArray",
 "paragraph":"<pre><code>Array.isArray ( arg )</code></pre>Returns true if an object is an array, false if it is not. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.name (JavaScript)",
+"l2_sec":"Function name",
 "paragraph":"The function.name property returns the name of the function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.length (JavaScript)",
+"l2_sec":"Function length",
 "paragraph":"<pre><code>Function.length</code></pre>The length property specifies the number of arguments expected by the function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function (JavaScript)",
+"l2_sec":"Function",
 "paragraph":"<pre><code>new Function ([arg1[, arg2[, ...argN]],] functionBody)</code></pre>The Function constructor creates a new Function object. In JavaScript every function is actually a Function object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.filter (JavaScript)",
+"l2_sec":"Array prototype filter",
 "paragraph":"<pre><code>Array.prototype.filter ( callbackfn [ , thisArg ] )</code></pre>Creates a new array with all elements that pass the test implemented by the provided function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.forEach (JavaScript)",
+"l2_sec":"Array prototype forEach",
 "paragraph":"<pre><code>Array.prototype.forEach ( callbackfn [ , thisArg ] )</code></pre>Executes a provided function once per array element. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.every (JavaScript)",
+"l2_sec":"Array prototype every",
 "paragraph":"<pre><code>Array.prototype.every ( callbackfn [ , thisArg ] )</code></pre>Tests whether all elements in the array pass the test implemented by the provided function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.map (JavaScript)",
+"l2_sec":"Array prototype map",
 "paragraph":"<pre><code>Array.prototype.map ( callbackfn [ , thisArg ] )</code></pre>Creates a new array with the results of calling a provided function on every element in this array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.caller (JavaScript)",
+"l2_sec":"Function caller",
 "paragraph":"The function.caller property returns the function that invoked the specified function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.bind (JavaScript)",
+"l2_sec":"Function prototype bind",
 "paragraph":"<pre><code>Function.prototype.bind (thisArg [, arg1 [, arg2, …]])</code></pre>The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.substring (JavaScript)",
+"l2_sec":"String prototype substring",
 "paragraph":"<pre><code>String.prototype.substring (start, end)</code></pre>Returns a subset of a string between one index and another, or through the end of the string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date (JavaScript)",
+"l2_sec":"Date",
 "paragraph":"<pre><code>new Date();
 new Date(value);
 new Date(dateString);
@@ -88,138 +102,161 @@ new Date(year, month [, day, hour, minute, second, millisecond]);</code></pre>Cr
 },
 
 {"title":"Date.prototype.getTime (JavaScript)",
+"l2_sec":"Date prototype getTime",
 "paragraph":"<pre><code>Date.prototype.getTime ( )</code></pre>The getTime() method returns the numeric value corresponding to the time for the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getMilliseconds (JavaScript)",
+"l2_sec":"Date prototype getMilliseconds",
 "paragraph":"<pre><code>Date.prototype.getMilliseconds ( )</code></pre>The getMilliseconds() method returns the milliseconds in the specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getMinutes (JavaScript)",
+"l2_sec":"Date prototype getMinutes",
 "paragraph":"<pre><code>Date.prototype.getMinutes ( )</code></pre>The getMinutes() method returns the minutes in the specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getMonth (JavaScript)",
+"l2_sec":"Date prototype getMonth",
 "paragraph":"<pre><code>Date.prototype.getMonth ( )</code></pre>The getMonth() method returns the month in the specified date according to local time, as a zero-based value (where zero indicates the first month of the year). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getSeconds (JavaScript)",
+"l2_sec":"Date prototype getSeconds",
 "paragraph":"<pre><code>Date.prototype.getSeconds ( )</code></pre>The getSeconds() method returns the seconds in the specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getFullYear (JavaScript)",
+"l2_sec":"Date prototype getFullYear",
 "paragraph":"<pre><code>Date.prototype.getFullYear ( )</code></pre>The getFullYear() method returns the year of the specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getDate (JavaScript)",
+"l2_sec":"Date prototype getDate",
 "paragraph":"<pre><code>Date.prototype.getDate ( )</code></pre>The getDate() method returns the day of the month for the specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getDay (JavaScript)",
+"l2_sec":"Date prototype getDay",
 "paragraph":"<pre><code>Date.prototype.getDay ( )</code></pre>The getDay() method returns the day of the week for the specified date according to local time, where 0 represents Sunday. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getHours (JavaScript)",
+"l2_sec":"Date prototype getHours",
 "paragraph":"<pre><code>Date.prototype.getHours ( )</code></pre>The getHours() method returns the hour for the specified date, according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setHours (JavaScript)",
+"l2_sec":"Date prototype setHours",
 "paragraph":"<pre><code>Date.prototype.setHours (hour [, min [, sec [, ms ] ] ] )</code></pre>The setHours() method sets the hours for a specified date according to local time, and returns the number of milliseconds since 1 January 1970 00:00:00 UTC until the time represented by the updated Date instance. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.slice (JavaScript)",
+"l2_sec":"String prototype slice",
 "paragraph":"<pre><code>String.prototype.slice (start, end)</code></pre>Extracts a section of a string and returns a new string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.keys (JavaScript)",
+"l2_sec":"Object keys",
 "paragraph":"<pre><code>Object.keys ( O )</code></pre>Returns an array of a given object's own enumerable properties, in the same order as that provided by a for-in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.seal (JavaScript)",
+"l2_sec":"Object seal",
 "paragraph":"<pre><code>Object.seal ( O )</code></pre>Seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.isSealed (JavaScript)",
+"l2_sec":"Object isSealed",
 "paragraph":"<pre><code>Object.isSealed ( O )</code></pre>Determine if an object is sealed. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.freeze (JavaScript)",
+"l2_sec":"Object freeze",
 "paragraph":"<pre><code>Object.freeze ( O )</code></pre>Freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed. In essence the object is made effectively immutable. The method returns the object being frozen. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.isFrozen (JavaScript)",
+"l2_sec":"Object isFrozen",
 "paragraph":"<pre><code>Object.isFrozen ( O )</code></pre>Determine if an object is frozen. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.preventExtensions (JavaScript)",
+"l2_sec":"Object preventExtensions",
 "paragraph":"<pre><code>Object.preventExtensions ( O )</code></pre>Prevents new properties from ever being added to an object (i.e. prevents future extensions to the object). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.getOwnPropertyNames (JavaScript)",
+"l2_sec":"Object getOwnPropertyNames",
 "paragraph":"<pre><code>Object.getOwnPropertyNames ( O )</code></pre>Returns an array of all properties (enumerable or not) found directly upon a given object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.getOwnPropertyDescriptor (JavaScript)",
+"l2_sec":"Object getOwnPropertyDescriptor",
 "paragraph":"<pre><code>Object.getOwnPropertyDescriptor ( O, P )</code></pre>Returns a property descriptor for an own property (that is, one directly present on an object, not present by dint of being along an object's prototype chain) of a given object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.defineProperties (JavaScript)",
+"l2_sec":"Object defineProperties",
 "paragraph":"<pre><code>Object.defineProperties ( O, Properties )</code></pre>Defines new or modifies existing properties directly on an object, returning the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.create (JavaScript)",
+"l2_sec":"Object create",
 "paragraph":"<pre><code>Object.create ( O [, Properties] )</code></pre>Creates a new object with the specified prototype object and properties. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.defineProperty (JavaScript)",
+"l2_sec":"Object defineProperty",
 "paragraph":"<pre><code>Object.defineProperty ( O, P, Attributes )</code></pre>Defines a new property directly on an object, or modifies an existing property on an object, and returns the object. If you want to see how to use the Object.defineProperty method with a binary-flags-like syntax, see this article. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.toSource() (JavaScript)",
+"l2_sec":"RegExp prototype toSource  ",
 "paragraph":"<pre><code>regexObj.toSource()
 RegExp.toSource()</code></pre>The toSource() method returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/toSource</a>",
 "p_count":1,
@@ -227,96 +264,112 @@ RegExp.toSource()</code></pre>The toSource() method returns a string representin
 },
 
 {"title":"RegExp (JavaScript)",
+"l2_sec":"RegExp",
 "paragraph":"The RegExp constructor creates a regular expression object for matching text with a pattern. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.apply (JavaScript)",
+"l2_sec":"Function prototype apply",
 "paragraph":"<pre><code>Function.prototype.apply (thisArg, argArray)</code></pre>The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Map (JavaScript)",
+"l2_sec":"Map",
 "paragraph":"Map objects are simple key/value maps. Any value (both objects and primitive values) may be used as either a key or a value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.join (JavaScript)",
+"l2_sec":"Array prototype join",
 "paragraph":"<pre><code>Array.prototype.join (separator)</code></pre>Joins all elements of an array into a string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.now (JavaScript)",
+"l2_sec":"Date now",
 "paragraph":"<pre><code>Date.now ( )</code></pre>The Date.now() method returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.fromCharCode (JavaScript)",
+"l2_sec":"String fromCharCode",
 "paragraph":"<pre><code>String.fromCharCode ( [ char0 [ , char1 [ , … ] ] ] )</code></pre>Returns a string created by using the specified sequence of Unicode values. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.encodeURIComponent (JavaScript)",
+"l2_sec":"Global encodeURIComponent",
 "paragraph":"<pre><code>Global.encodeURIComponent (uriComponent)</code></pre>Encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two "surrogate" characters). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.toString (JavaScript)",
+"l2_sec":"Array prototype toString",
 "paragraph":"<pre><code>Array.prototype.toString ( )</code></pre>Returns a string representing the specified array and its elements. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.slice (JavaScript)",
+"l2_sec":"Array prototype slice",
 "paragraph":"<pre><code>Array.prototype.slice (start, end)</code></pre>Returns a shallow copy of a portion of an array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.concat (JavaScript)",
+"l2_sec":"Array prototype concat",
 "paragraph":"<pre><code>Array.prototype.concat ( [ item1 [ , item2 [ , … ] ] ] )</code></pre>Returns a new array comprised of this array joined with other array(s) and/or value(s). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.unshift (JavaScript)",
+"l2_sec":"Array prototype unshift",
 "paragraph":"<pre><code>Array.prototype.unshift ( [ item1 [ , item2 [ , … ] ] ] )</code></pre>Adds one or more elements to the beginning of an array and returns the new length of the array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.splice (JavaScript)",
+"l2_sec":"Array prototype splice",
 "paragraph":"<pre><code>Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , … ] ] ] )</code></pre>Changes the content of an array, adding new elements while removing old elements. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.shift (JavaScript)",
+"l2_sec":"Array prototype shift",
 "paragraph":"<pre><code>Array.prototype.shift ( )</code></pre>Removes the first element from an array and returns that element. This method changes the length of the array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.push (JavaScript)",
+"l2_sec":"Array prototype push",
 "paragraph":"<pre><code>Array.prototype.push ( [ item1 [ , item2 [ , … ] ] ] )</code></pre>Mutates an array by appending the given elements and returning the new length of the array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Set (JavaScript)",
+"l2_sec":"Set",
 "paragraph":"Set objects let you store unique values of any type, whether primitive values or object references. Value equality is not based on the same algorithm as the one used in the === operator. Specifically, for Sets, +0 (which is strictly equal to -0) and -0 are different values. NaN can also be stored in a Set. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array (JavaScript)",
+"l2_sec":"Array",
 "paragraph":"<pre><code>[element0, element1, ..., elementN]
 new Array(element0, element1, ..., elementN)
 new Array(arrayLength)</code></pre>The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array</a>",
@@ -325,174 +378,203 @@ new Array(arrayLength)</code></pre>The JavaScript Array global object is a const
 },
 
 {"title":"Array.prototype.lastIndexOf (JavaScript)",
+"l2_sec":"Array prototype lastIndexOf",
 "paragraph":"<pre><code>Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] )</code></pre>Returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.indexOf (JavaScript)",
+"l2_sec":"Array prototype indexOf",
 "paragraph":"<pre><code>Array.prototype.indexOf ( searchElement [ , fromIndex ] )</code></pre>Returns the first index at which a given element can be found in the array, or -1 if it is not present. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.reduceRight (JavaScript)",
+"l2_sec":"Array prototype reduceRight",
 "paragraph":"<pre><code>Array.prototype.reduceRight ( callbackfn [ , initialValue ] )</code></pre>Apply a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.some (JavaScript)",
+"l2_sec":"Array prototype some",
 "paragraph":"<pre><code>Array.prototype.some ( callbackfn [ , thisArg ] )</code></pre>Tests whether some element in the array passes the test implemented by the provided function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"JSON (JavaScript)",
+"l2_sec":"JSON",
 "paragraph":"The JSON object contains methods for converting values to JavaScript Object Notation (JSON) and for converting JSON to values. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Boolean.prototype (JavaScript)",
+"l2_sec":"Boolean prototype",
 "paragraph":"<pre><code>Boolean.prototype</code></pre>The Boolean.prototype property represents the prototype for the Boolean constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Boolean (JavaScript)",
+"l2_sec":"Boolean",
 "paragraph":"<pre><code>new Boolean(value)</code></pre>The Boolean object is an object wrapper for a boolean value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.quote (JavaScript)",
+"l2_sec":"String quote",
 "paragraph":"<pre><code>str.quote()</code></pre>Returns a copy of the string, replacing various special characters in the string with their escape sequences and wrapping the result in double-quotes ("). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/quote'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/quote</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.call (JavaScript)",
+"l2_sec":"Function prototype call",
 "paragraph":"<pre><code>Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</code></pre>The call() method calls a function with a given this value and arguments provided individually. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"WeakMap (JavaScript)",
+"l2_sec":"WeakMap",
 "paragraph":"WeakMaps are key/value maps in which keys are objects. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.isNaN (JavaScript)",
+"l2_sec":"Global isNaN",
 "paragraph":"<pre><code>Global.isNaN (number)</code></pre>Determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in ECMAScript 6 Number.isNaN. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.replace (JavaScript)",
+"l2_sec":"String prototype replace",
 "paragraph":"<pre><code>String.prototype.replace (searchValue, replaceValue)</code></pre>Returns a new string with some or all matches of a pattern replaced by a replacement.  The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.concat (JavaScript)",
+"l2_sec":"String prototype concat",
 "paragraph":"<pre><code>String.prototype.concat ( [ string1 [ , string2 [ , … ] ] ] )</code></pre>Combines the text of two or more strings and returns a new string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.toUpperCase (JavaScript)",
+"l2_sec":"String prototype toUpperCase",
 "paragraph":"<pre><code>String.prototype.toUpperCase ( )</code></pre>Returns the calling string value converted to uppercase. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.toLowerCase (JavaScript)",
+"l2_sec":"String prototype toLowerCase",
 "paragraph":"<pre><code>String.prototype.toLowerCase ( )</code></pre>Returns the calling string value converted to lowercase. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.length (JavaScript)",
+"l2_sec":"String prototype length",
 "paragraph":"<pre><code>String.prototype.length</code></pre>The length of a string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.isPrototypeOf (JavaScript)",
+"l2_sec":"Object prototype isPrototypeOf",
 "paragraph":"<pre><code>Object.prototype.isPrototypeOf (V)</code></pre>Tests for an object in another object's prototype chain. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.getPrototypeOf (JavaScript)",
+"l2_sec":"Object getPrototypeOf",
 "paragraph":"<pre><code>Object.getPrototypeOf ( O )</code></pre>Returns the prototype (i.e. the internal [[Prototype]]) of the specified object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.trim (JavaScript)",
+"l2_sec":"String prototype trim",
 "paragraph":"<pre><code>String.prototype.trim ( )</code></pre>Removes whitespace from both ends of the string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.trimLeft (JavaScript)",
+"l2_sec":"String trimLeft",
 "paragraph":"<pre><code>string.trimLeft()</code></pre>Removes whitespace from the left end of the string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimLeft'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimLeft</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.trimRight (JavaScript)",
+"l2_sec":"String trimRight",
 "paragraph":"<pre><code>string.trimRight()</code></pre>Removes whitespace from the right end of the string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimRight'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimRight</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toLocaleString (JavaScript)",
+"l2_sec":"Date prototype toLocaleString",
 "paragraph":"<pre><code>Date.prototype.toLocaleString ( )</code></pre>The toLocaleString() method returns a string with a language sensitive representation of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"stack (JavaScript)",
+"l2_sec":"stack",
 "paragraph":"This non-standard property of Error objects offers a trace of which functions were called, in what order, from which line and file, and with what arguments. The stack string proceeds from the most recent calls to earlier ones, leading back to the original global scope call. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Stack'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Stack</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.reduce (JavaScript)",
+"l2_sec":"Array prototype reduce",
 "paragraph":"<pre><code>Array.prototype.reduce ( callbackfn [ , initialValue ] )</code></pre>Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.random (JavaScript)",
+"l2_sec":"Math random",
 "paragraph":"<pre><code>Math.random ( )</code></pre>The Math.random() function returns a floating-point, pseudo-random number in the range [0, 1) that is, from 0 (inclusive) up to but not including 1 (exclusive), which you can then scale to your desired range. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__proto__ (JavaScript)",
+"l2_sec":"__proto__",
 "paragraph":"<pre><code>var proto = obj.__proto__;</code></pre>An Object's __proto__ property references the same object as its internal [[Prototype]] (often referred to as "the prototype"), which may be an object or, as in the default case of Object.prototype.__proto__, null . This property is an abstraction error, because a property with the same name, but some other value, could be defined on the object too. If there is a need to reference an object's prototype, the preferred method is to use Object.getPrototypeOf. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.atan2 (JavaScript)",
+"l2_sec":"Math atan2",
 "paragraph":"<pre><code>Math.atan2 (y, x)</code></pre>The Math.atan2() function returns the arctangent of the quotient of its arguments. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number (JavaScript)",
+"l2_sec":"Number",
 "paragraph":"<pre><code>new Number(value);</code></pre>The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toSource() (JavaScript)",
+"l2_sec":"Number prototype toSource  ",
 "paragraph":"<pre><code>numObj.toSource();
 Number.toSource();</code></pre>The toSource() method returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toSource</a>",
 "p_count":1,
@@ -500,6 +582,7 @@ Number.toSource();</code></pre>The toSource() method returns a string representi
 },
 
 {"title":"Boolean.prototype.toSource() (JavaScript)",
+"l2_sec":"Boolean prototype toSource  ",
 "paragraph":"<pre><code>booleanObj.toSource()
 Boolean.toSource()</code></pre>The toSource() method returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toSource</a>",
 "p_count":1,
@@ -507,24 +590,28 @@ Boolean.toSource()</code></pre>The toSource() method returns a string representi
 },
 
 {"title":"Object.watch (JavaScript)",
+"l2_sec":"Object watch",
 "paragraph":"<pre><code>object.watch(prop, handler)</code></pre>Watches for a property to be assigned a value and runs a function when that occurs. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toISOString (JavaScript)",
+"l2_sec":"Date prototype toISOString",
 "paragraph":"<pre><code>Date.prototype.toISOString ( )</code></pre>The toISOString() method returns a string in ISO format (ISO 8601 Extended Format), which can be described as follows: YYYY-MM-DDTHH:mm:ss.sssZ. The timezone is always UTC as denoted by the suffix "Z". <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.parse (JavaScript)",
+"l2_sec":"Date parse",
 "paragraph":"<pre><code>Date.parse (string)</code></pre>The Date.parse() method parses a string representation of a date, and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String (JavaScript)",
+"l2_sec":"String",
 "paragraph":"<pre><code>'string text'
 "string text"
 "中文 español English हिन्दी العربية português বাংলা русский 日本語 ਪੰਜਾਬੀ 한국어"</code></pre>The String global object is a constructor for strings, or a sequence of characters. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String</a>",
@@ -533,60 +620,70 @@ Boolean.toSource()</code></pre>The toSource() method returns a string representi
 },
 
 {"title":"Math.cos (JavaScript)",
+"l2_sec":"Math cos",
 "paragraph":"<pre><code>Math.cos (x)</code></pre>The Math.cos() function returns the cosine of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.sin (JavaScript)",
+"l2_sec":"Math sin",
 "paragraph":"<pre><code>Math.sin (x)</code></pre>The Math.sin() function returns the sine of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.undefined (JavaScript)",
+"l2_sec":"Global undefined",
 "paragraph":"<pre><code>Global.undefined</code></pre>The value undefined. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"eval (JavaScript)",
+"l2_sec":"eval",
 "paragraph":"<pre><code>object.eval(string)</code></pre>Evaluates a string of JavaScript code in the context of an object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/eval'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/eval</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.isFinite (JavaScript)",
+"l2_sec":"Global isFinite",
 "paragraph":"<pre><code>Global.isFinite (number)</code></pre>Evaluates an argument to determine whether it is a finite number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.toString (JavaScript)",
+"l2_sec":"Object prototype toString",
 "paragraph":"<pre><code>Object.prototype.toString ( )</code></pre>Returns a string representing the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toString (JavaScript)",
+"l2_sec":"Number prototype toString",
 "paragraph":"<pre><code>Number.prototype.toString ( [ radix ] )</code></pre>The toString() method returns a string representing the specified Number object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object (JavaScript)",
+"l2_sec":"Object",
 "paragraph":"<pre><code>new Object( [ value ] )</code></pre>The Object constructor creates an object wrapper. When Object is called as a function rather than as a constructor, it performs a type conversion. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error (JavaScript)",
+"l2_sec":"Error",
 "paragraph":"<pre><code>new Error([message[, fileName[, lineNumber]]])</code></pre>Creates an error object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.indexOf (JavaScript)",
+"l2_sec":"String prototype indexOf",
 "paragraph":"<pre><code>String.prototype.indexOf (searchString, position)</code></pre>Returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex,
   returns -1 if the value is not found. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf</a>",
 "p_count":1,
@@ -594,378 +691,441 @@ Boolean.toSource()</code></pre>The toSource() method returns a string representi
 },
 
 {"title":"String.prototype.lastIndexOf (JavaScript)",
+"l2_sec":"String prototype lastIndexOf",
 "paragraph":"<pre><code>String.prototype.lastIndexOf (searchString, position)</code></pre>Returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype (JavaScript)",
+"l2_sec":"String prototype",
 "paragraph":"<pre><code>String.prototype</code></pre>Represents the String prototype object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.search (JavaScript)",
+"l2_sec":"String prototype search",
 "paragraph":"<pre><code>String.prototype.search (regexp)</code></pre>Executes the search for a match between a regular expression and this String object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.substr (JavaScript)",
+"l2_sec":"String prototype substr",
 "paragraph":"<pre><code>String.prototype.substr (start, length)</code></pre>Returns the characters in a string beginning at the specified location through the specified number of characters. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.test (JavaScript)",
+"l2_sec":"RegExp prototype test",
 "paragraph":"<pre><code>RegExp.prototype.test(string)</code></pre>The test() method executes a search for a match between a regular expression and a specified string. Returns true or false. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toUTCString (JavaScript)",
+"l2_sec":"Date prototype toUTCString",
 "paragraph":"<pre><code>Date.prototype.toUTCString ( )</code></pre>The toUTCString() method converts a date to a string, using the UTC time zone. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype (JavaScript)",
+"l2_sec":"Date prototype",
 "paragraph":"<pre><code>Date.prototype</code></pre>The Date.prototype property represents the prototype for the Date constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype (JavaScript)",
+"l2_sec":"Object prototype",
 "paragraph":"<pre><code>Object.prototype</code></pre>The Object.prototype property represents the Object prototype object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.unwatch (JavaScript)",
+"l2_sec":"Object unwatch",
 "paragraph":"<pre><code>object.unwatch(prop)</code></pre>Removes a watchpoint set with the watch() method. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/unwatch'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/unwatch</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Proxy (JavaScript)",
+"l2_sec":"Proxy",
 "paragraph":"Introduction <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.toString (JavaScript)",
+"l2_sec":"Function prototype toString",
 "paragraph":"<pre><code>Function.prototype.toString ( )</code></pre>The toString() method returns a string representing the source code of the function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"JSON.stringify (JavaScript)",
+"l2_sec":"JSON stringify",
 "paragraph":"<pre><code>JSON.stringify ( value [ , replacer [ , space ] ] )</code></pre>Convert a value to JSON, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.encodeURI (JavaScript)",
+"l2_sec":"Global encodeURI",
 "paragraph":"<pre><code>Global.encodeURI (uri)</code></pre>Encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two "surrogate" characters). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.exec (JavaScript)",
+"l2_sec":"RegExp prototype exec",
 "paragraph":"<pre><code>RegExp.prototype.exec(string)</code></pre>The exec() method executes a search for a match in a specified string. Returns a result array, or null. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.match (JavaScript)",
+"l2_sec":"String prototype match",
 "paragraph":"<pre><code>String.prototype.match (regexp)</code></pre>Used to retrieve the matches when matching a string against a regular expression. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.max (JavaScript)",
+"l2_sec":"Math max",
 "paragraph":"<pre><code>Math.max ( [ value1 [ , value2 [ , … ] ] ] )</code></pre>The Math.max() function returns the largest of zero or more numbers. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.min (JavaScript)",
+"l2_sec":"Math min",
 "paragraph":"<pre><code>Math.min ( [ value1 [ , value2 [ , … ] ] ] )</code></pre>The Math.min() function returns the smallest of zero or more numbers. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.split (JavaScript)",
+"l2_sec":"String prototype split",
 "paragraph":"<pre><code>String.prototype.split (separator, limit)</code></pre>Splits a String object into an array of strings by separating the string into substrings. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.propertyIsEnumerable (JavaScript)",
+"l2_sec":"Object prototype propertyIsEnumerable",
 "paragraph":"<pre><code>Object.prototype.propertyIsEnumerable (V)</code></pre>Returns a Boolean indicating whether the specified property is enumerable. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__noSuchMethod__ (JavaScript)",
+"l2_sec":"__noSuchMethod__",
 "paragraph":"<pre><code>obj.__noSuchMethod__ = fun</code></pre>Executes a function when a non-existent method is called on an object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/noSuchMethod'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/noSuchMethod</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.NaN (JavaScript)",
+"l2_sec":"Number NaN",
 "paragraph":"<pre><code>Number.NaN</code></pre>The Number.NaN property represents Not-A-Number. Equivalent of NaN. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NaN'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NaN</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.NaN (JavaScript)",
+"l2_sec":"Global NaN",
 "paragraph":"<pre><code>Global.NaN</code></pre>A value representing Not-A-Number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.isExtensible (JavaScript)",
+"l2_sec":"Object isExtensible",
 "paragraph":"<pre><code>Object.isExtensible ( O )</code></pre>Determines if an object is extensible (whether it can have new properties added to it). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.POSITIVE_INFINITY (JavaScript)",
+"l2_sec":"Number POSITIVE_INFINITY",
 "paragraph":"<pre><code>Number.POSITIVE_INFINITY</code></pre>The Number.POSITIVE_INFINITY property represents the positive Infinity value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/POSITIVE_INFINITY'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/POSITIVE_INFINITY</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.arity (JavaScript)",
+"l2_sec":"Function arity",
 "paragraph":"The arity property used to return the number of arguments expected by the function, however, it no longer exists and has been replaced by the Function.prototype.length property. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"JSON.parse (JavaScript)",
+"l2_sec":"JSON parse",
 "paragraph":"<pre><code>JSON.parse ( text [ , reviver ] )</code></pre>Parse a string as JSON, optionally transforming the value produced by parsing. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.isGenerator() (JavaScript)",
+"l2_sec":"Function prototype isGenerator  ",
 "paragraph":"<pre><code>fun.isGenerator()</code></pre>The isGenerator() method determines whether or not a function is a generator. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/isGenerator'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/isGenerator</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toFixed (JavaScript)",
+"l2_sec":"Number prototype toFixed",
 "paragraph":"<pre><code>Number.prototype.toFixed (fractionDigits)</code></pre>The toFixed() method formats a number using fixed-point notation. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.parseInt (JavaScript)",
+"l2_sec":"Global parseInt",
 "paragraph":"<pre><code>Global.parseInt (string , radix)</code></pre>Parses a string argument and returns an integer of the specified radix or base. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__lookupGetter__ (JavaScript)",
+"l2_sec":"__lookupGetter__",
 "paragraph":"<pre><code>obj.__lookupGetter__(sprop)</code></pre>Return the function bound as a getter to the specified property. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/lookupGetter'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/lookupGetter</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype (JavaScript)",
+"l2_sec":"Function prototype",
 "paragraph":"<pre><code>Function.prototype</code></pre>The Function.prototype property represents the Function prototype object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error.toSource (JavaScript)",
+"l2_sec":"Error toSource",
 "paragraph":"<pre><code>error.toSource()</code></pre>Returns code that could eval to the same error. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/toSource</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.toSource (JavaScript)",
+"l2_sec":"Object toSource",
 "paragraph":"<pre><code>obj.toSource()</code></pre>Returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.charCodeAt (JavaScript)",
+"l2_sec":"String prototype charCodeAt",
 "paragraph":"<pre><code>String.prototype.charCodeAt (pos)</code></pre>Returns the numeric Unicode value of the character at the given index (except for unicode codepoints > 0x10000). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toLocaleString (JavaScript)",
+"l2_sec":"Number prototype toLocaleString",
 "paragraph":"<pre><code>Number.prototype.toLocaleString()</code></pre>The toLocaleString() method returns a string with a language sensitive representation of this number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.hasOwnProperty (JavaScript)",
+"l2_sec":"Object prototype hasOwnProperty",
 "paragraph":"<pre><code>Object.prototype.hasOwnProperty (V)</code></pre>Returns a boolean indicating whether the object has the specified property. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error.prototype.toString (JavaScript)",
+"l2_sec":"Error prototype toString",
 "paragraph":"<pre><code>Error.prototype.toString ( )</code></pre>Returns a string representing the specified Error object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toString (JavaScript)",
+"l2_sec":"Date prototype toString",
 "paragraph":"<pre><code>Date.prototype.toString ( )</code></pre>The toString() method returns a string representing the specified Date object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error.prototype.name (JavaScript)",
+"l2_sec":"Error prototype name",
 "paragraph":"<pre><code>Error.prototype.name</code></pre>A name for the type of error. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error.prototype.message (JavaScript)",
+"l2_sec":"Error prototype message",
 "paragraph":"<pre><code>Error.prototype.message</code></pre>A human-readable description of the error. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/message'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/message</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toLocaleFormat() (JavaScript)",
+"l2_sec":"Date prototype toLocaleFormat  ",
 "paragraph":"<pre><code>dateObj.toLocaleFormat(formatString)</code></pre>The non-standard toLocaleFormat() method converts a date to a string using the specified formatting. DateTimeFormat is an alternative to format dates in a standards-compliant way. See also the newer version of Date.prototype.toLocaleDateString(). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleFormat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleFormat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toGMTString (JavaScript)",
+"l2_sec":"Date prototype toGMTString",
 "paragraph":"<pre><code>Date.prototype.toGMTString ( )</code></pre>The toGMTString() method converts a date to a string, using Internet GMT conventions. The exact format of the value returned by toGMTString varies according to the platform and browser, in general it should represent a human readable date string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toGMTString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toGMTString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toDateString (JavaScript)",
+"l2_sec":"Date prototype toDateString",
 "paragraph":"<pre><code>Date.prototype.toDateString ( )</code></pre>The toDateString() method returns the date portion of a Date object in human readable form in American English. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toDateString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toDateString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setYear (JavaScript)",
+"l2_sec":"Date prototype setYear",
 "paragraph":"<pre><code>Date.prototype.setYear (year)</code></pre>The setYear() method sets the year for a specified date according to local time. Because setYear does not set full years ("year 2000 problem"), it is no longer used and has been replaced by the setFullYear method. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setSeconds (JavaScript)",
+"l2_sec":"Date prototype setSeconds",
 "paragraph":"<pre><code>Date.prototype.setSeconds (sec [, ms ] )</code></pre>The setSeconds() method sets the seconds for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setMonth (JavaScript)",
+"l2_sec":"Date prototype setMonth",
 "paragraph":"<pre><code>Date.prototype.setMonth (month [, date ] )</code></pre>The setMonth() method sets the month for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setMinutes (JavaScript)",
+"l2_sec":"Date prototype setMinutes",
 "paragraph":"<pre><code>Date.prototype.setMinutes (min [, sec [, ms ] ] )</code></pre>The setMinutes() method sets the minutes for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getYear (JavaScript)",
+"l2_sec":"Date prototype getYear",
 "paragraph":"<pre><code>Date.prototype.getYear ( )</code></pre>The getYear() method returns the year in the specified date according to local time. Because getYear does not return full years ("year 2000 problem"), it is no longer used and has been replaced by the getFullYear method. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.UTC (JavaScript)",
+"l2_sec":"Date UTC",
 "paragraph":"<pre><code>Date.UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] )</code></pre>The Date.UTC() method accepts the same parameters as the longest form of the constructor, and returns the number of milliseconds in a Date object since January 1, 1970, 00:00:00, universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.parseFloat (JavaScript)",
+"l2_sec":"Global parseFloat",
 "paragraph":"<pre><code>Global.parseFloat (string)</code></pre>Parses a string argument and returns a floating point number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.LOG2E (JavaScript)",
+"l2_sec":"Math LOG2E",
 "paragraph":"<pre><code>Math.LOG2E</code></pre>The Math.LOG2E property represents the base 2 logarithm of E (approximately 1.442). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LOG2E'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LOG2E</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.length (JavaScript)",
+"l2_sec":"Array length",
 "paragraph":"<pre><code>array.length</code></pre>An unsigned, 32-bit integer that specifies the number of elements in an array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.arguments (JavaScript)",
+"l2_sec":"Function arguments",
 "paragraph":"The function.arguments property refers to an an array-like object corresponding to the arguments passed to a function. Use the simple variable arguments instead. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arguments'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arguments</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toJSON (JavaScript)",
+"l2_sec":"Date prototype toJSON",
 "paragraph":"<pre><code>Date.prototype.toJSON ( key )</code></pre>The toJSON() method returns a JSON representation of the Date object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toJSON'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toJSON</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.decodeURIComponent (JavaScript)",
+"l2_sec":"Global decodeURIComponent",
 "paragraph":"<pre><code>Global.decodeURIComponent (encodedURIComponent)</code></pre>Decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.decodeURI (JavaScript)",
+"l2_sec":"Global decodeURI",
 "paragraph":"<pre><code>Global.decodeURI (encodedURI)</code></pre>Decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.eval (JavaScript)",
+"l2_sec":"Global eval",
 "paragraph":"<pre><code>Global.eval (x)</code></pre>Evaluates JavaScript code represented as a string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__defineGetter__ (JavaScript)",
+"l2_sec":"__defineGetter__",
 "paragraph":"<pre><code>obj.__defineGetter__(sprop, fun)</code></pre>Binds an object's property to a function to be called when that property is looked up. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineGetter'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineGetter</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__defineSetter__ (JavaScript)",
+"l2_sec":"__defineSetter__",
 "paragraph":"<pre><code>obj.__defineSetter__(sprop, fun)</code></pre>Binds an object's property to a function to be called when an attempt is made to set that property. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineSetter'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineSetter</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__lookupSetter__ (JavaScript)",
+"l2_sec":"__lookupSetter__",
 "paragraph":"<pre><code>obj.__lookupSetter__(sprop)</code></pre>Return the function bound as a setter to the specified property. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/lookupSetter'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/lookupSetter</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.pop (JavaScript)",
+"l2_sec":"Array prototype pop",
 "paragraph":"<pre><code>Array.prototype.pop ( )</code></pre>Removes the last element from an array and returns that element. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.valueOf (JavaScript)",
+"l2_sec":"Object prototype valueOf",
 "paragraph":"<pre><code>Object.prototype.valueOf ( )</code></pre>Returns the primitive value of the specified object <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Generator (JavaScript)",
+"l2_sec":"Generator",
 "paragraph":"<pre><code>function fibonacci(){
     var fn1 = 1;
     var fn2 = 1;
@@ -984,306 +1144,357 @@ var it2 = (i * 2 for (i in it));</code></pre>Lets you work with generators. <a h
 },
 
 {"title":"Date.prototype.toTimeString (JavaScript)",
+"l2_sec":"Date prototype toTimeString",
 "paragraph":"<pre><code>Date.prototype.toTimeString ( )</code></pre>The toTimeString() method returns the time portion of a Date object in human readable form in American English. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toTimeString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toTimeString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.valueOf (JavaScript)",
+"l2_sec":"String prototype valueOf",
 "paragraph":"<pre><code>String.prototype.valueOf ( )</code></pre>Returns the primitive value of a String object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.toString (JavaScript)",
+"l2_sec":"String prototype toString",
 "paragraph":"<pre><code>String.prototype.toString ( )</code></pre>Returns a string representing the specified object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.toSource (JavaScript)",
+"l2_sec":"String toSource",
 "paragraph":"<pre><code>string.toSource()</code></pre>Returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toSource</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.toLocaleUpperCase (JavaScript)",
+"l2_sec":"String prototype toLocaleUpperCase",
 "paragraph":"<pre><code>String.prototype.toLocaleUpperCase ( )</code></pre>Returns the calling string value converted to upper case, according to any locale-specific case mappings. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.toLocaleLowerCase (JavaScript)",
+"l2_sec":"String prototype toLocaleLowerCase",
 "paragraph":"<pre><code>String.prototype.toLocaleLowerCase ( )</code></pre>Returns the calling string value converted to lower case, according to any locale-specific case mappings. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"sup (JavaScript)",
+"l2_sec":"sup",
 "paragraph":"<pre><code>sup()</code></pre>Causes a string to be displayed as a superscript, as if it were in a SUP tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sup'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sup</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"sub (JavaScript)",
+"l2_sec":"sub",
 "paragraph":"<pre><code>sub()</code></pre>Causes a string to be displayed as a subscript, as if it were in a SUB tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sub'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sub</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.strike (JavaScript)",
+"l2_sec":"String strike",
 "paragraph":"<pre><code>String.strike()</code></pre>Causes a string to be displayed as struck-out text, as if it were in a STRIKE tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/strike'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/strike</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.small (JavaScript)",
+"l2_sec":"String small",
 "paragraph":"<pre><code>string.small()</code></pre>Causes a string to be displayed in a small font, as if it were in a SMALL tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/small'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/small</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.localeCompare (JavaScript)",
+"l2_sec":"String prototype localeCompare",
 "paragraph":"<pre><code>String.prototype.localeCompare (that)</code></pre>Returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order. The new locales and options arguments let applications specify the language whose sort order should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale and sort order used are entirely implementation dependent. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.link (JavaScript)",
+"l2_sec":"String link",
 "paragraph":"<pre><code>link(hrefAttribute)</code></pre>Creates an HTML hypertext link that requests another URL. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/link'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/link</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.italics (JavaScript)",
+"l2_sec":"String italics",
 "paragraph":"<pre><code>String.italics()</code></pre>Causes a string to be italic, as if it were in an I tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/italics'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/italics</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.fontsize (JavaScript)",
+"l2_sec":"String fontsize",
 "paragraph":"<pre><code>string.fontsize(size)</code></pre>Causes a string to be displayed in the specified font size as if it were in a <FONT SIZE="size"> tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontsize'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontsize</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"fontcolor (JavaScript)",
+"l2_sec":"fontcolor",
 "paragraph":"<pre><code>fontcolor(color)</code></pre>Causes a string to be displayed in the specified color as if it were in a <font color="color"> tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontcolor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontcolor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.fixed (JavaScript)",
+"l2_sec":"String fixed",
 "paragraph":"<pre><code>string.fixed()</code></pre>Causes a string to be displayed in fixed-pitch font as if it were in a TT tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fixed'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fixed</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.constructor (JavaScript)",
+"l2_sec":"String prototype constructor",
 "paragraph":"<pre><code>String.prototype.constructor</code></pre>Returns a reference to the String function that created the instance's prototype. Note that the value of this property is a reference to the function itself, not a string containing the function's name. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/constructor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/constructor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.charAt (JavaScript)",
+"l2_sec":"String prototype charAt",
 "paragraph":"<pre><code>String.prototype.charAt (pos)</code></pre>Returns the specified character from a string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.bold (JavaScript)",
+"l2_sec":"String bold",
 "paragraph":"<pre><code>String.bold()</code></pre>Causes a string to be displayed as bold as if it were in a B tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/bold'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/bold</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.blink (JavaScript)",
+"l2_sec":"String prototype blink",
 "paragraph":"<pre><code>String.blink()</code></pre>Causes a string to blink as if it were in a BLINK tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/blink'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/blink</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.big (JavaScript)",
+"l2_sec":"String big",
 "paragraph":"<pre><code>string.big()</code></pre>Causes a string to be displayed in a big font as if it were in a BIG tag. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/big'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/big</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.anchor (JavaScript)",
+"l2_sec":"String anchor",
 "paragraph":"<pre><code>anchor(nameAttribute)</code></pre>Creates an HTML anchor that is used as a hypertext target. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/anchor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/anchor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.toString (JavaScript)",
+"l2_sec":"RegExp prototype toString",
 "paragraph":"<pre><code>RegExp.prototype.toString()</code></pre>The toString() method returns a string representing the regular expression. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.constructor (JavaScript)",
+"l2_sec":"Object prototype constructor",
 "paragraph":"<pre><code>Object.prototype.constructor</code></pre>Returns a reference to the Object function that created the instance's prototype. Note that the value of this property is a reference to the function itself, not a string containing the function's name. The value is only read-only for primitive values such as 1, true and "test". <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.valueOf (JavaScript)",
+"l2_sec":"Number prototype valueOf",
 "paragraph":"<pre><code>Number.prototype.valueOf ( )</code></pre>The valueOf() method returns the primitive value of a Number object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/valueOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/valueOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toPrecision (JavaScript)",
+"l2_sec":"Number prototype toPrecision",
 "paragraph":"<pre><code>Number.prototype.toPrecision (precision)</code></pre>The toPrecision() method returns a string representing the Number object to the specified precision. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype.toExponential (JavaScript)",
+"l2_sec":"Number prototype toExponential",
 "paragraph":"<pre><code>Number.prototype.toExponential (fractionDigits)</code></pre>The toExponential() method returns a string representing the Number object in exponential notation <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.NEGATIVE_INFINITY (JavaScript)",
+"l2_sec":"Number NEGATIVE_INFINITY",
 "paragraph":"<pre><code>Number.NEGATIVE_INFINITY</code></pre>The Number.NEGATIVE_INFINITY property represents the negative Infinity value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.MIN_VALUE (JavaScript)",
+"l2_sec":"Number MIN_VALUE",
 "paragraph":"<pre><code>Number.MIN_VALUE</code></pre>The Number.MIN_VALUE property represents the smallest positive numeric value representable in JavaScript. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_VALUE'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_VALUE</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.MAX_VALUE (JavaScript)",
+"l2_sec":"Number MAX_VALUE",
 "paragraph":"<pre><code>Number.MAX_VALUE</code></pre>The Number.MAX_VALUE property represents the maximum numeric value representable in JavaScript. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_VALUE'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_VALUE</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.tan (JavaScript)",
+"l2_sec":"Math tan",
 "paragraph":"<pre><code>Math.tan (x)</code></pre>The Math.tan() function returns the tangent of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.sqrt (JavaScript)",
+"l2_sec":"Math sqrt",
 "paragraph":"<pre><code>Math.sqrt (x)</code></pre>The Math.sqrt() function returns the square root (x) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.round (JavaScript)",
+"l2_sec":"Math round",
 "paragraph":"<pre><code>Math.round (x)</code></pre>The Math.round() function returns the value of a number rounded to the nearest integer. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.pow (JavaScript)",
+"l2_sec":"Math pow",
 "paragraph":"<pre><code>Math.pow (x, y)</code></pre>The Math.pow() function returns the base to the exponent Power,  that is, baseexponent. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.log (JavaScript)",
+"l2_sec":"Math log",
 "paragraph":"<pre><code>Math.log (x)</code></pre>The Math.log() function returns the natural logarithm (base E) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.floor (JavaScript)",
+"l2_sec":"Math floor",
 "paragraph":"<pre><code>Math.floor (x)</code></pre>The Math.floor() function returns the largest integer less than or equal to a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.exp (JavaScript)",
+"l2_sec":"Math exp",
 "paragraph":"<pre><code>Math.exp (x)</code></pre>The Math.exp() function returns Ex, where x is the argument, and E is Euler's constant, the base of the natural logarithms. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/exp'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/exp</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.ceil (JavaScript)",
+"l2_sec":"Math ceil",
 "paragraph":"<pre><code>Math.ceil (x)</code></pre>The Math.ceil() function returns the smallest integer greater than or equal to a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.atan (JavaScript)",
+"l2_sec":"Math atan",
 "paragraph":"<pre><code>Math.atan (x)</code></pre>The Math.atan() function returns the arctangent (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.asin (JavaScript)",
+"l2_sec":"Math asin",
 "paragraph":"<pre><code>Math.asin (x)</code></pre>The Math.asin() function returns the arcsine (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/asin'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/asin</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.acos (JavaScript)",
+"l2_sec":"Math acos",
 "paragraph":"<pre><code>Math.acos (x)</code></pre>The Math.acos() function returns the arccosine (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/acos'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/acos</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.abs (JavaScript)",
+"l2_sec":"Math abs",
 "paragraph":"<pre><code>Math.abs (x)</code></pre>The Math.abs() function returns the absolute value of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.SQRT2 (JavaScript)",
+"l2_sec":"Math SQRT2",
 "paragraph":"<pre><code>Math.SQRT2</code></pre>The Math.SQRT2 property represents the square root of 2 (2), approximately 1.414. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/SQRT2'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/SQRT2</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.SQRT1_2 (JavaScript)",
+"l2_sec":"Math SQRT1_2",
 "paragraph":"<pre><code>Math.SQRT1_2</code></pre>The Math.SQRT1_2 property represents the square root of 1/2 (12); equivalently, 1 over the square root of 2, approximately 0.707. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/SQRT1_2'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/SQRT1_2</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.PI (JavaScript)",
+"l2_sec":"Math PI",
 "paragraph":"<pre><code>Math.PI</code></pre>The Math.PI property represents the ratio of the circumference of a circle to its diameter, approximately 3.14159. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.LOG10E (JavaScript)",
+"l2_sec":"Math LOG10E",
 "paragraph":"<pre><code>Math.LOG10E</code></pre>The Math.LOG10E property represents the base 10 logarithm of E (approximately 0.434). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LOG10E'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LOG10E</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.LN2 (JavaScript)",
+"l2_sec":"Math LN2",
 "paragraph":"<pre><code>Math.LN2</code></pre>The Math.LN2 property represents the natural logarithm of 2, approximately 0.693. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LN2'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LN2</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.LN10 (JavaScript)",
+"l2_sec":"Math LN10",
 "paragraph":"<pre><code>Math.LN10</code></pre>The Math.LN10 property represents the natural logarithm of 10, approximately 2.302. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LN10'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/LN10</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.E (JavaScript)",
+"l2_sec":"Math E",
 "paragraph":"<pre><code>Math.E</code></pre>The Math.E property represents the base of natural logarithms, e, approximately 2.718. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/E'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/E</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Global.Infinity (JavaScript)",
+"l2_sec":"Global Infinity",
 "paragraph":"<pre><code>Global.Infinity</code></pre>A numeric value representing infinity. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Function.prototype.toSource() (JavaScript)",
+"l2_sec":"Function prototype toSource  ",
 "paragraph":"<pre><code>function.toSource();
 Function.toSource();</code></pre>The toSource() method returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toSource</a>",
 "p_count":1,
@@ -1291,12 +1502,14 @@ Function.toSource();</code></pre>The toSource() method returns a string represen
 },
 
 {"title":"Date.prototype.valueOf (JavaScript)",
+"l2_sec":"Date prototype valueOf",
 "paragraph":"<pre><code>Date.prototype.valueOf ( )</code></pre>The valueOf() method returns the primitive value of a Date object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toSource() (JavaScript)",
+"l2_sec":"Date prototype toSource  ",
 "paragraph":"<pre><code>dateObj.toSource()
 Date.toSource()</code></pre>The toSource() method returns a string representing the source code of the object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toSource</a>",
 "p_count":1,
@@ -1304,324 +1517,378 @@ Date.toSource()</code></pre>The toSource() method returns a string representing 
 },
 
 {"title":"Date.prototype.toLocaleTimeString (JavaScript)",
+"l2_sec":"Date prototype toLocaleTimeString",
 "paragraph":"<pre><code>Date.prototype.toLocaleTimeString ( )</code></pre>The toLocaleTimeString() method returns a string with a language sensitive representation of the time portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.toLocaleDateString (JavaScript)",
+"l2_sec":"Date prototype toLocaleDateString",
 "paragraph":"<pre><code>Date.prototype.toLocaleDateString ( )</code></pre>The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCSeconds (JavaScript)",
+"l2_sec":"Date prototype setUTCSeconds",
 "paragraph":"<pre><code>Date.prototype.setUTCSeconds (sec [, ms ] )</code></pre>The setUTCSeconds() method sets the seconds for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCSeconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCSeconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCMonth (JavaScript)",
+"l2_sec":"Date prototype setUTCMonth",
 "paragraph":"<pre><code>Date.prototype.setUTCMonth (month [, date ] )</code></pre>The setUTCMonth() method sets the month for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMonth'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMonth</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCMinutes (JavaScript)",
+"l2_sec":"Date prototype setUTCMinutes",
 "paragraph":"<pre><code>Date.prototype.setUTCMinutes (min [, sec [, ms ] ] )</code></pre>The setUTCMinutes() method sets the minutes for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMinutes'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMinutes</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCMilliseconds (JavaScript)",
+"l2_sec":"Date prototype setUTCMilliseconds",
 "paragraph":"<pre><code>Date.prototype.setUTCMilliseconds (ms)</code></pre>The setUTCMilliseconds() method sets the milliseconds for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMilliseconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMilliseconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCHours (JavaScript)",
+"l2_sec":"Date prototype setUTCHours",
 "paragraph":"<pre><code>Date.prototype.setUTCHours (hour [, min [, sec [, ms ] ] ] )</code></pre>The setUTCHours() method sets the hour for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCHours'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCHours</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCFullYear (JavaScript)",
+"l2_sec":"Date prototype setUTCFullYear",
 "paragraph":"<pre><code>Date.prototype.setUTCFullYear (year [, month [, date ] ] )</code></pre>The setUTCFullYear() method sets the full year for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCFullYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCFullYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setUTCDate (JavaScript)",
+"l2_sec":"Date prototype setUTCDate",
 "paragraph":"<pre><code>Date.prototype.setUTCDate (date)</code></pre>The setUTCDate() method sets the day of the month for a specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCDate'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCDate</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setTime (JavaScript)",
+"l2_sec":"Date prototype setTime",
 "paragraph":"<pre><code>Date.prototype.setTime (time)</code></pre>The setTime() method sets the Date object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setMilliseconds (JavaScript)",
+"l2_sec":"Date prototype setMilliseconds",
 "paragraph":"<pre><code>Date.prototype.setMilliseconds (ms)</code></pre>The setMilliseconds() method sets the milliseconds for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setFullYear (JavaScript)",
+"l2_sec":"Date prototype setFullYear",
 "paragraph":"<pre><code>Date.prototype.setFullYear (year [, month [, date ] ] )</code></pre>The setFullYear() method sets the full year for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.setDate (JavaScript)",
+"l2_sec":"Date prototype setDate",
 "paragraph":"<pre><code>Date.prototype.setDate (date)</code></pre>The setDate() method sets the day of the month for a specified date according to local time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCSeconds (JavaScript)",
+"l2_sec":"Date prototype getUTCSeconds",
 "paragraph":"<pre><code>Date.prototype.getUTCSeconds ( )</code></pre>The getUTCSeconds() method returns the seconds in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCSeconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCSeconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCMonth (JavaScript)",
+"l2_sec":"Date prototype getUTCMonth",
 "paragraph":"<pre><code>Date.prototype.getUTCMonth ( )</code></pre>The getUTCMonth() returns the month of the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMonth'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMonth</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCMinutes (JavaScript)",
+"l2_sec":"Date prototype getUTCMinutes",
 "paragraph":"<pre><code>Date.prototype.getUTCMinutes ( )</code></pre>The getUTCMinutes() method returns the minutes in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMinutes'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMinutes</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCMilliseconds (JavaScript)",
+"l2_sec":"Date prototype getUTCMilliseconds",
 "paragraph":"<pre><code>Date.prototype.getUTCMilliseconds ( )</code></pre>The getUTCMilliseconds() method returns the milliseconds in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMilliseconds'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMilliseconds</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCHours (JavaScript)",
+"l2_sec":"Date prototype getUTCHours",
 "paragraph":"<pre><code>Date.prototype.getUTCHours ( )</code></pre>The getUTCHours() method returns the hours in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCHours'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCHours</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCFullYear (JavaScript)",
+"l2_sec":"Date prototype getUTCFullYear",
 "paragraph":"<pre><code>Date.prototype.getUTCFullYear ( )</code></pre>The getUTCFullYear() method returns the year in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCDay (JavaScript)",
+"l2_sec":"Date prototype getUTCDay",
 "paragraph":"<pre><code>Date.prototype.getUTCDay ( )</code></pre>The getUTCDay() method returns the day of the week in the specified date according to universal time, where 0 represents Sunday. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDay'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDay</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getUTCDate (JavaScript)",
+"l2_sec":"Date prototype getUTCDate",
 "paragraph":"<pre><code>Date.prototype.getUTCDate ( )</code></pre>The getUTCDate() method returns the day (date) of the month in the specified date according to universal time. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDate'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDate</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Date.prototype.getTimezoneOffset (JavaScript)",
+"l2_sec":"Date prototype getTimezoneOffset",
 "paragraph":"<pre><code>Date.prototype.getTimezoneOffset ( )</code></pre>The getTimezoneOffset() method returns the time-zone offset from UTC, in minutes, for the current locale. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Boolean.prototype.valueOf (JavaScript)",
+"l2_sec":"Boolean prototype valueOf",
 "paragraph":"<pre><code>Boolean.prototype.valueOf ( )</code></pre>The valueOf() method returns the primitive value of a Boolean object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/valueOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/valueOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Boolean.prototype.toString (JavaScript)",
+"l2_sec":"Boolean prototype toString",
 "paragraph":"<pre><code>Boolean.prototype.toString ( )</code></pre>The toSource() method returns a string representing the specified Boolean object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array toSource method (JavaScript)",
+"l2_sec":"Array toSource method",
 "paragraph":"<pre><code>array.toSource()</code></pre>Returns a string representing the source code of the array. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSource'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSource</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype.constructor (JavaScript)",
+"l2_sec":"Array prototype constructor",
 "paragraph":"<pre><code>Array.prototype.constructor</code></pre>Returns a reference to the Array function that created the instance's prototype. Note that the value of this property is a reference to the function itself, not a string containing the function's name. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/constructor'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/constructor</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.prototype (JavaScript)",
+"l2_sec":"Array prototype",
 "paragraph":"<pre><code>Array.prototype</code></pre>Represents the prototype for the Array constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math (JavaScript)",
+"l2_sec":"Math",
 "paragraph":"Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Error.prototype (JavaScript)",
+"l2_sec":"Error prototype",
 "paragraph":"<pre><code>Error.prototype</code></pre>Represents the prototype for the Error constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"URIError (JavaScript)",
+"l2_sec":"URIError",
 "paragraph":"<pre><code>new URIError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when a malformed URI is encountered. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"TypeError (JavaScript)",
+"l2_sec":"TypeError",
 "paragraph":"<pre><code>new TypeError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when a value is not of the expected type. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"SyntaxError (JavaScript)",
+"l2_sec":"SyntaxError",
 "paragraph":"<pre><code>new SyntaxError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when trying to interpret syntactically invalid code. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RangeError (JavaScript)",
+"l2_sec":"RangeError",
 "paragraph":"<pre><code>new RangeError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when a number is not within the correct range allowed. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"__parent__ (JavaScript)",
+"l2_sec":"__parent__",
 "paragraph":"<pre><code>obj.__parent__</code></pre>Points to an object's context. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype (JavaScript)",
+"l2_sec":"RegExp prototype",
 "paragraph":"<pre><code>RegExp.prototype</code></pre>The Regex.prototype property represents the prototype object for the RegExp constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.prototype (JavaScript)",
+"l2_sec":"Number prototype",
 "paragraph":"<pre><code>Number.prototype</code></pre>The Number.prototype property represents the prototype for the Number constructor. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/prototype'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/prototype</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"ReferenceError (JavaScript)",
+"l2_sec":"ReferenceError",
 "paragraph":"<pre><code>new ReferenceError([message[, fileName[, linenumber]]])</code></pre>Represents an error when a non-existent variable is referenced. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"EvalError (JavaScript)",
+"l2_sec":"EvalError",
 "paragraph":"<pre><code>new EvalError([message[, fileName[, lineNumber]]])</code></pre>Represents an error regarding the eval function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.multiline (JavaScript)",
+"l2_sec":"RegExp prototype multiline",
 "paragraph":"The multiline property indicates whether or not the "m" flag is used with the regular expression. multiline is a read-only property of an individual regular expression instance. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/multiline'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/multiline</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.source (JavaScript)",
+"l2_sec":"RegExp prototype source",
 "paragraph":"The source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like "g", "i" or "m") of the regular expression. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/source'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/source</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Object.prototype.toLocaleString (JavaScript)",
+"l2_sec":"Object prototype toLocaleString",
 "paragraph":"<pre><code>Object.prototype.toLocaleString ( )</code></pre>Returns a string representing the object. This method is meant to be overriden by derived objects for locale-specific purposes. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.lastIndex (JavaScript)",
+"l2_sec":"RegExp lastIndex",
 "paragraph":"<pre><code>lastIndex = regExpObj.lastIndex;</code></pre>The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.global (JavaScript)",
+"l2_sec":"RegExp prototype global",
 "paragraph":"The global property indicates whether or not the "g" flag is used with the regular expression. global is a read-only property of an individual regular expression instance. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.ignoreCase (JavaScript)",
+"l2_sec":"RegExp prototype ignoreCase",
 "paragraph":"The ignoreCase property indicates whether or not the "i" flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/ignoreCase'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/ignoreCase</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Iterator (JavaScript)",
+"l2_sec":"Iterator",
 "paragraph":"The Iterator function. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.isNaN() (JavaScript)",
+"l2_sec":"Number isNaN  ",
 "paragraph":"<pre><code>Number.isNaN(testValue)</code></pre>The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.contains (JavaScript)",
+"l2_sec":"String contains",
 "paragraph":"<pre><code>var contained = str.contains(searchString [, position]);</code></pre>Determines whether one string may be found within another string, returning true or false as appropriate. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.startsWith (JavaScript)",
+"l2_sec":"String startsWith",
 "paragraph":"<pre><code>var startsWith = str.startsWith(searchString [, position]);</code></pre>Determines whether a string begins with the characters of another string, returning true or false as appropriate. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.endsWith (JavaScript)",
+"l2_sec":"String endsWith",
 "paragraph":"<pre><code>var endsWith = str.endsWith(searchString [, position]);</code></pre>Determines whether a string ends with the characters of another string, returning true or false as appropriate. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"RegExp.prototype.sticky (JavaScript)",
+"l2_sec":"RegExp prototype sticky",
 "paragraph":"The sticky property reflects whether or not the search is sticky (searches in strings only from the index indicated by the lastIndex property of this regular expression). sticky is a read-only property of an individual regular expression object. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"null (JavaScript)",
+"l2_sec":"null",
 "paragraph":"<pre><code>null</code></pre>The value null, the only value of the Null Type. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.imul() (JavaScript)",
+"l2_sec":"Math imul  ",
 "paragraph":"<pre><code>Math.imul(a, b)</code></pre>The Math.imul() function returns the result of the C-like 32-bit multiplication of the two parameters. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.isFinite (JavaScript)",
+"l2_sec":"Number isFinite",
 "paragraph":"<pre><code>Number.isFinite (value)</code></pre>The Number.isFinite() method determines whether the passed value is finite. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"ParallelArray (JavaScript)",
+"l2_sec":"ParallelArray",
 "paragraph":"<pre><code>new ParallelArray()
 new ParallelArray([element0, element1, ...])
 new ParallelArray(arrayLength, elementalFunction)</code></pre>The goal of ParallelArray is to enable data-parallelism in web applications. The higher-order functions available on ParallelArray attempt to execute in parallel, though they may fall back to sequential execution if necessary. To ensure that your code executes in parallel, it is suggested that the functions should be limited to the parallelizable subset of JS that Firefox supports. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ParallelArray'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ParallelArray</a>",
@@ -1630,18 +1897,21 @@ new ParallelArray(arrayLength, elementalFunction)</code></pre>The goal of Parall
 },
 
 {"title":"Object.is (JavaScript)",
+"l2_sec":"Object is",
 "paragraph":"<pre><code>var isSame = Object.is(value1, value2);</code></pre>Determines whether two values are the same value. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Intl (JavaScript)",
+"l2_sec":"Intl",
 "paragraph":"The Intl object is the namespace for the ECMAScript Internationalization API, which provides language sensitive string comparison, number formatting, and date and time formatting. The constructors for Collator, NumberFormat, and DateTimeFormat objects are properties of the Intl object.  This page documents these properties as well as functionality common to the internationalization constructors and other language sensitive functions. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Intl.Collator (JavaScript)",
+"l2_sec":"Intl Collator",
 "paragraph":"<pre><code>new Intl.Collator([locales [, options]])
 
 Intl.Collator.call(this [, locales [, options]])</code></pre>The Intl.Collator object is a constructor for collators, objects that enable language sensitive string comparison. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator</a>",
@@ -1650,6 +1920,7 @@ Intl.Collator.call(this [, locales [, options]])</code></pre>The Intl.Collator o
 },
 
 {"title":"Intl.NumberFormat (JavaScript)",
+"l2_sec":"Intl NumberFormat",
 "paragraph":"<pre><code>new Intl.NumberFormat([locales [, options]])
 
 Intl.NumberFormat.call(this [, locales [, options]])</code></pre>The Intl.NumberFormat object is a constructor for objects that enable language sensitive number formatting. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat</a>",
@@ -1658,6 +1929,7 @@ Intl.NumberFormat.call(this [, locales [, options]])</code></pre>The Intl.Number
 },
 
 {"title":"Intl.DateTimeFormat (JavaScript)",
+"l2_sec":"Intl DateTimeFormat",
 "paragraph":"<pre><code>new Intl.DateTimeFormat([locales [, options]])
 
 Intl.DateTimeFormat.call(this [, locales [, options]])</code></pre>The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat</a>",
@@ -1666,144 +1938,168 @@ Intl.DateTimeFormat.call(this [, locales [, options]])</code></pre>The Intl.Date
 },
 
 {"title":"Number.isInteger() (JavaScript)",
+"l2_sec":"Number isInteger  ",
 "paragraph":"<pre><code>Number.isInteger(testValue)</code></pre>The Number.isInteger() method determines whether the passed value is an integer. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"String.prototype.repeat (JavaScript)",
+"l2_sec":"String prototype repeat",
 "paragraph":"<pre><code>newString = string.repeat(count)</code></pre>Repeat the current string several times, return the new string. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"setPrototypeOf (JavaScript)",
+"l2_sec":"setPrototypeOf",
 "paragraph":"<pre><code>Object.setPrototypeOf(object, prototype)</code></pre>Set the prototype (i.e., the internal [[Prototype]] property ) of a specified object to another object or null. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"uneval (JavaScript)",
+"l2_sec":"uneval",
 "paragraph":"<pre><code>uneval(object)</code></pre>Creates an string representation of the source code of an Object <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/uneval'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/uneval</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.EPSILON (JavaScript)",
+"l2_sec":"Number EPSILON",
 "paragraph":"The Number.EPSILON property represents the smallest interval between two distinguable values represented as a Number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.toInteger() (JavaScript)",
+"l2_sec":"Number toInteger  ",
 "paragraph":"<pre><code>Number.toInteger(number)</code></pre>The Number.toInteger() method evaluates the passed value and converts it to an integer. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toInteger'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toInteger</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.parseFloat() (JavaScript)",
+"l2_sec":"Number parseFloat  ",
 "paragraph":"<pre><code>Number.parseFloat(string)</code></pre>The Number.parseFloat() method parses a string argument and returns a floating point number. This method behaves identical to the global function parseFloat and is part of ECMAScript 6 (it's purpose is modularization of globals). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Number.parseInt() (JavaScript)",
+"l2_sec":"Number parseInt  ",
 "paragraph":"<pre><code>Number.parseInt(string, radix)</code></pre>The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base. This method behaves identical to the global function parseInt and is part of ECMAScript 6 (it's purpose is modularization of globals). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.acosh() (JavaScript)",
+"l2_sec":"Math acosh  ",
 "paragraph":"<pre><code>Math.acosh(x)</code></pre>The Math.acosh() function returns the hyperbolic arccosine (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/acosh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/acosh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.asinh() (JavaScript)",
+"l2_sec":"Math asinh  ",
 "paragraph":"<pre><code>Math.asinh(x)</code></pre>The Math.asinh() function returns the hyperbolic arcsine (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/asinh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/asinh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.atanh() (JavaScript)",
+"l2_sec":"Math atanh  ",
 "paragraph":"<pre><code>Math.atanh(x)</code></pre>The Math.atanh() function returns the hyperbolic arctangent (in radians) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atanh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atanh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.cbrt() (JavaScript)",
+"l2_sec":"Math cbrt  ",
 "paragraph":"<pre><code>Math.cbrt(x)</code></pre>The Math.cbrt() function returns the cube root (x3) of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.cosh() (JavaScript)",
+"l2_sec":"Math cosh  ",
 "paragraph":"<pre><code>Math.cosh(x)</code></pre>The Math.cosh() function returns the hyperbolic cosine of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cosh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cosh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.expm1() (JavaScript)",
+"l2_sec":"Math expm1  ",
 "paragraph":"<pre><code>Math.expm1(x)</code></pre>The Math.expm1() function returns Ex - 1, where x is the argument, and E is Euler's constant, the base of the natural logarithms. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/expm1'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/expm1</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.fround() (JavaScript)",
+"l2_sec":"Math fround  ",
 "paragraph":"<pre><code>Math.fround(x)</code></pre>The Math.fround() function returns the nearest single precision float representation of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.hypot() (JavaScript)",
+"l2_sec":"Math hypot  ",
 "paragraph":"<pre><code>Math.hypot([value1[,value2, ...]])</code></pre>The Math.hypot() function returns the square root of the sum of squares of its arguments (). <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.log1p() (JavaScript)",
+"l2_sec":"Math log1p  ",
 "paragraph":"<pre><code>Math.log1p(x)</code></pre>The Math.log1p() function returns the natural logarithm (base E) of 1 + a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log1p'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log1p</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.log10() (JavaScript)",
+"l2_sec":"Math log10  ",
 "paragraph":"<pre><code>Math.log10(x)</code></pre>The Math.log10() function returns the base 10 logarithm of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log10'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log10</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.log2() (JavaScript)",
+"l2_sec":"Math log2  ",
 "paragraph":"<pre><code>Math.log2(x)</code></pre>The Math.log2() function returns the base 2 logarithm of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log2'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log2</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.sign() (JavaScript)",
+"l2_sec":"Math sign  ",
 "paragraph":"<pre><code>Math.sign(x)</code></pre>The Math.sign() function returns the sign of a number, indicating whether the number is positive, negative or zero. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.sinh() (JavaScript)",
+"l2_sec":"Math sinh  ",
 "paragraph":"<pre><code>Math.sinh(x)</code></pre>The Math.sinh() function returns the hyperbolic sine of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sinh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sinh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.tanh() (JavaScript)",
+"l2_sec":"Math tanh  ",
 "paragraph":"<pre><code>Math.tanh(x)</code></pre>The Math.tanh() function returns the hyperbolic tangent of a number. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tanh'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tanh</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Math.trunc() (JavaScript)",
+"l2_sec":"Math trunc  ",
 "paragraph":"<pre><code>Math.trunc(x)</code></pre>The Math.trunc() function returns the integral part of a number by removing any fractional digits. It does not round any numbers. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc</a>",
 "p_count":1,
 "source":"instant_answer_id"
 },
 
 {"title":"Array.of (JavaScript)",
+"l2_sec":"Array of",
 "paragraph":"<pre><code>Array.of(element0, element1, ..., elementN)</code></pre>The Array.of() method initializes a new Array instance with a variable number of arguments, regardless of number or type of argument. <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of'>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of</a>",
 "p_count":1,
 "source":"instant_answer_id"
