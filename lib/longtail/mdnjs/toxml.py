@@ -6,9 +6,9 @@ import csv
 from parse import FatWriter
 
 XML = """<?xml version="1.0" encoding="UTF-8"?>
-<docs>
-    {results}
-</docs>
+<add allowDups="true">
+{results}
+</add>
 """
 
 DOC = """<doc>
@@ -16,7 +16,7 @@ DOC = """<doc>
 	<field name="l2_sec"><![CDATA[{abstract}]]></field>
 	<field name="paragraph"><![CDATA[{abstract} <a href="{source_url}">{source_url}</a>]]></field>
 	<field name="p_count">1</field>
-	<field name="source"><![CDATA[instant_answer_id]]></field>
+	<field name="source"><![CDATA[id{title}]]></field>
 </doc>"""
 
 def run(infname, outfname):
