@@ -25,6 +25,7 @@ def run(infname, outfname):
         for line in reader:
             rows.append(DOC.format(**line))
         results = '\n'.join(rows)
+        results = results[:-1]
         outfile.write(JSON.format(results=results).replace('\\n', '\n'))
 
 if __name__ == '__main__':
