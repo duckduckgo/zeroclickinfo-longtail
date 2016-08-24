@@ -1,0 +1,23 @@
+# pre-reqs
+sudo apt-get -y install rtorrent
+apt-get -y install p7zip
+apt-get -y install moreutils
+
+cd /tmp2/ddg/
+# https://archive.org/details/stackexchange
+rtorrent https://archive.org/download/stackexchange/stackexchange_archive.torrent
+mv stackexchange so
+cd so
+cp -p /usr/local/ddg/sources/stackoverflow/extract.sh .
+./extract.sh
+rm *.7z*
+rm -rf meta*
+find . | egrep -e 'Badges|PostHistory|Comments|PostLinks' | xargs rm -rf
+mkdir stackoverflow.com
+mv stackoverflow.com-Users/stackoverflow.com/Users.xml stackoverflow.com/Users.xml
+mv stackoverflow.com-Posts/stackoverflow.com/Posts.xml stackoverflow.com/Posts.xml
+cd /usr/local/ddg/sources/stackoverflow
+./posts.sh
+cd /tmp2/ddg/so
+bzip2 -kzv pre-process*.txt
+s3cmd put *.bz2 s3://ddg-solr/sources/so/
