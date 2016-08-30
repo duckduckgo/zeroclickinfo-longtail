@@ -12,7 +12,7 @@ cp -p /usr/local/ddg/sources/stackoverflow/extract.sh .
 ./extract.sh
 rm *.7z*
 rm -rf meta*
-find . | egrep -e 'Badges|PostHistory|Comments|PostLinks' | xargs rm -rf
+find . | egrep -e 'Badges|PostHistory|Comments' | xargs rm -rf
 mkdir stackoverflow.com
 mv stackoverflow.com-Users/Users.xml stackoverflow.com/Users.xml
 mv stackoverflow.com-Posts/Posts.xml stackoverflow.com/Posts.xml
