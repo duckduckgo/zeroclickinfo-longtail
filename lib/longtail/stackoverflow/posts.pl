@@ -61,7 +61,31 @@ while( my($name, $data) = each %$m){
     }
 
     print qq(\nTYPE: $name\t$data->{src_domain}\n);
-    
+
+    my %post_links = ();
+    if (-e "$stack_dir/$data->{src_domain}/PostLinks.xml") {
+        open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$data->{src_domain}/PostLinks.xml");
+
+        while (my $line = <IN>) {
+
+            if ($line =~ /<row Id="(\d+)".+PostId="(\d+)".+RelatedPostId="(\d+)".+LinkTypeId="(\d+)"/o) {
+                # specific to related post table
+                my $id = $1;
+                # the id of the parent question?
+                my $post_id = $2;
+                # the id of the linked to post (question)
+                my $related_post_id = $3;
+                # 1 = question, 2 = answer, 3 might be external
+                my $link_type_id = $4;
+                #warn "$id -> $post_id -> $related_post_id -> $link_type_id\n";
+                push (@{$post_links{$post_id}} ,$related_post_id);
+            }
+            # For debugging.
+            #    last;
+        }
+        close(IN)
+    };
+
     my %users = ();
     #my %karma = ();
     #    use Data::Dumper;
@@ -110,6 +134,7 @@ EOH
     my $count_a2 = 0;
     my $count_a3 = 0;
 
+    my %parent_post_score = ();
     while (my $line = <IN>) {
         print qq($count\n) if ++$count % 100000 == 0;
     
@@ -138,6 +163,7 @@ EOH
             next if $score<0;
             $count_q2++;
     
+            $parent_post_score{$id} = $score;
             #$body = decode_encode_str($body);
             #decode_entities($body);
             #$body = encode("UTF-8", $body);
@@ -176,6 +202,7 @@ EOH
             next if $score<0;
             $count_q2++;
     
+            $parent_post_score{$id} = $score;
             # For debugging.
             #print qq(test\n);
     
@@ -302,6 +329,10 @@ EOH
     
                 if (($title . $body) !~ /(?:\]\]|[\cG\cP])/so) {
     
+                    my $post_links = '';
+                    my $parent_post_score = '';
+                    $post_links = join(',',@{$post_links{$parent_id}}) if $post_links{$parent_id};
+                    $parent_post_score = $parent_post_score{$parent_id} if $parent_post_score{$parent_id};
                 # For debugging.
                 #print $body if $body =~ /\\/;
     
@@ -316,7 +347,7 @@ EOH
 <field name="id_match">$parent_id</field>
 <field name="id2_match">$id</field>
 <field name="id2">$id</field>
-<field name="meta">{"creation_date":"$date","accepted":"$accepted"}</field>
+<field name="meta">{"creation_date":"$date","accepted":"$accepted","post_links":"$post_links","parent_score","$parent_post_score"}</field>
 <field name="source">$name</field>
 </doc>
 EOH
