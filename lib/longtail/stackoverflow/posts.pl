@@ -116,7 +116,7 @@ while( my($name, $data) = each %$m){
     
     open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$data->{src_domain}/Posts.xml");
     open( OUT , ">:encoding(UTF-8)" , "$stack_dir/pre-process.$name.txt") ;
-    open( TMP , ">:encoding(UTF-8)" , "$stack_dir/tmp.txt") ;
+    #open( TMP , ">:encoding(UTF-8)" , "$stack_dir/tmp.txt") ;
     print OUT <<EOH;
 <?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">
@@ -356,7 +356,7 @@ EOH
 </add>
 EOH
     close(OUT);
-    close(TMP);
+    #close(TMP);
     
     print qq($count\n);
     print qq(q: $count_q\n);
