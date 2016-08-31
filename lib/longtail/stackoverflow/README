@@ -12,4 +12,6 @@ rm meta*.7z stackoverflow.com-Badges.7z stackoverflow.com-Comments.7z stackoverf
 # zeroclickinfo-longtail is the path to your git clone
 zeroclickinfo-longtail/lib/longtail/stackoverflow/extract.sh
 zeroclickinfo-longtail/lib/longtail/stackoverflow/posts.pl -d .
+# Below here is unnecessary if your developing/testing
 bzip2 -v pre-process*.txt
+upload via s3cmd
