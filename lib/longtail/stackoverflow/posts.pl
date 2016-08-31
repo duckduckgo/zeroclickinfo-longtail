@@ -10,9 +10,6 @@ use DDG::Meta::Data;
 use HTML::Entities;
 use List::Util 'first';
 
-my %answer_ids;
-my %unanswered_ids;
-my %tmp;
 my $stack_dir;
 my @sources;
 
@@ -50,6 +47,10 @@ my $answer_re = qr/^\s*
 my $m = DDG::Meta::Data->filter_ias({is_stackexchange => 1});
 
 while( my($name, $data) = each %$m){
+    my %answer_ids;
+    my %unanswered_ids;
+    my %tmp;
+
     if(@sources){
         next unless first { $name eq $_ } @sources;
     }
@@ -365,11 +366,11 @@ EOH
     print qq(a3: $count_a3\n);
     
     # For debugging.
-    $count = 0;
-    for my $tmp (sort {$tmp{$b}<=>$tmp{$a}} keys %tmp) {
-        print $tmp{$tmp}, "\t", $tmp, "\n";
-        last if ++$count>50;
-    }
+    #$count = 0;
+    #for my $tmp (sort {$tmp{$b}<=>$tmp{$a}} keys %tmp) {
+    #    print $tmp{$tmp}, "\t", $tmp, "\n";
+    #    last if ++$count>50;
+    #}
 }
 
 # Page input is multi-line XML.
