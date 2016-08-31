@@ -27,10 +27,7 @@ my $accepted_answer_re = qr/^\s*
     Score="(\d+).*
     Body="([^\"]+)".*
     Title="([^\"]+)"\s+
-    Tags="([^\"]+)"\s+
-    AnswerCount="(\d+)"\s+
-    CommentCount="\d+"\s+
-    FavoriteCount="(\d+)"/x;
+    Tags="([^\"]+)"/x;
 
 my $no_accepted_answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -39,10 +36,7 @@ my $no_accepted_answer_re = qr/^\s*
     Score="(\d+)".*
     Body="([^\"]+)".*
     Title="([^\"]+)"\s+
-    Tags="([^\"]+)"\s+
-    AnswerCount="(\d+)"\s+
-    CommentCount="\d+"\s+
-    FavoriteCount="(\d+)"/x;
+    Tags="([^\"]+)"/x;
 
 my $answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -157,8 +151,6 @@ EOH
             #my $last_edit_date = $6;
             my $title = $6;
             my $tags = $7;
-            my $answer_count = $8;
-            my $favorite_count = $9;
     
             next if $score<0;
             $count_q2++;
@@ -195,8 +187,6 @@ EOH
             #        my $last_edit_date = $5;
             my $title = $5;
             my $tags = $6;
-            my $answer_count = $7;
-            my $favorite_count = $8;
     
     #        next if $score<3;
             next if $score<0;
