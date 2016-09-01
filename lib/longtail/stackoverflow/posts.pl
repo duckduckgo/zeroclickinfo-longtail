@@ -9,10 +9,8 @@ binmode STDOUT, ":utf8";
 use DDG::Meta::Data;
 use HTML::Entities;
 use List::Util 'first';
+use JSON::MaybeXS 'encode_json';
 
-my %answer_ids;
-my %unanswered_ids;
-my %tmp;
 my $stack_dir;
 my @sources;
 
@@ -27,10 +25,7 @@ my $accepted_answer_re = qr/^\s*
     Score="(\d+).*
     Body="([^\"]+)".*
     Title="([^\"]+)"\s+
-    Tags="([^\"]+)"\s+
-    AnswerCount="(\d+)"\s+
-    CommentCount="\d+"\s+
-    FavoriteCount="(\d+)"/x;
+    Tags="([^\"]+)"/x;
 
 my $no_accepted_answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -39,10 +34,7 @@ my $no_accepted_answer_re = qr/^\s*
     Score="(\d+)".*
     Body="([^\"]+)".*
     Title="([^\"]+)"\s+
-    Tags="([^\"]+)"\s+
-    AnswerCount="(\d+)"\s+
-    CommentCount="\d+"\s+
-    FavoriteCount="(\d+)"/x;
+    Tags="([^\"]+)"/x;
 
 my $answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -55,16 +47,21 @@ my $answer_re = qr/^\s*
 
 my $m = DDG::Meta::Data->filter_ias({is_stackexchange => 1});
 
-while( my($name, $data) = each %$m){
+for my $name (sort keys %$m){
+    my %answer_ids;
+    my %unanswered_ids;
+    my %tmp;
+
     if(@sources){
         next unless first { $name eq $_ } @sources;
     }
 
-    print qq(\nTYPE: $name\t$data->{src_domain}\n);
+    my $src_domain = $m->{$name}{src_domain};
+    print qq(\nTYPE: $name\t$src_domain\n);
 
     my %post_links = ();
-    if (-e "$stack_dir/$data->{src_domain}/PostLinks.xml") {
-        open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$data->{src_domain}/PostLinks.xml");
+    if (-e "$stack_dir/$src_domain/PostLinks.xml") {
+        open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/PostLinks.xml");
 
         while (my $line = <IN>) {
 
@@ -89,14 +86,14 @@ while( my($name, $data) = each %$m){
     my %users = ();
     #my %karma = ();
     #    use Data::Dumper;
-    #    warn Dumper $data->{src_domain};
-    #next unless -e "$stack_dir/stackexchange/$data->{src_domain}/Users.xml";
-    unless(-e "$stack_dir/$data->{src_domain}/Users.xml"){
-        warn "$stack_dir/$data->{src_domain}/Users.xml not found...skipping";
+    #    warn Dumper $src_domain;
+    #next unless -e "$stack_dir/stackexchange/$src_domain/Users.xml";
+    unless(-e "$stack_dir/$src_domain/Users.xml"){
+        warn "$stack_dir/$src_domain/Users.xml not found...skipping";
         next;
     }
 
-    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$data->{src_domain}/Users.xml");
+    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/Users.xml");
     
     while (my $line = <IN>) {
         if ($line =~ /  <row Id="(\d+)" Reputation="(\d+)".*DisplayName="([^\"]+)"/o) {
@@ -119,9 +116,9 @@ while( my($name, $data) = each %$m){
     print scalar keys %users, " users\n";
     #print scalar keys %karma, " whitelisted users\n";
     
-    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$data->{src_domain}/Posts.xml");
+    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/Posts.xml");
     open( OUT , ">:encoding(UTF-8)" , "$stack_dir/pre-process.$name.txt") ;
-    open( TMP , ">:encoding(UTF-8)" , "$stack_dir/tmp.txt") ;
+    #open( TMP , ">:encoding(UTF-8)" , "$stack_dir/tmp.txt") ;
     print OUT <<EOH;
 <?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">
@@ -157,8 +154,6 @@ EOH
             #my $last_edit_date = $6;
             my $title = $6;
             my $tags = $7;
-            my $answer_count = $8;
-            my $favorite_count = $9;
     
             next if $score<0;
             $count_q2++;
@@ -195,8 +190,6 @@ EOH
             #        my $last_edit_date = $5;
             my $title = $5;
             my $tags = $6;
-            my $answer_count = $7;
-            my $favorite_count = $8;
     
     #        next if $score<3;
             next if $score<0;
@@ -264,7 +257,7 @@ EOH
                 # $body =~ s/(<\/code><\/pre>)/$1/isg;
     
                 if (exists $users{$user}) {
-                    $body .= qq( <p>--<a href="http://$data->{src_domain}/users/$user/ddg">$users{$user}</a></p>);
+                    $body .= qq( <p>--<a href="http://$src_domain/users/$user/ddg">$users{$user}</a></p>);
                 }
 
                 # Debug count.
@@ -329,12 +322,14 @@ EOH
     
                 if (($title . $body) !~ /(?:\]\]|[\cG\cP])/so) {
     
-                    my $post_links = '';
-                    my $parent_post_score = '';
-                    $post_links = join(',',@{$post_links{$parent_id}}) if $post_links{$parent_id};
-                    $parent_post_score = $parent_post_score{$parent_id} if $parent_post_score{$parent_id};
                 # For debugging.
                 #print $body if $body =~ /\\/;
+                my $metaj = encode_json({
+                    creation_date => $date,
+                    accepted => int($accepted || 0),
+                    post_links => $post_links{$parent_id} || [],
+                    parent_score => int($parent_post_score{$parent_id} || 0)
+                });
     
                 print OUT <<EOH;
 <doc>
@@ -347,7 +342,7 @@ EOH
 <field name="id_match">$parent_id</field>
 <field name="id2_match">$id</field>
 <field name="id2">$id</field>
-<field name="meta">{"creation_date":"$date","accepted":"$accepted","post_links":"$post_links","parent_score","$parent_post_score"}</field>
+<field name="meta">$metaj</field>
 <field name="source">$name</field>
 </doc>
 EOH
@@ -365,7 +360,7 @@ EOH
 </add>
 EOH
     close(OUT);
-    close(TMP);
+    #close(TMP);
     
     print qq($count\n);
     print qq(q: $count_q\n);
@@ -375,11 +370,11 @@ EOH
     print qq(a3: $count_a3\n);
     
     # For debugging.
-    $count = 0;
-    for my $tmp (sort {$tmp{$b}<=>$tmp{$a}} keys %tmp) {
-        print $tmp{$tmp}, "\t", $tmp, "\n";
-        last if ++$count>50;
-    }
+    #$count = 0;
+    #for my $tmp (sort {$tmp{$b}<=>$tmp{$a}} keys %tmp) {
+    #    print $tmp{$tmp}, "\t", $tmp, "\n";
+    #    last if ++$count>50;
+    #}
 }
 
 # Page input is multi-line XML.
