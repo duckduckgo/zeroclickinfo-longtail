@@ -386,10 +386,11 @@ sub decode_encode_str {
     $str = '' if !(defined $str);
 
     # Decode encoded xml characters.
-    $str =~ s/\&lt\;/\</g;
-    $str =~ s/\&gt\;/\>/g;
-    $str =~ s/\&quot\;/\"/g;
-    $str =~ s/\&amp\;/\&/g;
+    $str =~ s/&lt;/</g;
+    $str =~ s/&gt;/>/g;
+    $str =~ s/&quot;/"/g;
+    # Only sub when not an &amp; for a literal entity, e.g. &amp;awint;
+    $str =~ s/\&amp;(?![^&\s;]+;)/&/g;
 
     # Encode special space characters.
     $str =~ s/\\/\\\\/g if !$no_db;
