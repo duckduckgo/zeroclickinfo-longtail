@@ -24,8 +24,8 @@ my $accepted_answer_re = qr/^\s*
     CreationDate="([^"]+)".*
     Score="(\d+).*
     Body="([^\"]+)".*
-    Title="([^\"]+)"\s+
-    Tags="([^\"]+)"/x;
+    Title="([^\"]+)"/x;
+    #Tags="([^\"]+)"/x;
 
 my $no_accepted_answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -33,8 +33,8 @@ my $no_accepted_answer_re = qr/^\s*
     CreationDate="([^"]+)".*
     Score="(\d+)".*
     Body="([^\"]+)".*
-    Title="([^\"]+)"\s+
-    Tags="([^\"]+)"/x;
+    Title="([^\"]+)"/x;
+    #Tags="([^\"]+)"/x;
 
 my $answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -153,7 +153,7 @@ EOH
             my $body = $5;
             #my $last_edit_date = $6;
             my $title = $6;
-            my $tags = $7;
+            #my $tags = $7;
     
             next if $score<0;
             $count_q2++;
@@ -172,8 +172,8 @@ EOH
             #print qq($body\n) if $body;
     
     
-            $answer_ids{$accepted_answer} = qq($title~|~$tags);
-            $unanswered_ids{$id} = qq($title~|~$tags);
+            $answer_ids{$accepted_answer} = $title;
+            $unanswered_ids{$id} = $title;
     
         # Post without accepted answer.
         }
@@ -189,7 +189,6 @@ EOH
             my $body = $4;
             #        my $last_edit_date = $5;
             my $title = $5;
-            my $tags = $6;
     
     #        next if $score<3;
             next if $score<0;
@@ -199,7 +198,7 @@ EOH
             # For debugging.
             #print qq(test\n);
     
-            $unanswered_ids{$id} = qq($title~|~$tags);
+            $unanswered_ids{$id} = $title;
     
         # Answers.
         }
@@ -226,11 +225,7 @@ EOH
                 # For debugging.
                 #    print qq(test\n) if exists $unanswered_ids{$parent_id};
     
-                my $q = $answer_ids{$id} || $unanswered_ids{$parent_id};
-                my @q = split(/\~\|\~/o,$q);
-   
-                my $title = $q[0];
-                my $q_tags = $q[1];
+                my $title = $answer_ids{$id} || $unanswered_ids{$parent_id};
     
                 # converts xml chars
                 $body = decode_encode_str($body,1);
@@ -389,8 +384,8 @@ sub decode_encode_str {
     $str =~ s/\&lt\;/\</g;
     $str =~ s/\&gt\;/\>/g;
     $str =~ s/\&quot\;/\"/g;
-    # Only sub when not an &amp; for a literal entity, e.g. &amp;awint;
-    $str =~ s/\&amp;(?![^&\s;]+;)/&/g;
+    $str =~ s/\&#xD\;//g;
+    #$str =~ s/\&amp\;/\&/g;
 
     # Encode special space characters.
     $str =~ s/\\/\\\\/g if !$no_db;
