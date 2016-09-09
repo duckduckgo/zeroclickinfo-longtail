@@ -228,7 +228,12 @@ EOH
     
                 my $q = $answer_ids{$id} || $unanswered_ids{$parent_id};
                 my ($title, $q_tags) = @$q;
-    
+
+                my @tags;
+                for my $t (split /&[lg]t;/, $q_tags){
+                    push @tags, $t if $t;
+                }
+
                 # converts xml chars
                 $body = decode_encode_str($body,1);
                 $title = decode_encode_str($title,1);
@@ -325,7 +330,8 @@ EOH
                     creation_date => $date,
                     accepted => int($accepted || 0),
                     post_links => $post_links{$parent_id} || [],
-                    parent_score => int($parent_post_score{$parent_id} || 0)
+                    parent_score => int($parent_post_score{$parent_id} || 0),
+                    tags => \@tags
                 });
     
                 print OUT <<EOH;
