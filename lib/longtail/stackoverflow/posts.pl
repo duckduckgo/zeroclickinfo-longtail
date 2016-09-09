@@ -24,8 +24,8 @@ my $accepted_answer_re = qr/^\s*
     CreationDate="([^"]+)".*
     Score="(\d+).*
     Body="([^\"]+)".*
-    Title="([^\"]+)"/x;
-    #Tags="([^\"]+)"/x;
+    Title="([^\"]+)"\s+
+    Tags="([^\"]+)"/x;
 
 my $no_accepted_answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -33,8 +33,8 @@ my $no_accepted_answer_re = qr/^\s*
     CreationDate="([^"]+)".*
     Score="(\d+)".*
     Body="([^\"]+)".*
-    Title="([^\"]+)"/x;
-    #Tags="([^\"]+)"/x;
+    Title="([^\"]+)"\s+
+    Tags="([^\"]+)"/x;
 
 my $answer_re = qr/^\s*
     <row\s+Id="(\d+)"\s+
@@ -153,7 +153,7 @@ EOH
             my $body = $5;
             #my $last_edit_date = $6;
             my $title = $6;
-            #my $tags = $7;
+            my $tags = $7;
     
             next if $score<0;
             $count_q2++;
@@ -172,8 +172,8 @@ EOH
             #print qq($body\n) if $body;
     
     
-            $answer_ids{$accepted_answer} = $title;
-            $unanswered_ids{$id} = $title;
+            $answer_ids{$accepted_answer} = [$title, $tags];
+            $unanswered_ids{$id} = [$title, $tags];
     
         # Post without accepted answer.
         }
@@ -189,6 +189,7 @@ EOH
             my $body = $4;
             #        my $last_edit_date = $5;
             my $title = $5;
+            my $tags = $6;
     
     #        next if $score<3;
             next if $score<0;
@@ -198,7 +199,7 @@ EOH
             # For debugging.
             #print qq(test\n);
     
-            $unanswered_ids{$id} = $title;
+            $unanswered_ids{$id} = [$title, $tags];
     
         # Answers.
         }
@@ -225,7 +226,8 @@ EOH
                 # For debugging.
                 #    print qq(test\n) if exists $unanswered_ids{$parent_id};
     
-                my $title = $answer_ids{$id} || $unanswered_ids{$parent_id};
+                my $q = $answer_ids{$id} || $unanswered_ids{$parent_id};
+                my ($title, $q_tags) = @$q;
     
                 # converts xml chars
                 $body = decode_encode_str($body,1);
