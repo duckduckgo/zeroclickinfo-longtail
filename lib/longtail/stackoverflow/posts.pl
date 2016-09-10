@@ -81,7 +81,7 @@ for my $name (sort keys %$m){
             #    last;
         }
         close(IN)
-    };
+    }
 
     my %users = ();
     #my %karma = ();
@@ -385,15 +385,14 @@ EOH
 sub decode_encode_str {
     my ($str,$no_db) = @_;
 
-    # If no string assign it.
-    $str = '' if !(defined $str);
+    return '' unless $str;
 
     # Decode encoded xml characters.
     $str =~ s/\&lt\;/\</g;
     $str =~ s/\&gt\;/\>/g;
     $str =~ s/\&quot\;/\"/g;
     $str =~ s/\&#xD\;//g;
-    #$str =~ s/\&amp\;/\&/g;
+    #$str =~ s/\&amp\;(?![#\w]+;)/\&/g;
 
     # Encode special space characters.
     $str =~ s/\\/\\\\/g if !$no_db;
