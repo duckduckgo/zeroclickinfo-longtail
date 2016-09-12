@@ -81,7 +81,7 @@ for my $name (sort keys %$m){
             #    last;
         }
         close(IN)
-    };
+    }
 
     my %users = ();
     #my %karma = ();
@@ -172,8 +172,8 @@ EOH
             #print qq($body\n) if $body;
     
     
-            $answer_ids{$accepted_answer} = qq($title~|~$tags);
-            $unanswered_ids{$id} = qq($title~|~$tags);
+            $answer_ids{$accepted_answer} = [$title, $tags];
+            $unanswered_ids{$id} = [$title, $tags];
     
         # Post without accepted answer.
         }
@@ -199,7 +199,7 @@ EOH
             # For debugging.
             #print qq(test\n);
     
-            $unanswered_ids{$id} = qq($title~|~$tags);
+            $unanswered_ids{$id} = [$title, $tags];
     
         # Answers.
         }
@@ -227,11 +227,13 @@ EOH
                 #    print qq(test\n) if exists $unanswered_ids{$parent_id};
     
                 my $q = $answer_ids{$id} || $unanswered_ids{$parent_id};
-                my @q = split(/\~\|\~/o,$q);
-   
-                my $title = $q[0];
-                my $q_tags = $q[1];
-    
+                my ($title, $q_tags) = @$q;
+
+                my @tags;
+                for my $t (split /&[lg]t;/, $q_tags){
+                    push @tags, $t if $t;
+                }
+
                 # converts xml chars
                 $body = decode_encode_str($body,1);
                 $title = decode_encode_str($title,1);
@@ -328,7 +330,8 @@ EOH
                     creation_date => $date,
                     accepted => int($accepted || 0),
                     post_links => $post_links{$parent_id} || [],
-                    parent_score => int($parent_post_score{$parent_id} || 0)
+                    parent_score => int($parent_post_score{$parent_id} || 0),
+                    tags => \@tags
                 });
     
                 print OUT <<EOH;
@@ -382,14 +385,14 @@ EOH
 sub decode_encode_str {
     my ($str,$no_db) = @_;
 
-    # If no string assign it.
-    $str = '' if !(defined $str);
+    return '' unless $str;
 
     # Decode encoded xml characters.
     $str =~ s/\&lt\;/\</g;
     $str =~ s/\&gt\;/\>/g;
     $str =~ s/\&quot\;/\"/g;
-    $str =~ s/\&amp\;/\&/g;
+    $str =~ s/\&#xD\;//g;
+    #$str =~ s/\&amp\;(?![#\w]+;)/\&/g;
 
     # Encode special space characters.
     $str =~ s/\\/\\\\/g if !$no_db;
