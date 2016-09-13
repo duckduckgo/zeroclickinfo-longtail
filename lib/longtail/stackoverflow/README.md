@@ -5,7 +5,6 @@
 
 2. Install Pre-reqs
  ```
- sudo apt-get -y install rtorrent
  apt-get -y install p7zip
  apt-get -y install moreutils
  ```
@@ -16,11 +15,9 @@
  mkdir download && cd download
  ```
 
-4. Download archive torrent from https://archive.org/details/stackexchange
+4. Mirror 7z files from https://archive.org/details/stackexchange
  ```
- rtorrent https://archive.org/download/stackexchange/stackexchange_archive.torrent
- cd stackexchange
- rm meta*.7z stackoverflow.com-Badges.7z stackoverflow.com-Comments.7z stackoverflow.com-Comments.7z stackoverflow.com-Tags.7z stackoverflow.com-Votes.7z
+ mirror_stackexchange.pl -d download -v
  ```
 
 5. Generate output file
