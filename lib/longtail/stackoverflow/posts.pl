@@ -75,8 +75,8 @@ for my $name (sort keys %$m){
                 # 1 = question, 2 = answer, 3 might be external
                 my $link_type_id = $4;
                 #warn "$id -> $post_id -> $related_post_id -> $link_type_id\n";
-                $post_links{$post_id}{$related_post_id}++;
-                $post_links{$related_post_id}{$post_id}++;
+                ++$post_links{$post_id}{$related_post_id};
+                ++$post_links{$related_post_id}{$post_id};
             }
             # For debugging.
             #    last;
