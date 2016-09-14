@@ -76,6 +76,7 @@ for my $name (sort keys %$m){
                 my $link_type_id = $4;
                 #warn "$id -> $post_id -> $related_post_id -> $link_type_id\n";
                 push (@{$post_links{$post_id}} ,$related_post_id);
+                push (@{$post_links{$related_post_id}} ,$post_id);
             }
             # For debugging.
             #    last;
