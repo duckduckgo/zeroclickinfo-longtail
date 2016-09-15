@@ -75,7 +75,8 @@ for my $name (sort keys %$m){
                 # 1 = question, 2 = answer, 3 might be external
                 my $link_type_id = $4;
                 #warn "$id -> $post_id -> $related_post_id -> $link_type_id\n";
-                push (@{$post_links{$post_id}} ,$related_post_id);
+                ++$post_links{$post_id}{$related_post_id};
+                ++$post_links{$related_post_id}{$post_id};
             }
             # For debugging.
             #    last;
@@ -329,7 +330,7 @@ EOH
                 my $metaj = encode_json({
                     creation_date => $date,
                     accepted => int($accepted || 0),
-                    post_links => $post_links{$parent_id} || [],
+                    post_links => $post_links{$parent_id} || {},
                     parent_score => int($parent_post_score{$parent_id} || 0),
                     tags => \@tags
                 });
