@@ -330,7 +330,7 @@ EOH
                 my $metaj = encode_json({
                     creation_date => $date,
                     accepted => int($accepted || 0),
-                    post_links => $post_links{$parent_id} || [],
+                    post_links => $post_links{$parent_id} || {},
                     parent_score => int($parent_post_score{$parent_id} || 0),
                     tags => \@tags
                 });
