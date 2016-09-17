@@ -162,7 +162,7 @@ EOH
                 for my $o (@$oa){
                     # remove original line needed for reporting
                     shift @$o;
-                    ++$cnts{'orphans handled'};
+                    ++$cnts{'kids reunited'};
                 }
                 process_answers($name, $oa, $questions{$id});
             }
@@ -178,7 +178,7 @@ EOH
                 process_answers($name, [\@vals], $questions{$parent_id});
             }
             else{
-                ++$cnts{orphans};
+                ++$cnts{'lost kids'};
                 push @{$orphans{$parent_id}}, [$line, @vals];
             }
         }
@@ -196,10 +196,6 @@ EOH
 EOH
     close(OUT);
 
-    for ('questions', 'answers', 'orphans', 'orphans handled', 'unrecognized lines'){
-        print "$_: $cnts{$_}\n";
-    }
-
     if(my @orphans = values %orphans){
         my $logf = "$stack_dir/orphans.$name.txt";
         my $olog;
@@ -209,12 +205,17 @@ EOH
                 $olog = *STDERR;
             };
         for my $oa (@orphans){
-            print $olog $_->[0] for @$oa;
+            for (@$oa){
+                print $olog $_->[0];
+                ++$cnts{orphans};
+            }
         }
-        warn "* * * * ORPHANED ANSWERS ($name) * * * *\n";
+    }
+
+    for ('questions', 'answers', 'lost kids', 'kids reunited', 'orphans', 'unrecognized lines'){
+        print "$_: ", $cnts{$_} || 0, "\n" ;
     }
 }
-
 
 sub process_answers{
     my ($name, $answers, $parent) = @_;
