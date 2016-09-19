@@ -4,7 +4,11 @@ use warnings;
 use strict;
 use utf8;
 use Encode qw( is_utf8 encode decode _utf8_off);
-binmode STDOUT, ":utf8";
+
+no warnings 'uninitialized';
+
+binmode STDOUT, ':utf8';
+binmode STDERR, ':utf8';
 
 use DDG::Meta::Data;
 use HTML::Entities;
@@ -13,55 +17,58 @@ use JSON::MaybeXS 'encode_json';
 
 my $stack_dir;
 my @sources;
+my $verbose = 0;
 
 # command-line args
 parse_argv();
 
-my $accepted_answer_re = qr/^\s*
+my $question_re = qr/
     <row\s+Id="(\d+)"\s+
     PostTypeId="1"\s+
-    AcceptedAnswerId="(\d+)"\s+
-    CreationDate="([^"]+)".*
-    Score="(\d+).*
-    Body="([^\"]+)".*
+    (?:AcceptedAnswerId="(\d+)"\s+)?
+    CreationDate="([^"]+)"\s+
+    Score="(-?\d+)".+? # allow negative, skip fields
+    Body="([^\"]+)".+? # skip fields
     Title="([^\"]+)"\s+
-    Tags="([^\"]+)"/x;
+    Tags="([^\"]+)"
+/x;
 
-my $no_accepted_answer_re = qr/^\s*
-    <row\s+Id="(\d+)"\s+
-    PostTypeId="1"\s+
-    CreationDate="([^"]+)".*
-    Score="(\d+)".*
-    Body="([^\"]+)".*
-    Title="([^\"]+)"\s+
-    Tags="([^\"]+)"/x;
-
-my $answer_re = qr/^\s*
+my $answer_re = qr/
     <row\s+Id="(\d+)"\s+
     PostTypeId="2"\s+
     ParentId="(\d+)"\s+
-    CreationDate="([^"]+)".*
-    Score="(\d+)".*
+    CreationDate="([^"]+)"\s+
+    Score="(-?\d+)"\s+ # allow negative
     Body="([^\"]+)"\s+
-    OwnerUserId="(\d+)"/x;
+    (?:OwnerUserId="(\d+)")?
+    (?:OwnerDisplayName="([^"]+)")?
+/x;
 
 my $m = DDG::Meta::Data->filter_ias({is_stackexchange => 1});
 
+my %questions;
+my %users;
+my %post_links;
+my %parent_post_score;
+my $src_domain;
+
 for my $name (sort keys %$m){
-    my %answer_ids;
-    my %unanswered_ids;
-    my %tmp;
+    # Reset between sites
+    %parent_post_score = ();
+    %questions = ();
+    %users = ();
+    %post_links = ();
 
     if(@sources){
         next unless first { $name eq $_ } @sources;
     }
 
-    my $src_domain = $m->{$name}{src_domain};
-    print qq(\nTYPE: $name\t$src_domain\n);
+    $src_domain = $m->{$name}{src_domain};
+    print qq(\nID: $name\nsource: $src_domain\n\n);
 
-    my %post_links = ();
     if (-e "$stack_dir/$src_domain/PostLinks.xml") {
-        open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/PostLinks.xml");
+        open(IN, '<:encoding(UTF-8)' , "$stack_dir/$src_domain/PostLinks.xml")
+            or die "Failed to open $stack_dir/$src_domain/PostLinks.xml: $!";
 
         while (my $line = <IN>) {
 
@@ -78,75 +85,51 @@ for my $name (sort keys %$m){
                 ++$post_links{$post_id}{$related_post_id};
                 ++$post_links{$related_post_id}{$post_id};
             }
-            # For debugging.
-            #    last;
         }
-        close(IN)
+        close(IN);
     }
 
-    my %users = ();
-    #my %karma = ();
-    #    use Data::Dumper;
-    #    warn Dumper $src_domain;
-    #next unless -e "$stack_dir/stackexchange/$src_domain/Users.xml";
     unless(-e "$stack_dir/$src_domain/Users.xml"){
         warn "$stack_dir/$src_domain/Users.xml not found...skipping";
         next;
     }
 
-    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/Users.xml");
-    
+    open(IN, '<:encoding(UTF-8)' , "$stack_dir/$src_domain/Users.xml")
+        or die "Failed to open $stack_dir/$src_domain/Users.xml for reading: $!";
+
     while (my $line = <IN>) {
         if ($line =~ /  <row Id="(\d+)" Reputation="(\d+)".*DisplayName="([^\"]+)"/o) {
             my $id = $1;
             my $karma = $2;
             my $user_name = $3;
-    
-            # For debugging.
-            #print qq($id\t$name\n);
-            $users{$id} = $user_name;
-            #$karma{$id} = undef if $karma>500;
+
+            $users{by_id}{$id} = $user_name;
+            $users{by_name}{$user_name} = $id;
         }
-    
-        # For debugging.
-        #    last;
     }
 
     close(IN);
-    
-    print scalar keys %users, " users\n";
+
+    print 'users: ', scalar keys %{$users{by_id}}, "\n\n";
     #print scalar keys %karma, " whitelisted users\n";
-    
-    open(IN ,  "<:encoding(UTF-8)" , "$stack_dir/$src_domain/Posts.xml");
-    open( OUT , ">:encoding(UTF-8)" , "$stack_dir/pre-process.$name.txt") ;
-    #open( TMP , ">:encoding(UTF-8)" , "$stack_dir/tmp.txt") ;
+
+    open(IN,  '<:encoding(UTF-8)' , "$stack_dir/$src_domain/Posts.xml")
+        or die "Failed to open $stack_dir/$src_domain/Posts.xml for reading: $!";
+    open(OUT, '>:encoding(UTF-8)' , "$stack_dir/pre-process.$name.txt")
+        or die "Failed to open $stack_dir/pre-process.$name.txt for writing: $!";
+
     print OUT <<EOH;
 <?xml version="1.0" encoding="UTF-8"?>
 <add allowDups="true">
 EOH
-    
-    my $count = 0;
-    my $count_q = 0;
-    my $count_q2 = 0;
-    my $count_a = 0;
-    my $count_a2 = 0;
-    my $count_a3 = 0;
 
-    my %parent_post_score = ();
+    my (%orphans, %cnts);
     while (my $line = <IN>) {
-        print qq($count\n) if ++$count % 100000 == 0;
-    
-        # For debugging.
-    #    next if $count<820950;
-    #    last if $count>821020;
-    #    print $line if $count==9312;
-    
-    
-        # Post with accepted answer.
-        if ($line =~ $accepted_answer_re){
-            
-            $count_q++;
-    
+        print "Processed $. lines (", scalar(localtime), ")\n" unless $. % 100000;
+
+        # Questions
+        if ($line =~ $question_re){
+
             my $id = $1;
             my $accepted_answer = $2;
             my $date = $3;
@@ -155,187 +138,197 @@ EOH
             #my $last_edit_date = $6;
             my $title = $6;
             my $tags = $7;
-    
-            next if $score<0;
-            $count_q2++;
-    
+
+            ++$cnts{questions};
+            #next if $score<0;
+
             $parent_post_score{$id} = $score;
             #$body = decode_encode_str($body);
             #decode_entities($body);
             #$body = encode("UTF-8", $body);
             #$body = decode("UTF-8", $body);
-    
+
             #my $body_pass = '';
             #($body_pass) = $body =~ /^<p>(.*?)<\/p>/sio;
-    
+
             # For debugging.
             #print qq($title\t$body_pass\n) if $body_pass;
             #print qq($body\n) if $body;
-    
-    
-            $answer_ids{$accepted_answer} = [$title, $tags];
-            $unanswered_ids{$id} = [$title, $tags];
-    
-        # Post without accepted answer.
-        }
-        elsif ($line =~ $no_accepted_answer_re){
-            $count_q++;
-    
-            # For debugging.
-            #print qq(test\n);
-    
-            my $id = $1;
-            my $date = $2;
-            my $score = $3;
-            my $body = $4;
-            #        my $last_edit_date = $5;
-            my $title = $5;
-            my $tags = $6;
-    
-    #        next if $score<3;
-            next if $score<0;
-            $count_q2++;
-    
-            $parent_post_score{$id} = $score;
-            # For debugging.
-            #print qq(test\n);
-    
-            $unanswered_ids{$id} = [$title, $tags];
-    
-        # Answers.
-        }
-        elsif ($line =~ $answer_re){
-            $count_a++;
-    
-            my $id = $1;
-            my $parent_id = $2;
-            my $date = $3;
-            my $score = $4;
-            my $body = $5;
-            my $user = $6;
-            # my $last_edit_date = $7;
-            my $accepted = exists $answer_ids{$id} ? 1 : 0;
-    
+
+            $questions{$id} = [$title, $tags, $accepted_answer];
+            # Take care of orphans here since there may not be another
+            # answer to trigger the call to process_answers() below
+            if(my $oa = delete $orphans{$id}){
+                for my $o (@$oa){
+                    # remove original line needed for reporting
+                    shift @$o;
+                    ++$cnts{'kids reunited'};
+                }
+                process_answers($name, $oa, $questions{$id});
+            }
+        } # Answers.
+        elsif (my @vals = $line =~ $answer_re){
+            my $parent_id = $vals[1];
+
             # For debugging.
             #print $user, "\n";
-    
-    #       if ( (exists $answer_ids{$id} && $score>=0) || (exists $unanswered_ids{$parent_id} && $score>=3) ) {
-            # allow more answers through
-            if ( (exists $answer_ids{$id} && $score>=0) || (exists $unanswered_ids{$parent_id} && $score>=1) ) {
-                $count_a2++;
-    
-                # For debugging.
-                #    print qq(test\n) if exists $unanswered_ids{$parent_id};
-    
-                my $q = $answer_ids{$id} || $unanswered_ids{$parent_id};
-                my ($title, $q_tags) = @$q;
 
-                my @tags;
-                for my $t (split /&[lg]t;/, $q_tags){
-                    push @tags, $t if $t;
-                }
+            ++$cnts{answers};
+            if (exists $questions{$parent_id}) {
+                process_answers($name, [\@vals], $questions{$parent_id});
+            }
+            else{
+                ++$cnts{'lost kids'};
+                push @{$orphans{$parent_id}}, [$line, @vals];
+            }
+        }
+        else{
+            ++$cnts{'unrecognized lines'};
+            $verbose && warn "NO LINE: $line\n";
+        }
+    }
 
-                # converts xml chars
-                $body = decode_encode_str($body,1);
-                $title = decode_encode_str($title,1);
-    
-                #    print qq($body\n);
-                #    print $body if $count==9312;
-                #    print TMP $body if $count==51850;
-    
-                # converts html chars
-                decode_entities($body);
-                $body = encode("UTF-8", $body);
-                $body = decode("UTF-8", $body);
-                decode_entities($title);
-                $title = encode("UTF-8", $title);
-                $title = decode("UTF-8", $title);
- 
-                #    print $body if $count==9312;
-    
-                # Spacing for indexing.
-                $body =~ s/(<p>)/$1 /isg;
-                #  $body =~ s/(<pre><code>)/$1/isg;
-                $body =~ s/(<\/p>)/ $1/isg;
-                # $body =~ s/(<\/code><\/pre>)/$1/isg;
-    
-                if (exists $users{$user}) {
-                    $body .= qq( <p>--<a href="http://$src_domain/users/$user/ddg">$users{$user}</a></p>);
-                }
+    print "Processed $. lines total (", scalar(localtime), ")\n\n";
+    close(IN);
 
-                # Debug count.
-                #    $count_a3++ if $body =~ /<a /osi;
-                #    print qq($count_a3\n) if $count_a3;
-                #    die $body if $body =~ /\sCDATA\s/os && $body =~ /[\s\'\"]<\/[\s\'\"]/os;
-                #    print qq($title\n) if $title =~ /\s\"[^\"]+\"\s/o;
-                #    print qq($title\n) if $title =~ /\s\'[^\']+\'\s/o;
-   
-                # This title clean up lets us match more things
-                # by dropping irrelvent punctuation.
-   
-                $title =~ s/[\.\?\!\:]\s*$//o; # First remove line endings.
+    print OUT <<EOH;
+</add>
+EOH
+    close(OUT);
 
-                $title =~ s/(?:\A|\s)\(([^\)]+)\)(?:\s|\Z)/ $1 /og; # Then parenthetical expressions.
-  
-                # Then quotes.
-                $title =~ s/(?:\A|\s)\"([^\"]+)\"(?:\s|\Z)/ $1 /og;
-                $title =~ s/(?:\A|\s)\'([^\']+)\'(?:\s|\Z)/ $1 /og;
-   
-                # Then colons.
-                $title =~ s/\:\s+/ /og;
-   
-                $title =~ s/\\/ /og;
-                   
-                # For debugging.
-                #    print qq($title_match\n) if $title_match =~ /\(/o;
-   
-                # Convert ctrl+chars to unicode
-                map {
-                    s/[\cA]/^A/ig;
-                    s/[\cB]/^B/ig;
-                    s/[\cC]/^C/ig;
-                    s/[\cD]/^D/ig;
-                    s/[\cE]/^E/ig;
-                    s/[\cF]/^F/ig;
-                    s/[\cG]/^G/ig;
-                    s/[\cH]/^H/ig;
-                    s/[\cI]/^I/ig;
-                    s/[\cK]/^K/ig;
-                    s/[\cL]/^L/ig;
-                    s/[\cM]/^M/ig;
-                    s/[\cN]/^N/ig;
-                    s/[\cO]/^O/ig;
-                    s/[\cP]/^P/ig;
-                    s/[\cQ]/^Q/ig;
-                    s/[\cR]/^R/ig;
-                    s/[\cS]/^S/ig;
-                    s/[\cT]/^T/ig;
-                    s/[\cU]/^U/ig;
-                    s/[\cV]/^V/ig;
-                    s/[\cW]/^W/ig;
-                    s/[\cX]/^X/ig;
-                    s/[\cY]/^Y/ig;
-                    s/[\cZ]/^Z/ig;
-                    s/[\c_]/^_/ig;
-                    s/[\c]]/^]/ig;
-                    s/[\c[]/^[/ig;
-                    s/[\c\]/^\\/ig;
-                    s/[\c^]/^\^/ig;
-                }($title, $body);
-    
-                if (($title . $body) !~ /(?:\]\]|[\cG\cP])/so) {
-    
-                # For debugging.
-                #print $body if $body =~ /\\/;
-                my $metaj = encode_json({
-                    creation_date => $date,
-                    accepted => int($accepted || 0),
-                    post_links => $post_links{$parent_id} || {},
-                    parent_score => int($parent_post_score{$parent_id} || 0),
-                    tags => \@tags
-                });
-    
-                print OUT <<EOH;
+    if(my @orphans = values %orphans){
+        my $logf = "$stack_dir/orphans.$name.txt";
+        my $olog;
+        open $olog, '>:encoding(UTF-8)' , $logf
+            or do{
+                warn "Failed to open orphan file $logf for writing: $!. Dumping to STDERR";
+                $olog = *STDERR;
+            };
+        for my $oa (@orphans){
+            for (@$oa){
+                print $olog $_->[0];
+                ++$cnts{orphans};
+            }
+        }
+    }
+
+    for ('questions', 'answers', 'lost kids', 'kids reunited', 'orphans', 'unrecognized lines'){
+        print "$_: ", $cnts{$_} || 0, "\n" ;
+    }
+}
+
+sub process_answers{
+    my ($name, $answers, $parent) = @_;
+
+    my ($title, $q_tags, $accepted_id) = @$parent;
+
+    my @tags;
+    for my $t (split /&[lg]t;/, $q_tags){
+        push @tags, $t if $t;
+    }
+
+    for my $a (@$answers){
+        my ($id, $parent_id, $date, $score, $body, $user_id, $user_name) = @$a;
+
+        my $accepted = $accepted_id eq $id ? 1 : 0;
+
+        # converts xml chars
+        $body = decode_encode_str($body,1);
+        $title = decode_encode_str($title,1);
+
+        # converts html chars
+        decode_entities($body);
+        $body = encode("UTF-8", $body);
+        $body = decode("UTF-8", $body);
+        decode_entities($title);
+        $title = encode("UTF-8", $title);
+        $title = decode("UTF-8", $title);
+
+        # Spacing for indexing.
+        $body =~ s/(<p>)/$1 /isg;
+        #  $body =~ s/(<pre><code>)/$1/isg;
+        $body =~ s/(<\/p>)/ $1/isg;
+        # $body =~ s/(<\/code><\/pre>)/$1/isg;
+
+        my ($uid, $uname);
+        if ($user_id){
+            if(exists $users{by_id}{$user_id}) {
+                ($uid, $uname) = ($user_id, $users{by_id}{$user_id});
+            }
+        }
+        elsif($user_name){
+            if(exists $users{by_name}{$user_name}) {
+                ($uid, $uname) = ($users{by_name}{$user_name}, $user_name);
+            }
+        }
+        if($uid && $uname){
+            $body .= qq( <p>--<a href="http://$src_domain/users/$uid/ddg">$uname</a></p>);
+        }
+
+        # This title clean up lets us match more things
+        # by dropping irrelvent punctuation.
+
+        $title =~ s/[\.\?\!\:]\s*$//o; # First remove line endings.
+
+        $title =~ s/(?:\A|\s)\(([^\)]+)\)(?:\s|\Z)/ $1 /og; # Then parenthetical expressions.
+
+        # Then quotes.
+        $title =~ s/(?:\A|\s)\"([^\"]+)\"(?:\s|\Z)/ $1 /og;
+        $title =~ s/(?:\A|\s)\'([^\']+)\'(?:\s|\Z)/ $1 /og;
+
+        # Then colons.
+        $title =~ s/\:\s+/ /og;
+
+        $title =~ s/\\/ /og;
+
+        # For debugging.
+        #    print qq($title_match\n) if $title_match =~ /\(/o;
+
+        # Convert ctrl+chars to unicode
+        map {
+            s/[\cA]/^A/ig;
+            s/[\cB]/^B/ig;
+            s/[\cC]/^C/ig;
+            s/[\cD]/^D/ig;
+            s/[\cE]/^E/ig;
+            s/[\cF]/^F/ig;
+            s/[\cG]/^G/ig;
+            s/[\cH]/^H/ig;
+            s/[\cI]/^I/ig;
+            s/[\cK]/^K/ig;
+            s/[\cL]/^L/ig;
+            s/[\cM]/^M/ig;
+            s/[\cN]/^N/ig;
+            s/[\cO]/^O/ig;
+            s/[\cP]/^P/ig;
+            s/[\cQ]/^Q/ig;
+            s/[\cR]/^R/ig;
+            s/[\cS]/^S/ig;
+            s/[\cT]/^T/ig;
+            s/[\cU]/^U/ig;
+            s/[\cV]/^V/ig;
+            s/[\cW]/^W/ig;
+            s/[\cX]/^X/ig;
+            s/[\cY]/^Y/ig;
+            s/[\cZ]/^Z/ig;
+            s/[\c_]/^_/ig;
+            s/[\c]]/^]/ig;
+            s/[\c[]/^[/ig;
+            s/[\c\]/^\\/ig;
+            s/[\c^]/^\^/ig;
+        }($title, $body);
+
+        if (($title . $body) !~ /(?:\]\]|[\cG\cP])/so) {
+
+            my $metaj = encode_json({
+                creation_date => $date,
+                accepted => int($accepted),
+                post_links => $post_links{$parent_id} || {},
+                parent_score => int($parent_post_score{$parent_id} || 0),
+                tags => \@tags
+            });
+
+            print OUT <<EOH;
 <doc>
 <field name="title"><![CDATA[$title]]></field>
 <field name="l2_sec"></field>
@@ -350,37 +343,9 @@ EOH
 <field name="source">$name</field>
 </doc>
 EOH
-                }
-            }
         }
-    
-    #    last if $count;
-    #    last if $count>10;
     }
-
-    close(IN);
-    
-    print OUT <<EOH;
-</add>
-EOH
-    close(OUT);
-    #close(TMP);
-    
-    print qq($count\n);
-    print qq(q: $count_q\n);
-    print qq(q2: $count_q2\n);
-    print qq(a: $count_a\n);
-    print qq(a2: $count_a2\n);
-    print qq(a3: $count_a3\n);
-    
-    # For debugging.
-    #$count = 0;
-    #for my $tmp (sort {$tmp{$b}<=>$tmp{$a}} keys %tmp) {
-    #    print $tmp{$tmp}, "\t", $tmp, "\n";
-    #    last if ++$count>50;
-    #}
 }
-
 # Page input is multi-line XML.
 # This function helps us turn pages into single-line txt.
 sub decode_encode_str {
@@ -413,7 +378,7 @@ sub parse_argv {
     my $usage = <<ENDOFUSAGE;
 
      *********************************************************************
-       USAGE: posts.pl -d dir  [-s id1,id2,id3...]
+       USAGE: posts.pl -d dir  [-s id1,id2,id3...] [-v]
 
        OVERVIEW
 
@@ -421,7 +386,7 @@ sub parse_argv {
        files to load in Solr
 
        OPTIONS
-       
+
        -d (required) Directory in which 7z files are stored and where
           processing will take place.  If processing a lot or all sources,
           should have a lot of space.
@@ -429,6 +394,7 @@ sub parse_argv {
        -s (optional) Only process named sources.  Should be a DDG::Meta::Data
           ID.  Separate multiple IDs with commas (no spaces, unless surrounded
           by quotes!) Defaults to all sources.
+       -v: (optional) Verbose
 
     ***********************************************************************
 
@@ -440,6 +406,7 @@ ENDOFUSAGE
 
     for(my $i = 0;$i < @ARGV;$i++) {
         if   ($ARGV[$i] =~ /^-d$/i){ $stack_dir = $ARGV[++$i] }
+        elsif($ARGV[$i] =~ /^-v$/i){ $verbose = $ARGV[++$i] }
         elsif($ARGV[$i] =~ /^-s$/i ){
             my $srcs = $ARGV[++$i];
             for my $s (split /\s*,\s*/, $srcs){
@@ -449,5 +416,4 @@ ENDOFUSAGE
     }
 
     die "Must specify 7z directory\n\n$usage" unless $stack_dir;    
-
 }
