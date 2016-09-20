@@ -327,6 +327,7 @@ sub process_answers{
                 parent_score => int($parent_post_score{$parent_id} || 0),
                 tags => \@tags
             });
+            my $p_count = $score > 0 ? -1 * $score : $score;
 
             print OUT <<EOH;
 <doc>
@@ -334,7 +335,7 @@ sub process_answers{
 <field name="l2_sec"></field>
 <field name="popularity">$score</field>
 <field name="paragraph"><![CDATA[$body]]></field>
-<field name="p_count">-$score</field>
+<field name="p_count">$p_count</field>
 <field name="id">$parent_id</field>
 <field name="id_match">$parent_id</field>
 <field name="id2_match">$id</field>
