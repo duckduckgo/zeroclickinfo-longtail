@@ -327,7 +327,7 @@ sub process_answers{
                 parent_score => int($parent_post_score{$parent_id} || 0),
                 tags => \@tags
             });
-            my $p_count = $score > 0 : -1 * $score : $score;
+            my $p_count = $score > 0 ? -1 * $score : $score;
 
             print OUT <<EOH;
 <doc>
