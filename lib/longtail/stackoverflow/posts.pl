@@ -168,7 +168,8 @@ EOH
             }
         } # Answers.
         elsif (my @vals = $line =~ $answer_re){
-            my $parent_id = $vals[1];
+            my ($parent_id, $score) = @vals[1,3];
+            next if $score < 0;
 
             # For debugging.
             #print $user, "\n";
@@ -327,7 +328,7 @@ sub process_answers{
                 parent_score => int($parent_post_score{$parent_id} || 0),
                 tags => \@tags
             });
-            my $p_count = $score > 0 ? -1 * $score : $score;
+            my $p_count = -1 * $score;
 
             print OUT <<EOH;
 <doc>
