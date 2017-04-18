@@ -1,6 +1,6 @@
 # Welcome to DuckDuckHack! 
 
-![](http://docs.duckduckhack.com/assets/hack search engine.png)
+![](http://docs.duckduckhack.com/assets/hack_search_engine.png)
 
 We're a community dedicated to improving search results with open source, "Instant Answers." Instant Answers use the Web's best APIs and data to solve searches in few or zero clicks. Together and openly, we can create the best search engine for every type of search.
 
