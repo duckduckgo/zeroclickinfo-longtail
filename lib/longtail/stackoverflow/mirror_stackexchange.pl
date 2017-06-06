@@ -11,6 +11,17 @@ parse_argv();
 my $ua = LWP::UserAgent->new;
 my %m = %{DDG::Meta::Data->filter_ias({is_stackexchange => 1})};
 
+my $res = $ua->get($archive_org);
+my %available_zips;
+if($res->is_success){
+    my $c = $res->decoded_content;
+    my @zips = $c =~ /href="([^"]+\.com\.7z)/g;
+    for (@zips){
+        next if /^meta\./;
+        $available_zips{$_} = 1
+    }
+}
+
 for my $id (sort keys %m){
 
     my $ia = $m{$id};
@@ -27,6 +38,7 @@ for my $id (sort keys %m){
     }
 
     for my $z (@zips){
+        delete $available_zips{$z};
         my $res = $ua->mirror("$archive_org/$z", "$se_dir/$z");
         if($res->is_success){
             warn "Downloaded new version of $z\n";
@@ -38,6 +50,9 @@ for my $id (sort keys %m){
             warn "Failed to check $z: ", $res->status_line;
         }
     }
+}
+if(my @unknown = sort keys %available_zips){
+    warn join("\n\t", "NEW/UNKNOWN 7Z FILES AVAILABLE:\n", @unknown), "\n";
 }
 
 sub parse_argv {
