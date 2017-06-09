@@ -250,6 +250,8 @@ sub process_answers{
         #  $body =~ s/(<pre><code>)/$1/isg;
         $body =~ s/(<\/p>)/ $1/isg;
         # $body =~ s/(<\/code><\/pre>)/$1/isg;
+        # temporary fix for image proxy
+        $body =~ s{<img\s+src="https://i\.stack\.imgur\.com}{<img src="http://i.stack.imgur.com}gi;
 
         my ($uid, $uname);
         if ($user_id){
