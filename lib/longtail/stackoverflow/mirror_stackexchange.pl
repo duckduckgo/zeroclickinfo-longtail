@@ -52,7 +52,18 @@ for my $id (sort keys %m){
     }
 }
 if(my @unknown = sort keys %available_zips){
-    warn join("\n\t", "NEW/UNKNOWN 7Z FILES AVAILABLE:\n", @unknown), "\n";
+    my @new;
+    $ua->max_redirect(0);
+    for my $u (@unknown){
+        if($u =~ /^(.+\.com)\.7z$/){
+            my $res = $ua->get('https://' . $1);
+            # skip if they have been closed
+            unless($res->header('Location') =~ /area51/){
+                push @new, $u;
+            }
+        }
+    }
+    warn join("\n\t", "NEW/UNKNOWN 7Z FILES AVAILABLE:\n", @new), "\n" if @new;
 }
 
 sub parse_argv {
