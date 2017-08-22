@@ -265,7 +265,7 @@ sub process_answers{
             }
         }
         if($uid && $uname){
-            $body .= qq( <p>--<a href="http://$src_domain/users/$uid/ddg">$uname</a></p>);
+            $body .= qq( <p>--<a href="https://$src_domain/users/$uid/ddg">$uname</a></p>);
         }
 
         # This title clean up lets us match more things
