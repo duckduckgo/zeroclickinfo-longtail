@@ -1,16 +1,16 @@
-# Welcome to DuckDuckHack! 
+# In Maintenance
 
-![](http://docs.duckduckhack.com/assets/hack_search_engine.png)
+DuckDuckHack is now in maintenance mode. We are only accepting pull requests for essential bug fixes. For more information see [duckduckhack.com](https://duckduckhack.com). 
 
-We're a community dedicated to improving search results with open source, "Instant Answers." Instant Answers use the Web's best APIs and data to solve searches in few or zero clicks. Together and openly, we can create the best search engine for every type of search.
+## What are essential bug fixes?
 
-More Resources:   
-*[Full documentation](http://docs.duckduckhack.com)*  
-*[Instant Answers in Production](https://duck.co/ia)*  
-*[Instant Answers in Beta](https://beta.duckduckgo.com/?q=test&t=hc&ia=iatesting&iax=1)*  
+Any changes necessary to keep existing Instant Answers functioning correctly and as expected. For example:
 
-Instant Answers appear at the top of search results...
-![](http://docs.duckduckhack.com/assets/python_apply_at_DuckDuckGo.png)
+  - Updating the URL for a Spice Instant Answer when the API changes
+  - Correcting a Perl or JavaScript logic error
+  - Fixing CSS that's causing the display to break
 
-Attribution is shown for developers who create or improve them...
-![](http://docs.duckduckhack.com/assets/attribution_example_1.png)
+Any other changes will not be accepted. For example:
+
+  - spelling/comment changes
+  - unsolicited improvements, changes, and code refactoring
