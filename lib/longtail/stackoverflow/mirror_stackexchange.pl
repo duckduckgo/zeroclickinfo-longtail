@@ -17,7 +17,7 @@ if($res->is_success){
     my $c = $res->decoded_content;
     my @zips = $c =~ /href="([^"]+\.com\.7z)/g;
     for (@zips){
-        next if /^meta\./;
+        next if /\bmeta\b/;
         $available_zips{$_} = 1
     }
 }
@@ -34,6 +34,8 @@ for my $id (sort keys %m){
         }
     }
     else{
+        $src_dom =~ s/^video\./avp./;
+        $src_dom =~ s/^alcohol\./beer./;
         push @zips, "$src_dom.7z";
     }
 
@@ -55,6 +57,7 @@ if(my @unknown = sort keys %available_zips){
     my @new;
     $ua->max_redirect(0);
     for my $u (@unknown){
+        next if $u =~ /^programmers\./;
         if($u =~ /^(.+\.com)\.7z$/){
             my $res = $ua->get('https://' . $1);
             # skip if they have been closed
