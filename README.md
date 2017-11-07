@@ -1,4 +1,6 @@
 # In Maintenance
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-longtail.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-longtail?ref=badge_shield)
+
 
 DuckDuckHack is now in maintenance mode. We are only accepting pull requests for essential bug fixes. For more information see [duckduckhack.com](https://duckduckhack.com). 
 
@@ -14,3 +16,7 @@ Any other changes will not be accepted. For example:
 
   - spelling/comment changes
   - unsolicited improvements, changes, and code refactoring
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-longtail.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-longtail?ref=badge_large)
