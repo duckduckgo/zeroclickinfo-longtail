@@ -1,16 +1,13 @@
-# In Maintenance
+# This repo is now archived
 
-DuckDuckHack is now in maintenance mode. We are only accepting pull requests for essential bug fixes. For more information see [duckduckhack.com](https://duckduckhack.com). 
+DuckDuckHack went on maintenance mode in 2015 and we aren't in a position to continue it. This repo hasn't been maintained subsequently and so we are archiving it.
 
-## What are essential bug fixes?
+## Need to report a bug?
 
-Any changes necessary to keep existing Instant Answers functioning correctly and as expected. For example:
+If you find a bug or relevancy issue, the **best** way to report this is via the Feedback button on the DuckDuckGo.com search results page. These issues are compiled and reviewed daily.
 
-  - Updating the URL for a Spice Instant Answer when the API changes
-  - Correcting a Perl or JavaScript logic error
-  - Fixing CSS that's causing the display to break
+## Have a suggestion or idea?
 
-Any other changes will not be accepted. For example:
+The **best** way to report these is also via the Feedback button on the DuckDuckGo.com search results page.
 
-  - spelling/comment changes
-  - unsolicited improvements, changes, and code refactoring
+You can also share your thoughts with our community on [Reddit](https://www.reddit.com/r/duckduckgo/).
